@@ -65,7 +65,7 @@ html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;
 
 <section id="knockoutQuestionScreen" class="screen"><button class="back" onclick="stopTimer();showScreen('homeScreen')">←</button><div class="pill" id="roundLabel">4 players remain</div><h2 id="koQuestion" class="question" style="max-width:365px;text-align:center;margin-top:14px"></h2><div id="koTimer" class="timer"><div id="koNum" class="timerNum">15</div></div><button class="small secondary" style="width:min(100%,365px)" onclick="revealKoAnswer()">Show answer now</button></section>
 
-<section id="knockoutAnswerScreen" class="screen"><button class="back" onclick="showScreen('homeScreen')">←</button><h2 class="title">Answer</h2><div class="answerBox"><strong id="koAnswer"></strong><div id="koExplain" style="margin-top:8px;font-size:13px;color:var(--soft)"></div></div><p class="sub" style="margin-top:16px">You know who got it. The app does not need names.</p><div class="actions"><button class="small secondary" onclick="skipKoQuestion()">Nobody got it / Skip</button><button class="small" onclick="someoneGotIt()">Someone got it ✓</button></div></section>
+<section id="knockoutAnswerScreen" class="screen"><button class="back" onclick="showScreen('homeScreen')">←</button><h2 class="title">Answer</h2><div class="answerBox"><strong id="koAnswer"></strong><div id="koExplain" style="margin-top:8px;font-size:13px;color:var(--soft)"></div></div><p class="sub" style="margin-top:16px">You know who got it. The app does not need names.</p><div id="koSkipInsult" class="notice" style="display:none;margin-top:2px"></div><div class="actions"><button id="koSkipBtn" class="small secondary" onclick="skipKoQuestion()">Nobody got it / Skip</button><button id="koGotBtn" class="small" onclick="someoneGotIt()">Someone got it ✓</button></div></section>
 
 <section id="knockoutLoserScreen" class="screen"><div class="axowrap"><div id="loserAxo"></div></div><div class="card"><div class="label">THE LOSER IS...</div><h2 class="question">The last person still standing.</h2><p id="loserMock" class="sub" style="margin:16px 0 0"></p></div><button class="small" style="width:min(100%,365px);margin-top:16px" onclick="showScreen('homeScreen')">Home</button></section>
 
@@ -160,6 +160,20 @@ const GATES=[
 {q:'Which animal can sleep standing up?',c:['Horse','Hamster','Otter'],a:0}
 ];
 
+const SKIP_INSULTS=[
+'Nobody? Not one of you? Spectacular.',
+'The collective brain cell has left the building.',
+'Fine. We will pretend that question never happened.',
+'An entire group and still no answer. Inspiring stuff.',
+'That silence was academically deafening.',
+'Congratulations, you have all been humbled by a question.',
+'The answer was right there. Spiritually, at least.',
+'You may skip the question. You cannot skip the shame.',
+'Group project energy. Nobody knew anything.',
+'The axolotl is lowering its expectations accordingly.',
+'No answer? Bold strategy. Terrible, but bold.',
+'Even a confident wrong answer would have shown initiative.'
+];
 const INSULTS=[
 'Come on. Did you even go to school?',
 'That was not a knowledge gap. That was a knowledge crater.',
@@ -194,11 +208,11 @@ function decidedDebate(){stopTimer();document.getElementById('debateDoneTitle').
 function again(){currentMode==='proven'?startProven():startDebatable()}
 function startTimer(ringId,numId,onDone){stopTimer();let s=15,ring=document.getElementById(ringId),num=document.getElementById(numId);num.textContent=s;ring.style.setProperty('--p','100%');timer=setInterval(()=>{s--;num.textContent=s;ring.style.setProperty('--p',(s/15*100)+'%');if(s<=0){stopTimer();onDone()}},1000)} function stopTimer(){clearInterval(timer);timer=null}
 function openKnockoutSetup(){document.getElementById('koSetupAxo').innerHTML=axo(chaos);showScreen('knockoutSetupScreen')} function changePlayers(n){playerCount=Math.max(2,Math.min(12,playerCount+n));document.getElementById('playerCount').textContent=playerCount}
-function beginKnockout(){remainingPlayers=playerCount;koUsed=[];nextKoQuestion()}
-function koPool(){const pool=available(data.knockout);let unused=pool.filter((_,i)=>!koUsed.includes(i));if(!unused.length){koUsed=[];unused=pool}return {pool,unused}}
-function nextKoQuestion(){if(remainingPlayers<=1){finishKnockout();return}randomLoading(()=>{const pool=available(data.knockout);const candidates=pool.map((q,i)=>({q,i})).filter(x=>!koUsed.includes(x.i));const pick=rand(candidates.length?candidates:pool.map((q,i)=>({q,i})));if(!candidates.length)koUsed=[];koUsed.push(pick.i);koCurrent=pick.q;document.getElementById('roundLabel').textContent=remainingPlayers+' players remain';document.getElementById('koQuestion').textContent=koCurrent.text;startTimer('koTimer','koNum',revealKoAnswer);showScreen('knockoutQuestionScreen')},1300)}
+function beginKnockout(){remainingPlayers=playerCount;nextKoQuestion()}
+function nextKoQuestion(){if(remainingPlayers<=1){finishKnockout();return}randomLoading(()=>{koCurrent=drawQuestion('knockout');if(!koCurrent){showScreen('homeScreen');return}document.getElementById('roundLabel').textContent=remainingPlayers+' players remain';document.getElementById('koQuestion').textContent=koCurrent.text;const insult=document.getElementById('koSkipInsult');if(insult){insult.style.display='none';insult.textContent=''}const skip=document.getElementById('koSkipBtn'),got=document.getElementById('koGotBtn');if(skip)skip.disabled=false;if(got)got.disabled=false;startTimer('koTimer','koNum',revealKoAnswer);showScreen('knockoutQuestionScreen')},1300)}
 function revealKoAnswer(){stopTimer();document.getElementById('koAnswer').textContent=koCurrent.answer||'No answer set';document.getElementById('koExplain').textContent=koCurrent.explain||'';showScreen('knockoutAnswerScreen')}
-function someoneGotIt(){remainingPlayers--;if(remainingPlayers<=1)finishKnockout();else nextKoQuestion()} function skipKoQuestion(){nextKoQuestion()}
+function someoneGotIt(){remainingPlayers--;if(remainingPlayers<=1)finishKnockout();else nextKoQuestion()}
+function skipKoQuestion(){const box=document.getElementById('koSkipInsult'),skip=document.getElementById('koSkipBtn'),got=document.getElementById('koGotBtn');if(box){box.textContent=rand(SKIP_INSULTS);box.style.display='block'}if(skip)skip.disabled=true;if(got)got.disabled=true;setTimeout(nextKoQuestion,1250)}
 function finishKnockout(){document.getElementById('loserMock').textContent=rand(INSULTS);document.getElementById('loserAxo').innerHTML=axo(3,'loser');showScreen('knockoutLoserScreen')}
 function openEditHome(){showScreen('editHomeScreen')} function openEditor(mode){currentMode=mode;document.getElementById('editorTitle').textContent='Edit '+(mode==='proven'?'Anything Goes':mode==='debate'?'Debatable':'Knockout');document.getElementById('newA').style.display=mode==='knockout'?'block':'none';document.getElementById('newE').style.display=mode==='knockout'?'block':'none';renderEditor();showScreen('editorScreen')}
 function renderEditor(){const list=document.getElementById('editList');list.innerHTML='';data[currentMode].forEach((q,i)=>{const row=document.createElement('div');row.className='editRow';const top=document.createElement('div');top.className='editRowTop';const text=document.createElement('textarea');text.className='field';text.rows=2;text.value=q.text;text.onchange=()=>{q.text=text.value.trim()||q.text;save()};const del=document.createElement('button');del.className='iconBtn danger';del.textContent='Delete';del.onclick=()=>requestDelete(i);top.append(text,del);row.appendChild(top);if(currentMode==='knockout'){const ans=document.createElement('input');ans.className='field';ans.value=q.answer||'';ans.placeholder='Answer';ans.onchange=()=>{q.answer=ans.value;save()};const exp=document.createElement('input');exp.className='field';exp.value=q.explain||'';exp.placeholder='Explanation';exp.onchange=()=>{q.explain=exp.value;save()};row.append(ans,exp)}const sel=document.createElement('select');sel.className='field';sel.innerHTML='<option value="1">🌱 Tame</option><option value="2">🌶️ Spicy</option><option value="3">🔥 Unhinged</option>';sel.value=q.chaos||1;sel.onchange=()=>{q.chaos=Number(sel.value);save()};row.appendChild(sel);list.appendChild(row)})}
