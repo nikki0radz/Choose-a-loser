@@ -11,99 +11,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Patch UI and mascot
+        env:
+          CSS_B64: LyogQnViYmxlLW1vZGUgcmVmcmVzaCArIG1vYmlsZSBmaXhlcyAqLwoubW9kZUJ1dHRvbntwb3NpdGlvbjpyZWxhdGl2ZTtvdmVyZmxvdzpoaWRkZW47bWluLXdpZHRoOjA7Ym9yZGVyOjEuNXB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjI0KTtib3JkZXItcmFkaXVzOjQycHg7YmFja2dyb3VuZC1jbGlwOnBhZGRpbmctYm94O2JveC1zaGFkb3c6aW5zZXQgMCAycHggMCByZ2JhKDI1NSwyNTUsMjU1LC4yMiksaW5zZXQgMCAtMTJweCAyOHB4IHJnYmEoMTAsOCw0NSwuMTgpLDAgOHB4IDAgcmdiYSgwLDAsMCwuMTApLDAgMThweCAzMHB4IHJnYmEoMCwwLDAsLjE4KTtiYWNrZHJvcC1maWx0ZXI6Ymx1cig4cHgpOy13ZWJraXQtYmFja2Ryb3AtZmlsdGVyOmJsdXIoOHB4KX0KLm1vZGVCdXR0b246OmJlZm9yZXtjb250ZW50OiIiO3Bvc2l0aW9uOmFic29sdXRlO2xlZnQ6OSU7cmlnaHQ6MzQlO3RvcDo4cHg7aGVpZ2h0OjIxcHg7Ym9yZGVyLXJhZGl1czo5OTlweDtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxODBkZWcscmdiYSgyNTUsMjU1LDI1NSwuMzApLHJnYmEoMjU1LDI1NSwyNTUsLjAzKSk7cG9pbnRlci1ldmVudHM6bm9uZX0KLm1vZGVCdXR0b24+Kntwb3NpdGlvbjpyZWxhdGl2ZTt6LWluZGV4OjF9Ci5wcm9vZntiYWNrZ3JvdW5kOnJhZGlhbC1ncmFkaWVudChjaXJjbGUgYXQgMjMlIDE1JSxyZ2JhKDI1NSwyNTUsMjU1LC4yMCksdHJhbnNwYXJlbnQgMjglKSxsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLHJnYmEoMTcyLDExNCwyMTQsLjcyKSxyZ2JhKDEyNiw3MywxNjksLjUyKSl9Ci5kZWJhdGV7YmFja2dyb3VuZDpyYWRpYWwtZ3JhZGllbnQoY2lyY2xlIGF0IDIzJSAxNSUscmdiYSgyNTUsMjU1LDI1NSwuMTYpLHRyYW5zcGFyZW50IDI4JSksbGluZWFyLWdyYWRpZW50KDEzNWRlZyxyZ2JhKDg5LDQzLDEzMiwuNjgpLHJnYmEoNDEsMTgsNzgsLjUwKSl9Ci5rbm9ja291dHtiYWNrZ3JvdW5kOnJhZGlhbC1ncmFkaWVudChjaXJjbGUgYXQgMjMlIDE1JSxyZ2JhKDI1NSwyNTUsMjU1LC4xOCksdHJhbnNwYXJlbnQgMjglKSxsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLHJnYmEoMzQsMTkxLDE3OCwuNjYpLHJnYmEoMTIsOTEsMTE2LC41MCkpfQouYnR7Zm9udC1zaXplOmNsYW1wKDE3cHgsNS43dncsMjJweCk7bGluZS1oZWlnaHQ6MS4wNTt3aGl0ZS1zcGFjZTpub3JtYWw7b3ZlcmZsb3ctd3JhcDphbnl3aGVyZTt3b3JkLWJyZWFrOm5vcm1hbDttYXgtd2lkdGg6MTAwJX0uYnN7d2hpdGUtc3BhY2U6bm9ybWFsO292ZXJmbG93LXdyYXA6YW55d2hlcmU7bWF4LXdpZHRoOjEwMCU7bGluZS1oZWlnaHQ6MS4yNX0KI2tvQW5zd2Vye2ZvbnQtZmFtaWx5OiJGcmVkb2thIixzYW5zLXNlcmlmO2ZvbnQtc2l6ZTpjbGFtcCgzMHB4LDl2dyw0NHB4KTtsaW5lLWhlaWdodDoxLjA4O2ZvbnQtd2VpZ2h0OjcwMDtjb2xvcjojZmZmO21hcmdpbjo1cHggMCA4cHh9LmFuc3dlckJveCBzdHJvbmd7Zm9udC1zaXplOmluaGVyaXR9Ci5heG9GYWNlU3RhZ2V7cG9zaXRpb246cmVsYXRpdmU7d2lkdGg6MTAwJTtoZWlnaHQ6MTAwJTtkaXNwbGF5OmdyaWQ7cGxhY2UtaXRlbXM6Y2VudGVyO292ZXJmbG93OnZpc2libGV9LmF4b0ZhY2VJbWd7ZGlzcGxheTpibG9jazt3aWR0aDoxMDAlO21heC1oZWlnaHQ6MTAwJTtvYmplY3QtZml0OmNvbnRhaW47Ym9yZGVyLXJhZGl1czozMiU7ZmlsdGVyOmRyb3Atc2hhZG93KDAgMTJweCAxOHB4IHJnYmEoMCwwLDAsLjE4KSk7dHJhbnNmb3JtLW9yaWdpbjo1MCUgNjAlfS5heG9Ib3Juc3twb3NpdGlvbjphYnNvbHV0ZTtpbnNldDowO3BvaW50ZXItZXZlbnRzOm5vbmU7ei1pbmRleDozfS5heG9Ib3Jue3Bvc2l0aW9uOmFic29sdXRlO3RvcDoxJTt3aWR0aDoxOCU7aGVpZ2h0OjI4JTtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxNDVkZWcsI2E1MWU1MCwjNWMxNzNiKTtib3JkZXItcmFkaXVzOjcwJSAxOCUgNjIlIDIwJTt0cmFuc2Zvcm0tb3JpZ2luOjUwJSAxMDAlO2JveC1zaGFkb3c6aW5zZXQgM3B4IDJweCAwIHJnYmEoMjU1LDI1NSwyNTUsLjEyKX0uYXhvSG9ybi5sZWZ0e2xlZnQ6MjclO3RyYW5zZm9ybTpyb3RhdGUoLTI3ZGVnKSBza2V3WSgtOGRlZyl9LmF4b0hvcm4ucmlnaHR7cmlnaHQ6MjclO3RyYW5zZm9ybTpzY2FsZVgoLTEpIHJvdGF0ZSgtMjdkZWcpIHNrZXdZKC04ZGVnKX0uYXhvRmFjZVN0YWdlLmNoYW9zMiAuYXhvSG9ybntoZWlnaHQ6MjAlO3RvcDo4JTtvcGFjaXR5Oi43NX0uYXhvRmFjZVN0YWdlLmNoYW9zMSAuYXhvSG9ybnN7ZGlzcGxheTpub25lfS5heG9GYWNlU3RhZ2UubG9zZXIgLmF4b0hvcm57aGVpZ2h0OjMwJTt0b3A6LTElO2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDE0NWRlZywjYjAxODQ5LCM0NjEyMmYpfQouYXhvQWNjZXNzb3J5e3Bvc2l0aW9uOmFic29sdXRlO2luc2V0OjA7ei1pbmRleDo1O3BvaW50ZXItZXZlbnRzOm5vbmV9LmF4b0dsYXNzZXN7cG9zaXRpb246YWJzb2x1dGU7bGVmdDoyOSU7dG9wOjQyJTt3aWR0aDo0MiU7aGVpZ2h0OjIyJTtvcGFjaXR5OjA7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoLTQ1JSkgcm90YXRlKC00ZGVnKX0uYXhvR2xhc3Nlczo6YmVmb3JlLC5heG9HbGFzc2VzOjphZnRlcntjb250ZW50OiIiO3Bvc2l0aW9uOmFic29sdXRlO3RvcDowO3dpZHRoOjM4JTtoZWlnaHQ6NzIlO2JvcmRlcjo1cHggc29saWQgIzE3MTMxZjtiYWNrZ3JvdW5kOnJnYmEoMjAsMTgsMzAsLjc2KTtib3JkZXItcmFkaXVzOjEzcHggMTNweCAyMnB4IDIycHh9LmF4b0dsYXNzZXM6OmJlZm9yZXtsZWZ0OjB9LmF4b0dsYXNzZXM6OmFmdGVye3JpZ2h0OjB9LmF4b0dsYXNzZXMgaXtwb3NpdGlvbjphYnNvbHV0ZTtsZWZ0OjM3JTtyaWdodDozNyU7dG9wOjIyJTtoZWlnaHQ6NXB4O2JhY2tncm91bmQ6IzE3MTMxZjtib3JkZXItcmFkaXVzOjlweH0uYXhvVG9uZ3Vle3Bvc2l0aW9uOmFic29sdXRlO2xlZnQ6NDYlO3RvcDo2NyU7d2lkdGg6OCU7aGVpZ2h0OjE5JTtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgjZmY5YWJiLCNlODVhOGUpO2JvcmRlci1yYWRpdXM6MCAwIDk5OXB4IDk5OXB4O29wYWNpdHk6MDt0cmFuc2Zvcm06c2NhbGVZKC4xNSk7dHJhbnNmb3JtLW9yaWdpbjp0b3B9LmF4b0NpZ3twb3NpdGlvbjphYnNvbHV0ZTtsZWZ0OjY1JTt0b3A6NjQlO3dpZHRoOjI1JTtoZWlnaHQ6N3B4O2JhY2tncm91bmQ6I2YzZWVlODtib3JkZXItcmFkaXVzOjhweDt0cmFuc2Zvcm06cm90YXRlKDE0ZGVnKTtvcGFjaXR5OjA7Ym94LXNoYWRvdzppbnNldCAtOXB4IDAgI2Q4NzY1OX0uYXhvQ2lnOjphZnRlcntjb250ZW50OiIiO3Bvc2l0aW9uOmFic29sdXRlO3JpZ2h0Oi0ycHg7dG9wOjA7d2lkdGg6N3B4O2hlaWdodDo3cHg7Ym9yZGVyLXJhZGl1czo1MCU7YmFja2dyb3VuZDojZmY5YzRhO2JveC1zaGFkb3c6MCAwIDlweCAjZmY3YjM2fS5heG9TbW9rZXtwb3NpdGlvbjphYnNvbHV0ZTtsZWZ0Ojg0JTt0b3A6NDUlO3dpZHRoOjEycHg7aGVpZ2h0OjEycHg7Ym9yZGVyOjJweCBzb2xpZCByZ2JhKDIzNSwyMzIsMjU1LC43KTtib3JkZXItcmFkaXVzOjUwJTtvcGFjaXR5OjB9LmF4b1dpbmt7cG9zaXRpb246YWJzb2x1dGU7bGVmdDozMSU7dG9wOjQ3JTt3aWR0aDoxOCU7aGVpZ2h0OjklO2JhY2tncm91bmQ6IzNhMTYzNztib3JkZXItcmFkaXVzOjUwJTtvcGFjaXR5OjA7dHJhbnNmb3JtOnJvdGF0ZSg4ZGVnKX0uYXhvSGlkZXtwb3NpdGlvbjphYnNvbHV0ZTtsZWZ0OjQlO3JpZ2h0OjQlO2JvdHRvbTotMiU7aGVpZ2h0OjQ4JTtiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxODBkZWcscmdiYSg2LDIwLDU1LC4yNSksIzA2MTQzNyA0MCUpO2JvcmRlci1yYWRpdXM6NDQlIDQ0JSAwIDA7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoMTAwJSk7b3BhY2l0eTowfQouYXhvRmFjZVN0YWdlLmFjdC1mbG9hdCAuYXhvRmFjZUltZ3thbmltYXRpb246YXhvRmxvYXQgMS41cyBlYXNlLWluLW91dCBpbmZpbml0ZX0uYXhvRmFjZVN0YWdlLmFjdC1nbGFzc2VzIC5heG9HbGFzc2Vze2FuaW1hdGlvbjpnbGFzc2VzRHJvcCAxLjU1cyBjdWJpYy1iZXppZXIoLjIsLjgsLjIsMSkgaW5maW5pdGV9LmF4b0ZhY2VTdGFnZS5hY3QtdG9uZ3VlIC5heG9Ub25ndWV7YW5pbWF0aW9uOnRvbmd1ZVBvcCAxLjQ1cyBlYXNlLWluLW91dCBpbmZpbml0ZX0uYXhvRmFjZVN0YWdlLmFjdC1zbW9rZSAuYXhvQ2lne2FuaW1hdGlvbjpjaWdCb2IgMS43cyBlYXNlLWluLW91dCBpbmZpbml0ZTtvcGFjaXR5OjF9LmF4b0ZhY2VTdGFnZS5hY3Qtc21va2UgLmF4b1Ntb2tle2FuaW1hdGlvbjpzbW9rZVB1ZmYgMS43cyBlYXNlLW91dCBpbmZpbml0ZX0uYXhvRmFjZVN0YWdlLmFjdC13aW5rIC5heG9XaW5re2FuaW1hdGlvbjp3aW5rIDEuN3MgZWFzZS1pbi1vdXQgaW5maW5pdGV9LmF4b0ZhY2VTdGFnZS5hY3QtaGlkZSAuYXhvSGlkZXthbmltYXRpb246aGlkZVBlZWsgMS44cyBlYXNlLWluLW91dCBpbmZpbml0ZX0uYXhvRmFjZVN0YWdlLmFjdC1oaWRlIC5heG9GYWNlSW1ne2FuaW1hdGlvbjpwZWVrRmFjZSAxLjhzIGVhc2UtaW4tb3V0IGluZmluaXRlfS5heG9GYWNlU3RhZ2UubG9zZXIgLmF4b0ZhY2VJbWd7YW5pbWF0aW9uOmxvc2VyVGlsdCAuOHMgZWFzZS1pbi1vdXQgMX0KQGtleWZyYW1lcyBheG9GbG9hdHswJSwxMDAle3RyYW5zZm9ybTp0cmFuc2xhdGVZKDJweCkgcm90YXRlKC0xZGVnKX01MCV7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoLTdweCkgcm90YXRlKDFkZWcpfX1Aa2V5ZnJhbWVzIGdsYXNzZXNEcm9wezAlLDE4JXtvcGFjaXR5OjA7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoLTU1JSkgcm90YXRlKC00ZGVnKX0zNSUsNzYle29wYWNpdHk6MTt0cmFuc2Zvcm06dHJhbnNsYXRlWSgwKSByb3RhdGUoLTRkZWcpfTg4JSwxMDAle29wYWNpdHk6MDt0cmFuc2Zvcm06dHJhbnNsYXRlWSgxMCUpIHJvdGF0ZSgtNGRlZyl9fUBrZXlmcmFtZXMgdG9uZ3VlUG9wezAlLDI2JSw4MCUsMTAwJXtvcGFjaXR5OjA7dHJhbnNmb3JtOnNjYWxlWSguMTUpfTQwJSw2NyV7b3BhY2l0eToxO3RyYW5zZm9ybTpzY2FsZVkoMSl9fUBrZXlmcmFtZXMgY2lnQm9iezAlLDEwMCV7dHJhbnNmb3JtOnJvdGF0ZSgxMmRlZykgdHJhbnNsYXRlWSgxcHgpfTUwJXt0cmFuc2Zvcm06cm90YXRlKDE2ZGVnKSB0cmFuc2xhdGVZKC0ycHgpfX1Aa2V5ZnJhbWVzIHNtb2tlUHVmZnswJXtvcGFjaXR5OjA7dHJhbnNmb3JtOnRyYW5zbGF0ZSgwLDE1cHgpIHNjYWxlKC40KX0yNSV7b3BhY2l0eTouOH0xMDAle29wYWNpdHk6MDt0cmFuc2Zvcm06dHJhbnNsYXRlKDE1cHgsLTM2cHgpIHNjYWxlKDEuOCl9fUBrZXlmcmFtZXMgd2lua3swJSwzMCUsNTglLDEwMCV7b3BhY2l0eTowO3RyYW5zZm9ybTpzY2FsZVkoLjIpIHJvdGF0ZSg4ZGVnKX0zOCUsNDgle29wYWNpdHk6MTt0cmFuc2Zvcm06c2NhbGVZKDEpIHJvdGF0ZSg4ZGVnKX19QGtleWZyYW1lcyBoaWRlUGVla3swJSwxMiUsODglLDEwMCV7b3BhY2l0eToxO3RyYW5zZm9ybTp0cmFuc2xhdGVZKDE2JSl9MzQlLDY4JXtvcGFjaXR5OjE7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoMCl9fUBrZXlmcmFtZXMgcGVla0ZhY2V7MCUsMTIlLDg4JSwxMDAle3RyYW5zZm9ybTp0cmFuc2xhdGVZKDI2JSl9MzQlLDY4JXt0cmFuc2Zvcm06dHJhbnNsYXRlWSgtMiUpfX1Aa2V5ZnJhbWVzIGxvc2VyVGlsdHswJXt0cmFuc2Zvcm06cm90YXRlKDApfTM1JXt0cmFuc2Zvcm06cm90YXRlKC01ZGVnKX03MCV7dHJhbnNmb3JtOnJvdGF0ZSg0ZGVnKX0xMDAle3RyYW5zZm9ybTpyb3RhdGUoMCl9fQpAbWVkaWEobWF4LXdpZHRoOjM2MHB4KXsubW9kZUJ1dHRvbntwYWRkaW5nOjE1cHggMTdweDttaW4taGVpZ2h0Ojc0cHh9LmJ0e2ZvbnQtc2l6ZToxOHB4fS5ic3tmb250LXNpemU6MTFweH0uZGViYXRlIC5idHtmb250LXNpemU6MTdweH19QG1lZGlhKHByZWZlcnMtcmVkdWNlZC1tb3Rpb246cmVkdWNlKXsuYXhvRmFjZVN0YWdlICp7YW5pbWF0aW9uOm5vbmUhaW1wb3J0YW50fS5tb2RlQnV0dG9uOjpiZWZvcmV7ZGlzcGxheTpub25lfX0K
+          JS_B64: ZnVuY3Rpb24gYXhvKGxldmVsPTEsZXhwcmVzc2lvbj0nbm9ybWFsJyxhY3Q9Jycpewpjb25zdCBsb3Nlcj1leHByZXNzaW9uPT09J2xvc2VyJzsKY29uc3QgY2hhb3NDbGFzcz0nY2hhb3MnK01hdGgubWF4KDEsTWF0aC5taW4oMyxsZXZlbCkpOwpjb25zdCBhY3RDbGFzcz1hY3Q/JyBhY3QtJythY3Q6Jyc7CnJldHVybiBgPGRpdiBjbGFzcz0iYXhvRmFjZVN0YWdlICR7Y2hhb3NDbGFzc30ke2xvc2VyPycgbG9zZXInOicnfSR7YWN0Q2xhc3N9Ij48aW1nIGNsYXNzPSJheG9GYWNlSW1nIiBzcmM9ImFzc2V0cy9heG9sb3RsLWZhY2Uud2VicCIgYWx0PSJQaW5rIGF4b2xvdGwgbWFzY290Ij48ZGl2IGNsYXNzPSJheG9Ib3JucyI+PHNwYW4gY2xhc3M9ImF4b0hvcm4gbGVmdCI+PC9zcGFuPjxzcGFuIGNsYXNzPSJheG9Ib3JuIHJpZ2h0Ij48L3NwYW4+PC9kaXY+PGRpdiBjbGFzcz0iYXhvQWNjZXNzb3J5Ij48c3BhbiBjbGFzcz0iYXhvR2xhc3NlcyI+PGk+PC9pPjwvc3Bhbj48c3BhbiBjbGFzcz0iYXhvVG9uZ3VlIj48L3NwYW4+PHNwYW4gY2xhc3M9ImF4b0NpZyI+PC9zcGFuPjxzcGFuIGNsYXNzPSJheG9TbW9rZSI+PC9zcGFuPjxzcGFuIGNsYXNzPSJheG9XaW5rIj48L3NwYW4+PHNwYW4gY2xhc3M9ImF4b0hpZGUiPjwvc3Bhbj48L2Rpdj48L2Rpdj5gfQpmdW5jdGlvbiByYW5kb21Mb2FkaW5nKGNiLG1zPTE1MDApe2NvbnN0IHdyYXA9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2xvYWRpbmdXcmFwJyk7d3JhcC5jbGFzc05hbWU9J2F4b3dyYXAgYmlnIHRoaW5raW5nJzt3cmFwLmlubmVySFRNTD0nPGRpdiBpZD0ibG9hZGluZ0F4byI+PC9kaXY+PGRpdiBjbGFzcz0iYnViYmxlU3RyZWFtIj48ZGl2IGNsYXNzPSJtb3V0aEJ1YmJsZSI+PC9kaXY+PGRpdiBjbGFzcz0ibW91dGhCdWJibGUiPjwvZGl2PjxkaXYgY2xhc3M9Im1vdXRoQnViYmxlIj48L2Rpdj48L2Rpdj4nO2NvbnN0IGFjdHM9WydmbG9hdCcsJ2dsYXNzZXMnLCd0b25ndWUnLCdzbW9rZScsJ3dpbmsnLCdoaWRlJ107ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2xvYWRpbmdBeG8nKS5pbm5lckhUTUw9YXhvKGNoYW9zLCdub3JtYWwnLHJhbmQoYWN0cykpO3Nob3dTY3JlZW4oJ2xvYWRpbmdTY3JlZW4nKTtzZXRUaW1lb3V0KGNiLG1zKX0KZnVuY3Rpb24gc3RhcnRQcm92ZW4=
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
-
+          import os,re,base64
           p=Path('index.html')
           s=p.read_text()
-
-          css=r'''
-/* Bubble-mode refresh + mobile fixes */
-.modeButton{
-  position:relative;
-  overflow:hidden;
-  min-width:0;
-  border:1.5px solid rgba(255,255,255,.24);
-  border-radius:42px;
-  background-clip:padding-box;
-  box-shadow:inset 0 2px 0 rgba(255,255,255,.22),inset 0 -12px 28px rgba(10,8,45,.18),0 8px 0 rgba(0,0,0,.10),0 18px 30px rgba(0,0,0,.18);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-}
-.modeButton::before{
-  content:"";
-  position:absolute;
-  left:9%;right:34%;top:8px;height:21px;
-  border-radius:999px;
-  background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.03));
-  pointer-events:none;
-}
-.modeButton>*{position:relative;z-index:1}
-.proof{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.20),transparent 28%),linear-gradient(135deg,rgba(172,114,214,.72),rgba(126,73,169,.52))}
-.debate{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.16),transparent 28%),linear-gradient(135deg,rgba(89,43,132,.68),rgba(41,18,78,.50))}
-.knockout{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.18),transparent 28%),linear-gradient(135deg,rgba(34,191,178,.66),rgba(12,91,116,.50))}
-.bt{font-size:clamp(17px,5.7vw,22px);line-height:1.05;white-space:normal;overflow-wrap:anywhere;word-break:normal;max-width:100%}
-.bs{white-space:normal;overflow-wrap:anywhere;max-width:100%;line-height:1.25}
-#koAnswer{font-family:"Fredoka",sans-serif;font-size:clamp(30px,9vw,44px);line-height:1.08;font-weight:700;color:#fff;margin:5px 0 8px}
-.answerBox strong{font-size:inherit}
-
-/* Raster mascot generated for the app, animated entirely in CSS */
-.axoFaceStage{position:relative;width:100%;height:100%;display:grid;place-items:center;overflow:visible}
-.axoFaceImg{display:block;width:100%;max-height:100%;object-fit:contain;border-radius:32%;filter:drop-shadow(0 12px 18px rgba(0,0,0,.18));transform-origin:50% 60%}
-.axoHorns{position:absolute;inset:0;pointer-events:none;z-index:3}
-.axoHorn{position:absolute;top:1%;width:18%;height:28%;background:linear-gradient(145deg,#a51e50,#5c173b);border-radius:70% 18% 62% 20%;transform-origin:50% 100%;box-shadow:inset 3px 2px 0 rgba(255,255,255,.12)}
-.axoHorn.left{left:27%;transform:rotate(-27deg) skewY(-8deg)}
-.axoHorn.right{right:27%;transform:scaleX(-1) rotate(-27deg) skewY(-8deg)}
-.axoFaceStage.chaos2 .axoHorn{height:20%;top:8%;opacity:.75}
-.axoFaceStage.chaos1 .axoHorns{display:none}
-.axoFaceStage.loser .axoHorn{height:30%;top:-1%;background:linear-gradient(145deg,#b01849,#46122f)}
-.axoAccessory{position:absolute;inset:0;z-index:5;pointer-events:none}
-.axoGlasses{position:absolute;left:29%;top:42%;width:42%;height:22%;opacity:0;transform:translateY(-45%) rotate(-4deg)}
-.axoGlasses::before,.axoGlasses::after{content:"";position:absolute;top:0;width:38%;height:72%;border:5px solid #17131f;background:rgba(20,18,30,.76);border-radius:13px 13px 22px 22px}
-.axoGlasses::before{left:0}.axoGlasses::after{right:0}
-.axoGlasses i{position:absolute;left:37%;right:37%;top:22%;height:5px;background:#17131f;border-radius:9px}
-.axoTongue{position:absolute;left:46%;top:67%;width:8%;height:19%;background:linear-gradient(#ff9abb,#e85a8e);border-radius:0 0 999px 999px;opacity:0;transform:scaleY(.15);transform-origin:top}
-.axoCig{position:absolute;left:65%;top:64%;width:25%;height:7px;background:#f3eee8;border-radius:8px;transform:rotate(14deg);opacity:0;box-shadow:inset -9px 0 #d87659}
-.axoCig::after{content:"";position:absolute;right:-2px;top:0;width:7px;height:7px;border-radius:50%;background:#ff9c4a;box-shadow:0 0 9px #ff7b36}
-.axoSmoke{position:absolute;left:84%;top:45%;width:12px;height:12px;border:2px solid rgba(235,232,255,.7);border-radius:50%;opacity:0}
-.axoWink{position:absolute;left:31%;top:47%;width:18%;height:9%;background:#3a1637;border-radius:50%;opacity:0;transform:rotate(8deg)}
-.axoHide{position:absolute;left:4%;right:4%;bottom:-2%;height:48%;background:linear-gradient(180deg,rgba(6,20,55,.25),#061437 40%);border-radius:44% 44% 0 0;transform:translateY(100%);opacity:0}
-
-.axoFaceStage.act-float .axoFaceImg{animation:axoFloat 1.5s ease-in-out infinite}
-.axoFaceStage.act-glasses .axoGlasses{animation:glassesDrop 1.55s cubic-bezier(.2,.8,.2,1) infinite}
-.axoFaceStage.act-tongue .axoTongue{animation:tonguePop 1.45s ease-in-out infinite}
-.axoFaceStage.act-smoke .axoCig{animation:cigBob 1.7s ease-in-out infinite;opacity:1}.axoFaceStage.act-smoke .axoSmoke{animation:smokePuff 1.7s ease-out infinite}
-.axoFaceStage.act-wink .axoWink{animation:wink 1.7s ease-in-out infinite}
-.axoFaceStage.act-hide .axoHide{animation:hidePeek 1.8s ease-in-out infinite}.axoFaceStage.act-hide .axoFaceImg{animation:peekFace 1.8s ease-in-out infinite}
-.axoFaceStage.loser .axoFaceImg{animation:loserTilt .8s ease-in-out 1}
-@keyframes axoFloat{0%,100%{transform:translateY(2px) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
-@keyframes glassesDrop{0%,18%{opacity:0;transform:translateY(-55%) rotate(-4deg)}35%,76%{opacity:1;transform:translateY(0) rotate(-4deg)}88%,100%{opacity:0;transform:translateY(10%) rotate(-4deg)}}
-@keyframes tonguePop{0%,26%,80%,100%{opacity:0;transform:scaleY(.15)}40%,67%{opacity:1;transform:scaleY(1)}}
-@keyframes cigBob{0%,100%{transform:rotate(12deg) translateY(1px)}50%{transform:rotate(16deg) translateY(-2px)}}
-@keyframes smokePuff{0%{opacity:0;transform:translate(0,15px) scale(.4)}25%{opacity:.8}100%{opacity:0;transform:translate(15px,-36px) scale(1.8)}}
-@keyframes wink{0%,30%,58%,100%{opacity:0;transform:scaleY(.2) rotate(8deg)}38%,48%{opacity:1;transform:scaleY(1) rotate(8deg)}}
-@keyframes hidePeek{0%,12%,88%,100%{opacity:1;transform:translateY(16%)}34%,68%{opacity:1;transform:translateY(0)}}
-@keyframes peekFace{0%,12%,88%,100%{transform:translateY(26%)}34%,68%{transform:translateY(-2%)}}
-@keyframes loserTilt{0%{transform:rotate(0)}35%{transform:rotate(-5deg)}70%{transform:rotate(4deg)}100%{transform:rotate(0)}}
-@media(max-width:360px){.modeButton{padding:15px 17px;min-height:74px}.bt{font-size:18px}.bs{font-size:11px}.debate .bt{font-size:17px}}
-@media(prefers-reduced-motion:reduce){.axoFaceStage *{animation:none!important}.modeButton::before{display:none}}
-'''
+          css=base64.b64decode(os.environ['CSS_B64']).decode()
+          js=base64.b64decode(os.environ['JS_B64']).decode()
           if '/* Bubble-mode refresh + mobile fixes */' not in s:
               s=s.replace('</style>',css+'\n</style>',1)
-
-          new_block=r'''function axo(level=1,expression='normal',act=''){
-const loser=expression==='loser';
-const chaosClass='chaos'+Math.max(1,Math.min(3,level));
-const actClass=act?' act-'+act:'';
-return `<div class="axoFaceStage ${chaosClass}${loser?' loser':''}${actClass}"><img class="axoFaceImg" src="assets/axolotl-face.webp" alt="Pink axolotl mascot"><div class="axoHorns"><span class="axoHorn left"></span><span class="axoHorn right"></span></div><div class="axoAccessory"><span class="axoGlasses"><i></i></span><span class="axoTongue"></span><span class="axoCig"></span><span class="axoSmoke"></span><span class="axoWink"></span><span class="axoHide"></span></div></div>`}
-function randomLoading(cb,ms=1500){const wrap=document.getElementById('loadingWrap');wrap.className='axowrap big thinking';wrap.innerHTML='<div id="loadingAxo"></div><div class="bubbleStream"><div class="mouthBubble"></div><div class="mouthBubble"></div><div class="mouthBubble"></div></div>';const acts=['float','glasses','tongue','smoke','wink','hide'];document.getElementById('loadingAxo').innerHTML=axo(chaos,'normal',rand(acts));showScreen('loadingScreen');setTimeout(cb,ms)}
-function startProven'''
-          s,n=re.subn(r"function axo\(level=1,expression='normal'\)\{.*?\nfunction startProven",new_block,s,count=1,flags=re.S)
+          s,n=re.subn(r"function axo\(level=1,expression='normal'\)\{.*?\nfunction startProven",js,s,count=1,flags=re.S)
           if n!=1:
               raise SystemExit('Could not replace axolotl block')
-
           p.write_text(s)
           PY
       - name: Commit patch
