@@ -11,84 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Expand edit-permission trivia bank
+        env:
+          GATES_B64: Y29uc3QgR0FURVM9Wwp7cTonV2hpY2ggYW5pbWFsIGlzIHRoZSBsYXJnZXN0IGxhbmQgYW5pbWFsPycsYzpbJ0VsZXBoYW50JywnR2lyYWZmZScsJ1JoaW5vJ10sYTowfSwKe3E6J1doYXQgY29sb3VyIGRvIHlvdSBnZXQgYnkgbWl4aW5nIGJsdWUgYW5kIHllbGxvdz8nLGM6WydHcmVlbicsJ1B1cnBsZScsJ09yYW5nZSddLGE6MH0sCntxOidXaGF0IGlzIHRoZSBjYXBpdGFsIG9mIEZyYW5jZT8nLGM6WydQYXJpcycsJ1JvbWUnLCdNYWRyaWQnXSxhOjB9LAp7cTonV2hpY2ggbGFuZ3VhZ2UgaXMgbWFpbmx5IHNwb2tlbiBpbiBCcmF6aWw/JyxjOlsnUG9ydHVndWVzZScsJ1NwYW5pc2gnLCdGcmVuY2gnXSxhOjB9LAp7cTonV2hpY2ggcGxhbmV0IGlzIGNsb3Nlc3QgdG8gdGhlIFN1bj8nLGM6WydNZXJjdXJ5JywnVmVudXMnLCdFYXJ0aCddLGE6MH0sCntxOidIb3cgbWFueSBkYXlzIGFyZSBpbiBhIGxlYXAgeWVhcj8nLGM6WyczNjYnLCczNjUnLCczNjQnXSxhOjB9LAp7cTonV2hpY2ggYW5pbWFsIGlzIGZhbW91cyBmb3IgY2hhbmdpbmcgY29sb3VyIHRvIGNhbW91ZmxhZ2U/JyxjOlsnQ2hhbWVsZW9uJywnT3R0ZXInLCdQYW5kYSddLGE6MH0sCntxOidXaGljaCBjb3VudHJ5IGlzIHNoYXBlZCBhIGJpdCBsaWtlIGEgYm9vdD8nLGM6WydJdGFseScsJ1BvcnR1Z2FsJywnR3JlZWNlJ10sYTowfSwKe3E6J1doaWNoIGlzIHRoZSBsYXJnZXN0IG1hbW1hbD8nLGM6WydCbHVlIHdoYWxlJywnRWxlcGhhbnQnLCdHaXJhZmZlJ10sYTowfSwKe3E6J1doaWNoIGNvbnRpbmVudCBpcyBFZ3lwdCBpbj8nLGM6WydBZnJpY2EnLCdBc2lhJywnRXVyb3BlJ10sYTowfSwKe3E6J1doYXQgaXMgNiDDlyA3PycsYzpbJzQyJywnMzYnLCc0OCddLGE6MH0sCntxOidXaGF0IGlzIDU0IMO3IDY/JyxjOlsnOScsJzgnLCc3J10sYTowfSwKe3E6J1doYXQgaXMgMTkgKyAyND8nLGM6Wyc0MycsJzQyJywnNDQnXSxhOjB9LAp7cTonV2hhdCBpcyA4MCAtIDI3PycsYzpbJzUzJywnNTcnLCc0NyddLGE6MH0sCntxOidXaGF0IGlzIDkgw5cgNT8nLGM6Wyc0NScsJzQwJywnNTAnXSxhOjB9LAp7cTonV2hpY2ggaXMgYSB2ZWdldGFibGU/JyxjOlsnQ2Fycm90JywnTWFuZ28nLCdQZWFyJ10sYTowfSwKe3E6J0hvdyBtYW55IGNvbG91cnMgYXJlIHRyYWRpdGlvbmFsbHkgbGlzdGVkIGluIGEgcmFpbmJvdz8nLGM6Wyc3JywnNicsJzgnXSxhOjB9LAp7cTonSG93IG1hbnkgcmluZ3MgYXJlIG9uIHRoZSBPbHltcGljIHN5bWJvbD8nLGM6Wyc1JywnNCcsJzYnXSxhOjB9LAp7cTonV2hpY2ggYW5pbWFsIHNheXMg4oCcbW9v4oCdPycsYzpbJ0NvdycsJ0dvYXQnLCdIb3JzZSddLGE6MH0sCntxOidXaGljaCBpbnN0cnVtZW50IHVzdWFsbHkgaGFzIGJsYWNrIGFuZCB3aGl0ZSBrZXlzPycsYzpbJ1BpYW5vJywnVmlvbGluJywnVHJ1bXBldCddLGE6MH0sCntxOidXaGljaCBpcyB0aGUgdGFsbGVzdCBhbmltYWw/JyxjOlsnR2lyYWZmZScsJ0VsZXBoYW50JywnQ2FtZWwnXSxhOjB9LAp7cTonV2hhdCBkbyBiZWVzIG1ha2U/JyxjOlsnSG9uZXknLCdNaWxrJywnU2lsayddLGE6MH0sCntxOidXaGljaCBtZXRhbCBpcyBhdHRyYWN0ZWQgc3Ryb25nbHkgdG8gYSBtYWduZXQ/JyxjOlsnSXJvbicsJ0dvbGQnLCdTaWx2ZXInXSxhOjB9LAp7cTonV2hpY2ggYm9keSBwYXJ0IGRvIHlvdSBtYWlubHkgdXNlIHRvIHNtZWxsPycsYzpbJ05vc2UnLCdFYXInLCdFbGJvdyddLGE6MH0sCntxOidXaGljaCBzZWFzb24gY29tZXMgYWZ0ZXIgc3ByaW5nPycsYzpbJ1N1bW1lcicsJ0F1dHVtbicsJ1dpbnRlciddLGE6MH0sCntxOidIb3cgbWFueSBtb250aHMgYXJlIGluIGEgeWVhcj8nLGM6WycxMicsJzEwJywnMTQnXSxhOjB9LAp7cTonV2hpY2ggb2NlYW4gbGllcyBiZXR3ZWVuIEFmcmljYSBhbmQgQXVzdHJhbGlhPycsYzpbJ0luZGlhbiBPY2VhbicsJ0F0bGFudGljIE9jZWFuJywnQXJjdGljIE9jZWFuJ10sYTowfSwKe3E6J1doaWNoIGNpdHkgaXMgZmFtb3VzIGZvciB0aGUgRWlmZmVsIFRvd2VyPycsYzpbJ1BhcmlzJywnQmVybGluJywnVmllbm5hJ10sYTowfSwKe3E6J1doaWNoIGJpcmQgaXMgb2Z0ZW4gYXNzb2NpYXRlZCB3aXRoIGRlbGl2ZXJpbmcgYmFiaWVzIGluIHN0b3JpZXM/JyxjOlsnU3RvcmsnLCdQZW5ndWluJywnT3dsJ10sYTowfSwKe3E6J1doaWNoIGlzIHRoZSBmYXN0ZXN0IGxhbmQgYW5pbWFsPycsYzpbJ0NoZWV0YWgnLCdIb3JzZScsJ0xpb24nXSxhOjB9LAp7cTonV2hhdCBpcyB0aGUgbmFtZSBvZiB0aGUgZmFpcnktdGFsZSBnaXJsIHdpdGggdmVyeSBsb25nIGhhaXI/JyxjOlsnUmFwdW56ZWwnLCdDaW5kZXJlbGxhJywnQmVsbGUnXSxhOjB9LAp7cTonV2hpY2ggZHJpbmsgaXMgbWFkZSBmcm9tIHJvYXN0ZWQgY29mZmVlIGJlYW5zPycsYzpbJ0NvZmZlZScsJ1RlYScsJ0NvY29hJ10sYTowfSwKe3E6J1doaWNoIGFuaW1hbCBoYXMgYmxhY2stYW5kLXdoaXRlIHN0cmlwZXM/JyxjOlsnWmVicmEnLCdUaWdlcicsJ0xlb3BhcmQnXSxhOjB9LAp7cTonV2hpY2ggbW9udGggaGFzIHRoZSBmZXdlc3QgZGF5cz8nLGM6WydGZWJydWFyeScsJ0FwcmlsJywnSnVuZSddLGE6MH0sCntxOidXaGljaCBzaGFwZSBoYXMgdGhyZWUgc2lkZXM/JyxjOlsnVHJpYW5nbGUnLCdTcXVhcmUnLCdDaXJjbGUnXSxhOjB9LAp7cTonV2hpY2ggY291bnRyeSB1c2VzIHRoZSB5ZW4/JyxjOlsnSmFwYW4nLCdJbmRpYScsJ0NhbmFkYSddLGE6MH0sCntxOidXaGljaCBwbGFuZXQgaXMgZmFtb3VzIGZvciBpdHMgcmluZ3M/JyxjOlsnU2F0dXJuJywnTWVyY3VyeScsJ0VhcnRoJ10sYTowfSwKe3E6J1doaWNoIGFuaW1hbCBzbGVlcHMgdXBzaWRlIGRvd24/JyxjOlsnQmF0JywnUmFiYml0JywnRm94J10sYTowfSwKe3E6J1doaWNoIGZydWl0IGhhcyBzZWVkcyBvbiB0aGUgb3V0c2lkZT8nLGM6WydTdHJhd2JlcnJ5JywnQmFuYW5hJywnT3JhbmdlJ10sYTowfSwKe3E6J1doYXQgaXMgYSBiYWJ5IGNhdCBjYWxsZWQ/JyxjOlsnS2l0dGVuJywnQ2FsZicsJ0N1YiddLGE6MH0sCntxOidXaGljaCBpcyBub3JtYWxseSBjb2xkZXI/JyxjOlsnVGhlIE5vcnRoIFBvbGUnLCdUaGUgU2FoYXJhJywnVGhlIEFtYXpvbiddLGE6MH0sCntxOidXaGljaCBsZXR0ZXIgY29tZXMgaW1tZWRpYXRlbHkgYWZ0ZXIgUSBpbiB0aGUgYWxwaGFiZXQ/JyxjOlsnUicsJ1AnLCdTJ10sYTowfSwKe3E6J1doaWNoIGlzIGhlYXZpZXI6IDEga2cgb2YgZmVhdGhlcnMgb3IgMSBrZyBvZiBicmlja3M/JyxjOlsnVGhleSB3ZWlnaCB0aGUgc2FtZScsJ0JyaWNrcycsJ0ZlYXRoZXJzJ10sYTowfSwKe3E6J1doaWNoIGRheSBjb21lcyBhZnRlciBGcmlkYXk/JyxjOlsnU2F0dXJkYXknLCdUaHVyc2RheScsJ1N1bmRheSddLGE6MH0sCntxOidUcnVlIG9yIGZhbHNlOiBQZW5ndWlucyBjYW4gZmx5LicsYzpbJ1RydWUnLCdGYWxzZSddLGE6MX0sCntxOidUcnVlIG9yIGZhbHNlOiBBIHNwaWRlciBoYXMgZWlnaHQgbGVncy4nLGM6WydUcnVlJywnRmFsc2UnXSxhOjB9LAp7cTonVHJ1ZSBvciBmYWxzZTogVGhlIE1vb24gcHJvZHVjZXMgaXRzIG93biBsaWdodC4nLGM6WydUcnVlJywnRmFsc2UnXSxhOjF9LAp7cTonVHJ1ZSBvciBmYWxzZTogRG9scGhpbnMgYXJlIG1hbW1hbHMuJyxjOlsnVHJ1ZScsJ0ZhbHNlJ10sYTowfSwKe3E6J1RydWUgb3IgZmFsc2U6IExpZ2h0bmluZyBpcyBob3R0ZXIgdGhhbiB0aGUgc3VyZmFjZSBvZiB0aGUgU3VuLicsYzpbJ1RydWUnLCdGYWxzZSddLGE6MH0sCntxOidUcnVlIG9yIGZhbHNlOiBCYW5hbmFzIGdyb3cgb24gdHJlZXMuJyxjOlsnVHJ1ZScsJ0ZhbHNlJ10sYToxfSwKe3E6J1RydWUgb3IgZmFsc2U6IEFuIG9jdG9wdXMgaGFzIHRocmVlIGhlYXJ0cy4nLGM6WydUcnVlJywnRmFsc2UnXSxhOjB9LAp7cTonVHJ1ZSBvciBmYWxzZTogR29sZGZpc2ggb25seSByZW1lbWJlciB0aGluZ3MgZm9yIHRocmVlIHNlY29uZHMuJyxjOlsnVHJ1ZScsJ0ZhbHNlJ10sYToxfSwKe3E6J1RydWUgb3IgZmFsc2U6IEh1bWFucyBzaGFyZSB0aGUgcGxhbmV0IHdpdGggbW9yZSBpbnNlY3RzIHRoYW4gbWFtbWFscy4nLGM6WydUcnVlJywnRmFsc2UnXSxhOjB9LAp7cTonVHJ1ZSBvciBmYWxzZTogU291bmQgdHJhdmVscyBmYXN0ZXIgdGhhbiBsaWdodC4nLGM6WydUcnVlJywnRmFsc2UnXSxhOjF9LAp7cTonV2hpY2ggY3JlYXR1cmUgY2FuIHJlZ3JvdyBhIGxvc3QgYXJtPycsYzpbJ1N0YXJmaXNoJywnUmFiYml0JywnUGVuZ3VpbiddLGE6MH0sCntxOidXaGljaCBhbmltYWwgaXMga25vd24gZm9yIGNhcnJ5aW5nIGl0cyBiYWJ5IGluIGEgcG91Y2g/JyxjOlsnS2FuZ2Fyb28nLCdUaWdlcicsJ1NlYWwnXSxhOjB9LAp7cTonV2hpY2ggb2JqZWN0IHRlbGxzIHlvdSB3aGljaCBkaXJlY3Rpb24gaXMgbm9ydGg/JyxjOlsnQ29tcGFzcycsJ1RoZXJtb21ldGVyJywnU3RvcHdhdGNoJ10sYTowfSwKe3E6J1doYXQgaXMgMjUgKyAyNT8nLGM6Wyc1MCcsJzQ1JywnNTUnXSxhOjB9LAp7cTonV2hhdCBpcyBoYWxmIG9mIDkwPycsYzpbJzQ1JywnNDAnLCc1MCddLGE6MH0sCntxOidXaGF0IGlzIDExICsgMTg/JyxjOlsnMjknLCcyOCcsJzMwJ10sYTowfSwKe3E6J1doYXQgaXMgNyDDlyA0PycsYzpbJzI4JywnMjQnLCczMiddLGE6MH0sCntxOidXaGljaCBhbmltYWwgaXMgZmFtb3VzIGZvciBidWlsZGluZyBkYW1zPycsYzpbJ0JlYXZlcicsJ0JhZGdlcicsJ1dvbGYnXSxhOjB9LAp7cTonV2hpY2ggZnJ1aXQgaXMgdHJhZGl0aW9uYWxseSB1c2VkIHRvIG1ha2UgZ3VhY2Ftb2xlPycsYzpbJ0F2b2NhZG8nLCdLaXdpJywnTGltZSddLGE6MH0sCntxOidXaGljaCBjb3VudHJ5IGlzIGhvbWUgdG8gdGhlIHB5cmFtaWRzIG9mIEdpemE/JyxjOlsnRWd5cHQnLCdNZXhpY28nLCdUdXJrZXknXSxhOjB9LAp7cTonV2hpY2ggaXMgdGhlIHNtYWxsZXN0IG9mIHRoZXNlPycsYzpbJ0FudCcsJ01vdXNlJywnQ2F0J10sYTowfSwKe3E6J1doaWNoIG9uZSBpcyBub3QgYSBtYW1tYWw/JyxjOlsnU2hhcmsnLCdXaGFsZScsJ0RvbHBoaW4nXSxhOjB9LAp7cTonV2hpY2ggYW5pbWFsIGlzIGtub3duIGZvciBsYXVnaGluZy1saWtlIGNhbGxzPycsYzpbJ0h5ZW5hJywnTW9vc2UnLCdQYW5kYSddLGE6MH0sCntxOidXaGljaCBjb21tb24ga2l0Y2hlbiBpbmdyZWRpZW50IGlzIG1hZGUgYnkgYmVlcz8nLGM6WydIb25leScsJ1NhbHQnLCdGbG91ciddLGE6MH0sCntxOidXaGljaCBvZiB0aGVzZSBub3JtYWxseSBmbG9hdHMgb24gd2F0ZXI/JyxjOlsnQ29yaycsJ0JyaWNrJywnQ29pbiddLGE6MH0sCntxOidXaGljaCBhbmltYWwgY2FuIHNsZWVwIHN0YW5kaW5nIHVwPycsYzpbJ0hvcnNlJywnSGFtc3RlcicsJ090dGVyJ10sYTowfQpdOwo=
         run: |
           python - <<'PY'
+          import base64, os, re
           from pathlib import Path
-          import re
           p=Path('index.html')
           s=p.read_text()
-          gates="""const GATES=[
-{q:'Which animal is the largest land animal?',c:['Elephant','Giraffe','Rhino'],a:0},
-{q:'What colour do you get by mixing blue and yellow?',c:['Green','Purple','Orange'],a:0},
-{q:'What is the capital of France?',c:['Paris','Rome','Madrid'],a:0},
-{q:'Which language is mainly spoken in Brazil?',c:['Portuguese','Spanish','French'],a:0},
-{q:'Which planet is closest to the Sun?',c:['Mercury','Venus','Earth'],a:0},
-{q:'How many days are in a leap year?',c:['366','365','364'],a:0},
-{q:'Which animal is famous for changing colour to camouflage?',c:['Chameleon','Otter','Panda'],a:0},
-{q:'Which country is shaped a bit like a boot?',c:['Italy','Portugal','Greece'],a:0},
-{q:'Which is the largest mammal?',c:['Blue whale','Elephant','Giraffe'],a:0},
-{q:'Which continent is Egypt in?',c:['Africa','Asia','Europe'],a:0},
-{q:'What is 6 × 7?',c:['42','36','48'],a:0},
-{q:'What is 54 ÷ 6?',c:['9','8','7'],a:0},
-{q:'What is 19 + 24?',c:['43','42','44'],a:0},
-{q:'What is 80 - 27?',c:['53','57','47'],a:0},
-{q:'What is 9 × 5?',c:['45','40','50'],a:0},
-{q:'Which is a vegetable?',c:['Carrot','Mango','Pear'],a:0},
-{q:'How many colours are traditionally listed in a rainbow?',c:['7','6','8'],a:0},
-{q:'How many rings are on the Olympic symbol?',c:['5','4','6'],a:0},
-{q:'Which animal says “moo”?',c:['Cow','Goat','Horse'],a:0},
-{q:'Which instrument usually has black and white keys?',c:['Piano','Violin','Trumpet'],a:0},
-{q:'Which is the tallest animal?',c:['Giraffe','Elephant','Camel'],a:0},
-{q:'What do bees make?',c:['Honey','Milk','Silk'],a:0},
-{q:'Which metal is attracted strongly to a magnet?',c:['Iron','Gold','Silver'],a:0},
-{q:'Which body part do you mainly use to smell?',c:['Nose','Ear','Elbow'],a:0},
-{q:'Which season comes after spring?',c:['Summer','Autumn','Winter'],a:0},
-{q:'How many months are in a year?',c:['12','10','14'],a:0},
-{q:'Which ocean lies between Africa and Australia?',c:['Indian Ocean','Atlantic Ocean','Arctic Ocean'],a:0},
-{q:'Which city is famous for the Eiffel Tower?',c:['Paris','Berlin','Vienna'],a:0},
-{q:'Which bird is often associated with delivering babies in stories?',c:['Stork','Penguin','Owl'],a:0},
-{q:'Which is the fastest land animal?',c:['Cheetah','Horse','Lion'],a:0},
-{q:'What is the name of the fairy-tale girl with very long hair?',c:['Rapunzel','Cinderella','Belle'],a:0},
-{q:'Which drink is made from roasted coffee beans?',c:['Coffee','Tea','Cocoa'],a:0},
-{q:'Which animal has black-and-white stripes?',c:['Zebra','Tiger','Leopard'],a:0},
-{q:'Which month has the fewest days?',c:['February','April','June'],a:0},
-{q:'Which shape has three sides?',c:['Triangle','Square','Circle'],a:0},
-{q:'Which country uses the yen?',c:['Japan','India','Canada'],a:0},
-{q:'Which planet is famous for its rings?',c:['Saturn','Mercury','Earth'],a:0},
-{q:'Which animal sleeps upside down?',c:['Bat','Rabbit','Fox'],a:0},
-{q:'Which fruit has seeds on the outside?',c:['Strawberry','Banana','Orange'],a:0},
-{q:'What is a baby cat called?',c:['Kitten','Calf','Cub'],a:0},
-{q:'Which is normally colder?',c:['The North Pole','The Sahara','The Amazon'],a:0},
-{q:'Which letter comes immediately after Q in the alphabet?',c:['R','P','S'],a:0},
-{q:'Which is heavier: 1 kg of feathers or 1 kg of bricks?',c:['They weigh the same','Bricks','Feathers'],a:0},
-{q:'Which day comes after Friday?',c:['Saturday','Thursday','Sunday'],a:0},
-{q:'True or false: Penguins can fly.',c:['True','False'],a:1},
-{q:'True or false: A spider has eight legs.',c:['True','False'],a:0},
-{q:'True or false: The Moon produces its own light.',c:['True','False'],a:1},
-{q:'True or false: Dolphins are mammals.',c:['True','False'],a:0},
-{q:'True or false: Lightning is hotter than the surface of the Sun.',c:['True','False'],a:0},
-{q:'True or false: Bananas grow on trees.',c:['True','False'],a:1},
-{q:'True or false: An octopus has three hearts.',c:['True','False'],a:0},
-{q:'True or false: Goldfish only remember things for three seconds.',c:['True','False'],a:1},
-{q:'True or false: Humans share the planet with more insects than mammals.',c:['True','False'],a:0},
-{q:'True or false: Sound travels faster than light.',c:['True','False'],a:1},
-{q:'Which creature can regrow a lost arm?',c:['Starfish','Rabbit','Penguin'],a:0},
-{q:'Which animal is known for carrying its baby in a pouch?',c:['Kangaroo','Tiger','Seal'],a:0},
-{q:'Which object tells you which direction is north?',c:['Compass','Thermometer','Stopwatch'],a:0},
-{q:'What is 25 + 25?',c:['50','45','55'],a:0},
-{q:'What is half of 90?',c:['45','40','50'],a:0},
-{q:'What is 11 + 18?',c:['29','28','30'],a:0},
-{q:'What is 7 × 4?',c:['28','24','32'],a:0},
-{q:'Which animal is famous for building dams?',c:['Beaver','Badger','Wolf'],a:0},
-{q:'Which fruit is traditionally used to make guacamole?',c:['Avocado','Kiwi','Lime'],a:0},
-{q:'Which country is home to the pyramids of Giza?',c:['Egypt','Mexico','Turkey'],a:0},
-{q:'Which is the smallest of these?',c:['Ant','Mouse','Cat'],a:0},
-{q:'Which one is not a mammal?',c:['Shark','Whale','Dolphin'],a:0},
-{q:'Which animal is known for laughing-like calls?',c:['Hyena','Moose','Panda'],a:0},
-{q:'Which common kitchen ingredient is made by bees?',c:['Honey','Salt','Flour'],a:0},
-{q:'Which of these normally floats on water?',c:['Cork','Brick','Coin'],a:0},
-{q:'Which animal can sleep standing up?',c:['Horse','Hamster','Otter'],a:0}
-];"""
+          gates=base64.b64decode(os.environ['GATES_B64']).decode()
           ns,n=re.subn(r"const GATES=\[.*?\];\nconst INSULTS=",gates+"\nconst INSULTS=",s,count=1,flags=re.S)
           if n!=1:
               raise SystemExit('Could not locate GATES block')
