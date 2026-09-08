@@ -10,16 +10,17 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fredoka:wght@500;600;700&display=swap');
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{--navy:#061437;--soft:#dcdfff;--pink:#9f164f;--purple:#4b247c;--blue:#173d9b;--lilac:#c7a4ef;--axo:#f58eb8;--axo2:#d95f96}
-html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;font-family:"DM Sans",sans-serif;overflow-x:hidden}body{min-height:100dvh}button,input,textarea,select{font:inherit}
+html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;font-family:"DM Sans",sans-serif;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}body{min-height:100dvh}button,input,textarea,select{font:inherit}
 #app{position:relative;min-height:100dvh;overflow:hidden;background:radial-gradient(circle at 16% 18%,rgba(143,73,185,.23),transparent 30%),radial-gradient(circle at 88% 78%,rgba(42,78,190,.22),transparent 34%),linear-gradient(180deg,#071437,#081943)}
-#app::before,#app::after{content:"";position:fixed;bottom:-18px;width:125px;height:290px;pointer-events:none;z-index:0;opacity:.34;background-repeat:no-repeat;background-position:bottom center;background-size:contain}
+#app::before,#app::after{content:"";position:fixed;bottom:-18px;width:125px;height:290px;pointer-events:none;z-index:0;opacity:.26;background-repeat:no-repeat;background-position:bottom center;background-size:contain}
 #app::before{left:-30px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 280'%3E%3Cpath d='M26 278 C18 224 34 196 27 150 C21 111 34 79 28 36' fill='none' stroke='%230a1b42' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M42 278 C46 236 37 210 50 174 C62 139 54 103 67 72' fill='none' stroke='%230b2048' stroke-width='10' stroke-linecap='round'/%3E%3Cpath d='M73 278 C67 246 78 221 73 194 C68 164 85 138 84 109' fill='none' stroke='%23081b3f' stroke-width='14' stroke-linecap='round'/%3E%3Cpath d='M28 157 C50 145 55 129 60 111 M48 190 C26 178 20 164 15 148 M76 202 C96 188 102 169 104 149' fill='none' stroke='%230b2148' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E")}
 #app::after{right:-38px;transform:scaleX(-1);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 280'%3E%3Cpath d='M26 278 C18 224 34 196 27 150 C21 111 34 79 28 36' fill='none' stroke='%23091a3d' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M42 278 C46 236 37 210 50 174 C62 139 54 103 67 72' fill='none' stroke='%230c2249' stroke-width='10' stroke-linecap='round'/%3E%3Cpath d='M73 278 C67 246 78 221 73 194 C68 164 85 138 84 109' fill='none' stroke='%2307193c' stroke-width='14' stroke-linecap='round'/%3E%3Cpath d='M28 157 C50 145 55 129 60 111 M48 190 C26 178 20 164 15 148 M76 202 C96 188 102 169 104 149' fill='none' stroke='%230a2046' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E")}
+.seaweedPatch{position:fixed;bottom:-22px;width:90px;height:220px;z-index:0;pointer-events:none;opacity:.17;background-repeat:no-repeat;background-position:bottom center;background-size:contain;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 240'%3E%3Cpath d='M20 240 C8 190 29 167 19 119 C12 82 28 58 25 16' fill='none' stroke='%23112652' stroke-width='9' stroke-linecap='round'/%3E%3Cpath d='M52 240 C60 196 43 168 58 133 C70 103 58 73 72 42' fill='none' stroke='%230d224d' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M77 240 C68 207 82 181 76 151 C70 126 86 105 85 75' fill='none' stroke='%23152c59' stroke-width='10' stroke-linecap='round'/%3E%3C/svg%3E")}.sw1{left:18%;height:170px;transform:rotate(-7deg)}.sw2{right:19%;height:135px;opacity:.12;transform:scaleX(-1) rotate(8deg)}
 .bg{position:fixed;border-radius:50%;border:1px solid rgba(255,255,255,.13);background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.14),rgba(130,90,190,.04) 40%,transparent 72%);pointer-events:none;animation:drift 9s ease-in-out infinite;z-index:0}.b1{width:130px;height:130px;left:-48px;top:12%}.b2{width:78px;height:78px;right:-22px;top:45%;animation-delay:-3s}.b3{width:170px;height:170px;left:25%;bottom:-85px;animation-delay:-6s}@keyframes drift{50%{transform:translate(8px,-20px)}}
 .screen{position:absolute;inset:0;z-index:1;min-height:100dvh;padding:max(24px,env(safe-area-inset-top)) 20px max(28px,env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(12px) scale(.98);transition:.32s ease;overflow-y:auto}.screen.active{opacity:1;pointer-events:auto;transform:none}.scroll{width:min(100%,390px);padding:76px 0 34px;margin:auto}
 .axowrap{width:190px;height:145px;position:relative;flex:0 0 auto}.axowrap.big{width:270px;height:205px}.axosvg{width:100%;height:100%;overflow:visible}
 .logo{font-family:"Fredoka";font-size:clamp(38px,11vw,62px);line-height:.94;letter-spacing:-.04em;text-align:center;margin:8px 0 0}.logo span{color:#f58eb8}.subtitle{max-width:330px;text-align:center;color:var(--soft);font-size:14px;line-height:1.5;opacity:.78;margin:14px 0 20px}.title{font-family:"Fredoka";font-size:clamp(30px,8vw,44px);text-align:center;margin:4px 0 8px}.sub{color:var(--soft);opacity:.72;text-align:center;font-size:14px;margin:0 0 20px}
-.modeButton{position:relative;width:min(100%,365px);min-width:0;min-height:82px;height:auto;margin:7px 0;padding:16px 18px;border:1px solid rgba(255,255,255,.13);border-radius:28px;color:#fff;text-align:left;box-shadow:0 7px 0 rgba(0,0,0,.12),0 15px 26px rgba(0,0,0,.18);cursor:pointer;overflow:hidden}.modeButton:active{transform:translateY(5px) scale(.98)}.modeButton::before{display:none!important}.proof{background:rgba(255,68,151,.80)!important}.debate{background:rgba(91,45,137,.82)!important}.knockout{background:rgba(24,151,165,.80)!important}.bt{font-family:"Fredoka";font-size:clamp(17px,5.1vw,21px);line-height:1.08;display:block;max-width:100%;white-space:normal;overflow-wrap:break-word;word-break:normal}.bs{font-size:clamp(10px,3.1vw,12px);opacity:.78;display:block;margin-top:5px;line-height:1.28;max-width:100%;white-space:normal;overflow-wrap:break-word;word-break:normal}
+.modeButton{position:relative;width:min(calc(100% - 2px),365px);max-width:365px;min-width:0;min-height:82px;height:auto;margin:7px 0;padding:15px 17px;border:1px solid rgba(255,255,255,.14);border-radius:28px;color:#fff;text-align:left;box-shadow:0 7px 0 rgba(0,0,0,.12),0 15px 26px rgba(0,0,0,.16);cursor:pointer;overflow:hidden}.modeButton:active{transform:translateY(5px) scale(.98)}.modeButton::before{display:none!important}.proof{background:rgba(255,68,151,.72)!important}.debate{background:rgba(91,45,137,.74)!important}.knockout{background:rgba(24,151,165,.72)!important}.bt{font-family:"Fredoka";font-size:clamp(16px,4.9vw,21px);line-height:1.12;display:block;width:100%;min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere;word-break:normal}.bs{font-size:clamp(10px,3vw,12px);opacity:.8;display:block;margin-top:5px;line-height:1.28;width:100%;min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere;word-break:normal}
 .utility{width:min(100%,365px);margin-top:12px;display:grid;grid-template-columns:1fr;gap:8px}.ghost{min-height:48px;border:1px solid rgba(255,255,255,.11);border-radius:17px;background:rgba(255,255,255,.06);color:#fff;font-weight:800;cursor:pointer}.back{position:absolute;left:18px;top:max(18px,env(safe-area-inset-top));width:46px;height:46px;border:1px solid rgba(255,255,255,.12);border-radius:50%;background:rgba(255,255,255,.07);color:#fff;font-size:20px;z-index:5}
 .chaosBox{width:min(100%,365px);padding:12px 13px 13px;border:1px solid rgba(255,255,255,.08);border-radius:22px;background:rgba(255,255,255,.055);margin:0 0 12px}.chaosTop{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}.chaosLabel{font-size:12px;font-weight:800;letter-spacing:.08em;opacity:.74}.chaosName{font-family:"Fredoka";font-size:16px}.chaosSeg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.chaosBtn{border:0;border-radius:13px;padding:10px 5px;background:rgba(255,255,255,.06);color:var(--soft);font-size:12px;font-weight:800}.chaosBtn.on{background:#f58eb8;color:#27152f}.chaosBtn[data-level="2"].on{background:#63308f;color:#fff}.chaosBtn[data-level="3"].on{background:#8d183b;color:#fff}
 .card{width:min(100%,365px);padding:30px 24px;border-radius:35px;border:1px solid rgba(255,255,255,.13);background:linear-gradient(145deg,rgba(98,52,154,.9),rgba(30,41,98,.95));text-align:center;box-shadow:0 12px 0 rgba(0,0,0,.12),0 26px 50px rgba(0,0,0,.28)}.label{font-size:12px;font-weight:900;letter-spacing:.12em;color:#f58eb8;margin-bottom:12px}.question{font-family:"Fredoka";font-size:clamp(27px,7.5vw,39px);line-height:1.14;margin:0}.actions{width:min(100%,365px);display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.small{min-height:52px;border:0;border-radius:18px;background:#6b3fa0;color:#fff;font-weight:800}.small.secondary{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)}
@@ -30,13 +31,13 @@ html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;
 .bubbleStream{position:absolute;right:3px;top:34px;width:80px;height:100px}.mouthBubble{position:absolute;bottom:0;border-radius:50%;border:2px solid rgba(210,185,255,.8);opacity:0}.thinking .mouthBubble{animation:blow 1.9s ease-out infinite}.mouthBubble:nth-child(1){width:13px;height:13px;left:6px}.mouthBubble:nth-child(2){width:20px;height:20px;left:27px;animation-delay:.55s}.mouthBubble:nth-child(3){width:10px;height:10px;left:51px;animation-delay:1.1s}@keyframes blow{0%{transform:translateY(20px) scale(.3);opacity:0}20%{opacity:1}100%{transform:translate(18px,-70px) scale(1.4);opacity:0}}
 .notice{width:min(100%,365px);padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:var(--soft);font-size:13px;line-height:1.45;text-align:center}
 @media(max-height:720px){.axowrap.big{width:220px;height:165px}.modeButton{min-height:72px}.subtitle{margin-bottom:12px}}
-@media(max-width:360px){.screen{padding-left:14px;padding-right:14px}.modeButton{width:100%;padding:14px 15px;min-height:78px;border-radius:25px}.bt{font-size:17px}.bs{font-size:10.5px}.debate .bt{font-size:16.5px}.chaosBtn{font-size:11px;padding:9px 3px}}
+@media(max-width:360px){.screen{padding-left:14px;padding-right:14px}.modeButton{width:calc(100% - 2px);padding:13px 14px;min-height:0;border-radius:24px}.bt{font-size:16px;line-height:1.1}.bs{font-size:10px;line-height:1.24}.debate .bt{font-size:16px}.chaosBtn{font-size:11px;padding:9px 3px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div id="app">
-<div class="bg b1"></div><div class="bg b2"></div><div class="bg b3"></div>
+<div class="bg b1"></div><div class="bg b2"></div><div class="bg b3"></div><div class="seaweedPatch sw1"></div><div class="seaweedPatch sw2"></div>
 <section id="loadingScreen" class="screen active"><div id="loadingWrap" class="axowrap big thinking"><div id="loadingAxo"></div></div><h1 class="logo">CHOOSE A <span>LOSER</span></h1></section>
 <section id="homeScreen" class="screen"><div class="axowrap"><div id="homeAxo"></div></div><h1 class="logo">CHOOSE A <span>LOSER</span></h1><p class="subtitle">Three ways to discover who should never be trusted with a group decision.</p><div class="chaosBox"><div class="chaosTop"><span class="chaosLabel">CHAOS LEVEL</span><span id="chaosName" class="chaosName">Tame</span></div><div class="chaosSeg"><button class="chaosBtn" data-level="1" onclick="setChaos(1)">🌱 Tame</button><button class="chaosBtn" data-level="2" onclick="setChaos(2)">🌶️ Spicy</button><button class="chaosBtn" data-level="3" onclick="setChaos(3)">🔥 Unhinged</button></div></div>
 <button class="modeButton proof" onclick="startProven()"><span class="bt">🎯 Anything Goes</span><span class="bs">Quick facts. No archaeological digs through your camera roll.</span></button>
@@ -56,7 +57,7 @@ html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;
 <section id="resetScreen" class="screen"><button class="back" onclick="openEditHome()">←</button><div class="scroll"><h2 class="title">Reset everything?</h2><p class="sub">This deletes every edit and custom question on this device. There is no undo.</p><div class="notice">To continue, type <strong>RESET DECK</strong> exactly.</div><input id="resetInput" class="field" style="margin-top:14px" placeholder="RESET DECK"><button class="primary" style="margin-top:10px;background:#d8577f;color:#fff" onclick="confirmReset()">Delete all custom game data</button></div></section>
 </div>
 <script>
-const DATA_VERSION='2';
+const DATA_VERSION='3';
 const DEFAULTS={
 proven:[
 {text:'Who woke up earliest this morning?',chaos:1},
@@ -66,9 +67,17 @@ proven:[
 {text:'Who has the earliest alarm set for tomorrow?',chaos:1},
 {text:'Whose birthday comes next?',chaos:1},
 {text:'Who is wearing the most black?',chaos:1},
-{text:'Who has travelled the furthest to be here?',chaos:1},
+{text:'Who travelled the furthest to be here?',chaos:1},
 {text:'Who has had the most caffeine today?',chaos:1},
-{text:'Who has eaten most recently?',chaos:1},
+{text:'Who ate most recently?',chaos:1},
+{text:'Who has the shortest first name?',chaos:1},
+{text:'Who has the most layers of clothing on?',chaos:1},
+{text:'Who has been awake the longest today?',chaos:1},
+{text:'Who last went on holiday?',chaos:1},
+{text:'Who has the earliest birthday in the calendar year?',chaos:1},
+{text:'Who has lived in their current home the longest?',chaos:1},
+{text:'Who has known the host the longest?',chaos:1},
+{text:'Who has the longest journey home from here?',chaos:1},
 {text:'Who spent the most money today?',chaos:2},
 {text:'Who has had the most alcoholic drinks today?',chaos:2},
 {text:'Who was last to cancel plans on someone?',chaos:2},
@@ -76,8 +85,15 @@ proven:[
 {text:'Who has gone the longest without doing laundry?',chaos:2},
 {text:'Who most recently cried?',chaos:2},
 {text:'Who last lied about being “on the way”?',chaos:2},
-{text:'Who has ordered takeaway most recently?',chaos:2},
+{text:'Who ordered takeaway most recently?',chaos:2},
+{text:'Who most recently ignored a phone call on purpose?',chaos:2},
+{text:'Who most recently deleted a message before the other person could read it?',chaos:2},
+{text:'Who most recently cancelled a subscription they forgot they were paying for?',chaos:2},
+{text:'Who most recently slept through an alarm?',chaos:2},
+{text:'Who most recently flirted with someone they definitely should not have?',chaos:2},
+{text:'Who most recently searched their own name online?',chaos:2},
 {text:'Who has had the least amount of sex this week?',chaos:3},
+{text:'Who has gone the longest without having sex?',chaos:3},
 {text:'Who most recently stalked an ex or crush online?',chaos:3},
 {text:'Who has gone the longest without changing their bedsheets?',chaos:3},
 {text:'Who most recently sent a nude?',chaos:3},
@@ -86,7 +102,14 @@ proven:[
 {text:'Who most recently peed in the shower?',chaos:3},
 {text:'Who most recently had sex somewhere they probably should not have?',chaos:3},
 {text:'Who has gone the longest without washing their hair?',chaos:3},
-{text:'Who most recently checked whether someone had viewed their story?',chaos:3}
+{text:'Who most recently checked whether an ex had a new partner?',chaos:3},
+{text:'Who most recently pretended to be asleep to avoid talking to someone?',chaos:3},
+{text:'Who most recently woke up somewhere and needed a moment to work out where they were?',chaos:3},
+{text:'Who most recently kissed someone whose surname they did not know?',chaos:3},
+{text:'Who most recently sent a message and immediately regretted it?',chaos:3},
+{text:'Who most recently had to quietly leave somewhere the next morning?',chaos:3},
+{text:'Who most recently blocked someone and then checked their profile anyway?',chaos:3},
+{text:'Who most recently did something they would absolutely deny in front of their parents?',chaos:3}
 ],
 debate:[
 {text:'Who is the most stubborn?',chaos:1},
@@ -97,6 +120,12 @@ debate:[
 {text:'Who would be the worst person to share a hotel room with?',chaos:1},
 {text:'Who would win an argument even when completely wrong?',chaos:1},
 {text:'Who would cope worst with losing their phone for 24 hours?',chaos:1},
+{text:'Who would be trusted least with a surprise?',chaos:1},
+{text:'Who would accidentally become the group organiser forever?',chaos:1},
+{text:'Who is most likely to forget why they walked into a room?',chaos:1},
+{text:'Who would be the worst driving instructor?',chaos:1},
+{text:'Who would last longest without spending any money?',chaos:1},
+{text:'Who would be most useful during a power cut?',chaos:1},
 {text:'Who would die first in a zombie apocalypse?',chaos:2},
 {text:'Who would be worst to get stuck in a lift with?',chaos:2},
 {text:'Who is most likely to accidentally join a cult?',chaos:2},
@@ -105,18 +134,42 @@ debate:[
 {text:'Who would accidentally get engaged on holiday?',chaos:2},
 {text:'Who would sell the group out first in a reality show?',chaos:2},
 {text:'Who would survive a horror film until the last ten minutes, then die doing something incredibly stupid?',chaos:2},
+{text:'Who would accidentally send a voice note about someone directly to that person?',chaos:2},
+{text:'Who would be most likely to fall in love with someone because they were rude to them once?',chaos:2},
+{text:'Who would make the worst witness in court because they keep adding unnecessary details?',chaos:2},
+{text:'Who would get emotionally attached to a holiday stray animal and try to bring it home?',chaos:2},
+{text:'Who would be most likely to quit their job after one mildly inconvenient email?',chaos:2},
+{text:'Who would be the first person to reveal a secret by saying “I probably should not tell you this”?',chaos:2},
 {text:'Who would lose a fight with a goose and then lie about how it happened?',chaos:3},
 {text:'Who would die in a zombie apocalypse because they went back for their charger?',chaos:3},
 {text:'Who would marry someone after nine days in Ibiza and insist “you do not know them like I do”?',chaos:3},
 {text:'Who would accidentally start a cult and then get annoyed by the admin?',chaos:3},
 {text:'Who would be caught smuggling a rotisserie chicken into a nightclub?',chaos:3},
-{text:'Who would be most likely to get kidnapped after getting into the wrong car, then apologise to the kidnapper for the inconvenience?',chaos:3},
+{text:'Who would get into the wrong car, realise halfway through it was not their taxi, and still be too awkward to say anything?',chaos:3},
 {text:'Who would be first to get cancelled after becoming famous because a deeply questionable 2014 post resurfaced?',chaos:3},
 {text:'Who would fake their own death but forget to turn off Find My Friends?',chaos:3},
 {text:'Who would hide a body terribly and then Google something wildly incriminating on their home Wi-Fi?',chaos:3},
 {text:'Who would get banned from a wedding before the cake was cut?',chaos:3},
 {text:'Who would accidentally become the main suspect in a crime they genuinely had nothing to do with?',chaos:3},
-{text:'Who would be most likely to wake up in another country with no memory of booking the flight?',chaos:3}
+{text:'Who would wake up in another country with no memory of booking the flight?',chaos:3},
+{text:'Who would survive a plane crash and then immediately injure themselves trying to take a dramatic selfie?',chaos:3},
+{text:'Who would accidentally become a dictator because they were “just trying to organise everyone”?',chaos:3},
+{text:'Who would be found three days into a missing-person search sitting at bottomless brunch with their phone on silent?',chaos:3},
+{text:'Who would fake a disappearance for attention and then be genuinely offended when nobody noticed quickly enough?',chaos:3},
+{text:'Who would knowingly date a walking red flag because “the chemistry is insane”?',chaos:3},
+{text:'Who would send a nude to the family group chat and then seriously consider moving country?',chaos:3},
+{text:'Who would somehow end up with a secret second family purely because saying no felt awkward?',chaos:3},
+{text:'Who would be easiest to convince to help move a suspiciously body-shaped rug in exchange for takeaway?',chaos:3},
+{text:'Who would become a supervillain over a parking-space dispute?',chaos:3},
+{text:'Who would be first to suggest eating a human in the apocalypse and call it “just being practical”?',chaos:3},
+{text:'Who would accidentally cause an international incident on holiday?',chaos:3},
+{text:'Who would get matching tattoos with someone they met six hours ago?',chaos:3},
+{text:'Who would escape a cult and then leave it a one-star Google review?',chaos:3},
+{text:'Who would be most likely to get banned from an entire country?',chaos:3},
+{text:'Who would die because they absolutely had to pet the obviously dangerous animal?',chaos:3},
+{text:'Who would still go on a date after the other person said “I collect teeth” because they were hot?',chaos:3},
+{text:'Who would accidentally confess to a crime they did not commit because they panic under questioning?',chaos:3},
+{text:'Who would turn a minor neighbour dispute into a six-part true-crime documentary?',chaos:3}
 ],
 knockout:[
 {text:'What is 12 × 8?',answer:'96',explain:'12 × 8 = 96.',chaos:1},{text:'Which planet is known as the Red Planet?',answer:'Mars',explain:'Iron minerals in the surface make Mars look reddish.',chaos:1},{text:'What is the capital of Australia?',answer:'Canberra',explain:'Not Sydney or Melbourne. Sneaky.',chaos:1},{text:'What gas do plants absorb from the atmosphere?',answer:'Carbon dioxide',explain:'Plants use carbon dioxide during photosynthesis.',chaos:1},{text:'What is 15% of 200?',answer:'30',explain:'10% is 20 and 5% is 10, so 30.',chaos:1},{text:'What has keys but cannot open locks?',answer:'A piano',explain:'Classic riddle.',chaos:1},{text:'How many sides does a dodecagon have?',answer:'12',explain:'Dodeca means twelve.',chaos:2},{text:'Which element has the chemical symbol Fe?',answer:'Iron',explain:'Fe comes from the Latin ferrum.',chaos:2},{text:'If you overtake the person in second place, what place are you in?',answer:'Second place',explain:'You take their position, not first.',chaos:2},{text:'What is the largest organ in the human body?',answer:'The skin',explain:'Skin is the body’s largest organ by area and mass.',chaos:2},{text:'A farmer has 17 sheep. All but 9 run away. How many remain?',answer:'9',explain:'All but 9 means 9 stayed.',chaos:2},{text:'What number comes next: 2, 3, 5, 8, 13, ?',answer:'21',explain:'Each number is the sum of the previous two.',chaos:2},{text:'What gets wetter the more it dries?',answer:'A towel',explain:'The towel gets wet while drying something else.',chaos:3},{text:'Before Mount Everest was discovered, what was the highest mountain on Earth?',answer:'Mount Everest',explain:'It was still the highest, just undiscovered.',chaos:3},{text:'A rooster lays an egg on a roof. Which side does it roll down?',answer:'Neither',explain:'Roosters do not lay eggs.',chaos:3},{text:'You have one match and enter a dark room containing a candle, an oil lamp and a fireplace. What do you light first?',answer:'The match',explain:'You need the match before anything else.',chaos:3},{text:'What word is spelled incorrectly in every dictionary?',answer:'Incorrectly',explain:'The word “incorrectly” is literally spelled there.',chaos:3},{text:'If there are 3 apples and you take away 2, how many do you have?',answer:'2',explain:'You took two, so you have two.',chaos:3}]
