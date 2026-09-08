@@ -11,30 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Patch mascot sizing and Anything Goes colour
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('index.html')
-          s=p.read_text()
-          css='''
-/* Mascot visibility + Anything Goes colour fix */
-.axowrap > div,
-#loadingAxo,
-#homeAxo,
-#resultAxo,
-#debateAxo,
-#debateDoneAxo,
-#koSetupAxo,
-#loserAxo,
-#gateAxo{width:100%;height:100%;display:block}
-.axoFaceStage{width:100%;height:100%}
-.axoFaceImg{width:100%;height:100%;max-height:none;object-fit:contain}
-.proof{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.22),transparent 28%),linear-gradient(135deg,rgba(245,142,184,.74),rgba(211,103,149,.54))}
-'''
-          if '/* Mascot visibility + Anything Goes colour fix */' not in s:
-              s=s.replace('</style>',css+'\n</style>',1)
-          p.write_text(s)
-          PY
+        env:
+          PATCH_B64: CmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aApwPVBhdGgoImluZGV4Lmh0bWwiKQpzPXAucmVhZF90ZXh0KCkKY3NzPSIiIgovKiBNYXNjb3QgdmlzaWJpbGl0eSArIEFueXRoaW5nIEdvZXMgY29sb3VyIGZpeCAqLwouYXhvd3JhcCA+IGRpdiwKI2xvYWRpbmdBeG8sCiNob21lQXhvLAojcmVzdWx0QXhvLAojZGViYXRlQXhvLAojZGViYXRlRG9uZUF4bywKI2tvU2V0dXBBeG8sCiNsb3NlckF4bywKI2dhdGVBeG97d2lkdGg6MTAwJTtoZWlnaHQ6MTAwJTtkaXNwbGF5OmJsb2NrfQouYXhvRmFjZVN0YWdle3dpZHRoOjEwMCU7aGVpZ2h0OjEwMCV9Ci5heG9GYWNlSW1ne3dpZHRoOjEwMCU7aGVpZ2h0OjEwMCU7bWF4LWhlaWdodDpub25lO29iamVjdC1maXQ6Y29udGFpbn0KLnByb29me2JhY2tncm91bmQ6cmFkaWFsLWdyYWRpZW50KGNpcmNsZSBhdCAyMyUgMTUlLHJnYmEoMjU1LDI1NSwyNTUsLjIyKSx0cmFuc3BhcmVudCAyOCUpLGxpbmVhci1ncmFkaWVudCgxMzVkZWcscmdiYSgyNDUsMTQyLDE4NCwuNzQpLHJnYmEoMjExLDEwMywxNDksLjU0KSl9CiIiIgptYXJrZXI9Ii8qIE1hc2NvdCB2aXNpYmlsaXR5ICsgQW55dGhpbmcgR29lcyBjb2xvdXIgZml4ICovIgppZiBtYXJrZXIgbm90IGluIHM6CiAgICBzPXMucmVwbGFjZSgiPC9zdHlsZT4iLGNzcysiXG48L3N0eWxlPiIsMSkKcC53cml0ZV90ZXh0KHMpCg==
+        run: echo "$PATCH_B64" | base64 --decode | python
       - name: Commit patch
         run: |
           git config user.name "github-actions[bot]"
