@@ -1,0 +1,31 @@
+name: Patch knockout colour
+on:
+  push:
+    paths:
+      - '.github/workflows/knockout-colour-patch.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Change knockout colour
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='.knockout{background:linear-gradient(135deg,#2454c7,#112e7e)}'
+          new='.knockout{background:linear-gradient(135deg,#30309b,#21135f)}'
+          if old not in s:
+              raise SystemExit('Expected knockout colour rule not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Shift Knockout to deep blue-purple"
+          git push
