@@ -11,24 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Fix broken mascot URL and deepen pink
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('index.html')
-          s=p.read_text()
-          bad='https://nikki0radz.github.io/Choose-a-loserhttps://nikki0radz.github.io/Choose-a-loser/assets/axolotl-face.webp?v=6?v=6'
-          good='assets/axolotl-face.webp?v=7'
-          if bad not in s:
-              raise SystemExit('Broken axolotl URL not found')
-          s=s.replace(bad,good,1)
-          css='''
-/* Hotter Anything Goes pink */
-.proof{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.24),transparent 28%),linear-gradient(135deg,rgba(255,74,151,.82),rgba(214,45,118,.62))}
-'''
-          if '/* Hotter Anything Goes pink */' not in s:
-              s=s.replace('</style>',css+'\n</style>',1)
-          p.write_text(s)
-          PY
+        env:
+          PATCH_B64: ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCnA9UGF0aCgnaW5kZXguaHRtbCcpCnM9cC5yZWFkX3RleHQoKQpiYWQ9J2h0dHBzOi8vbmlra2kwcmFkei5naXRodWIuaW8vQ2hvb3NlLWEtbG9zZXJodHRwczovL25pa2tpMHJhZHouZ2l0aHViLmlvL0Nob29zZS1hLWxvc2VyL2Fzc2V0cy9heG9sb3RsLWZhY2Uud2VicD92PTY/dj02Jwpnb29kPSdhc3NldHMvYXhvbG90bC1mYWNlLndlYnA/dj03JwppZiBiYWQgbm90IGluIHM6CiAgICByYWlzZSBTeXN0ZW1FeGl0KCdCcm9rZW4gYXhvbG90bCBVUkwgbm90IGZvdW5kJykKcz1zLnJlcGxhY2UoYmFkLGdvb2QsMSkKY3NzPScnJwovKiBIb3R0ZXIgQW55dGhpbmcgR29lcyBwaW5rICovCi5wcm9vZntiYWNrZ3JvdW5kOnJhZGlhbC1ncmFkaWVudChjaXJjbGUgYXQgMjMlIDE1JSxyZ2JhKDI1NSwyNTUsMjU1LC4yNCksdHJhbnNwYXJlbnQgMjglKSxsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLHJnYmEoMjU1LDU1LDE0NSwuODgpLHJnYmEoMjIwLDMwLDExMiwuNjgpKX0KJycnCmlmICcvKiBIb3R0ZXIgQW55dGhpbmcgR29lcyBwaW5rICovJyBub3QgaW4gczoKICAgIHM9cy5yZXBsYWNlKCc8L3N0eWxlPicsY3NzKydcbjwvc3R5bGU+JywxKQplbHNlOgogICAgaW1wb3J0IHJlCiAgICBzPXJlLnN1YihyJy9cKiBIb3R0ZXIgQW55dGhpbmcgR29lcyBwaW5rIFwqL1xuXC5wcm9vZlx7W15cbl0qXH0nLGNzcy5zdHJpcCgpLHMsY291bnQ9MSkKcC53cml0ZV90ZXh0KHMpCg==
+        run: echo "$PATCH_B64" | base64 --decode | python
       - name: Commit patch
         run: |
           git config user.name "github-actions[bot]"
