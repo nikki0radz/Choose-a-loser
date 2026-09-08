@@ -1,0 +1,40 @@
+name: Inline axolotl SVG
+on:
+  push:
+    paths:
+      - '.github/workflows/inline-axolotl-svg.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace broken image asset with inline SVG
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='<img class="axoFaceImg" src="assets/axolotl-face.webp?v=7" alt="Pink axolotl mascot">'
+          svg='''<svg class="axoFaceSvg" viewBox="0 0 240 180" role="img" aria-label="Pink axolotl mascot"><g class="axoBase"><path d="M49 75 C28 57 23 39 32 29 C43 17 59 29 69 45 C72 27 81 15 94 15 C109 15 116 31 120 46 C124 31 131 15 146 15 C159 15 168 27 171 45 C181 29 197 17 208 29 C217 39 212 57 191 75" fill="#ff5ca8" opacity=".95"/><path d="M46 90 C46 55 75 34 120 34 C165 34 194 55 194 90 C194 126 163 151 120 151 C77 151 46 126 46 90 Z" fill="#ff79b9"/><path d="M57 66 C72 49 92 43 120 43 C148 43 168 49 183 66" fill="none" stroke="#ff9dca" stroke-width="8" stroke-linecap="round" opacity=".65"/><ellipse cx="88" cy="88" rx="8" ry="10" fill="#28152d"/><ellipse cx="152" cy="88" rx="8" ry="10" fill="#28152d"/><circle cx="85" cy="84" r="2.5" fill="#fff"/><circle cx="149" cy="84" r="2.5" fill="#fff"/><path d="M103 111 Q120 122 137 111" fill="none" stroke="#7a2458" stroke-width="5" stroke-linecap="round"/><ellipse cx="68" cy="108" rx="13" ry="7" fill="#ff4f9f" opacity=".35"/><ellipse cx="172" cy="108" rx="13" ry="7" fill="#ff4f9f" opacity=".35"/></g></svg>'''
+          if old not in s:
+              raise SystemExit('Expected axolotl img tag not found')
+          s=s.replace(old,svg,1)
+          css='''
+/* Inline mascot + hotter pink */
+.axoFaceSvg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 12px 18px rgba(0,0,0,.18));transform-origin:50% 60%}
+.axoFaceStage.act-float .axoFaceSvg{animation:axoFloat 1.5s ease-in-out infinite}
+.proof{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.26),transparent 28%),linear-gradient(135deg,rgba(255,47,151,.88),rgba(224,20,119,.70))}
+'''
+          if '/* Inline mascot + hotter pink */' not in s:
+              s=s.replace('</style>',css+'\n</style>',1)
+          p.write_text(s)
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Inline axolotl mascot and deepen hot pink"
+          git push
