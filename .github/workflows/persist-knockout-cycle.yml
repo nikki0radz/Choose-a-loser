@@ -1,0 +1,65 @@
+name: Persist knockout question cycle
+on:
+  push:
+    paths:
+      - '.github/workflows/persist-knockout-cycle.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Persist knockout deck and add skip insults
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text()
+
+          old='<section id="knockoutAnswerScreen" class="screen"><button class="back" onclick="showScreen(\'homeScreen\')">←</button><h2 class="title">Answer</h2><div class="answerBox"><strong id="koAnswer"></strong><div id="koExplain" style="margin-top:8px;font-size:13px;color:var(--soft)"></div></div><p class="sub" style="margin-top:16px">You know who got it. The app does not need names.</p><div class="actions"><button class="small secondary" onclick="skipKoQuestion()">Nobody got it / Skip</button><button class="small" onclick="someoneGotIt()">Someone got it ✓</button></div></section>'
+          new='<section id="knockoutAnswerScreen" class="screen"><button class="back" onclick="showScreen(\'homeScreen\')">←</button><h2 class="title">Answer</h2><div class="answerBox"><strong id="koAnswer"></strong><div id="koExplain" style="margin-top:8px;font-size:13px;color:var(--soft)"></div></div><p class="sub" style="margin-top:16px">You know who got it. The app does not need names.</p><div id="koSkipInsult" class="notice" style="display:none;margin-top:2px"></div><div class="actions"><button id="koSkipBtn" class="small secondary" onclick="skipKoQuestion()">Nobody got it / Skip</button><button id="koGotBtn" class="small" onclick="someoneGotIt()">Someone got it ✓</button></div></section>'
+          if old not in s:
+              raise SystemExit('Knockout answer screen block not found')
+          s=s.replace(old,new,1)
+
+          marker="const INSULTS=["
+          skip="""const SKIP_INSULTS=[
+'Nobody? Not one of you? Spectacular.',
+'The collective brain cell has left the building.',
+'Fine. We will pretend that question never happened.',
+'An entire group and still no answer. Inspiring stuff.',
+'That silence was academically deafening.',
+'Congratulations, you have all been humbled by a question.',
+'The answer was right there. Spiritually, at least.',
+'You may skip the question. You cannot skip the shame.',
+'Group project energy. Nobody knew anything.',
+'The axolotl is lowering its expectations accordingly.',
+'No answer? Bold strategy. Terrible, but bold.',
+'Even a confident wrong answer would have shown initiative.'
+];
+"""
+          if 'const SKIP_INSULTS=[' not in s:
+              s=s.replace(marker,skip+marker,1)
+
+          s=re.sub(r"function beginKnockout\(\)\{remainingPlayers=playerCount;koUsed=\[\];nextKoQuestion\(\)\}\nfunction koPool\(\)\{.*?\}\nfunction nextKoQuestion\(\)\{.*?\}\nfunction revealKoAnswer", """function beginKnockout(){remainingPlayers=playerCount;nextKoQuestion()}
+function nextKoQuestion(){if(remainingPlayers<=1){finishKnockout();return}randomLoading(()=>{koCurrent=drawQuestion('knockout');if(!koCurrent){showScreen('homeScreen');return}document.getElementById('roundLabel').textContent=remainingPlayers+' players remain';document.getElementById('koQuestion').textContent=koCurrent.text;const insult=document.getElementById('koSkipInsult');if(insult){insult.style.display='none';insult.textContent=''}const skip=document.getElementById('koSkipBtn'),got=document.getElementById('koGotBtn');if(skip)skip.disabled=false;if(got)got.disabled=false;startTimer('koTimer','koNum',revealKoAnswer);showScreen('knockoutQuestionScreen')},1300)}
+function revealKoAnswer""", s, count=1, flags=re.S)
+
+          old2="function someoneGotIt(){remainingPlayers--;if(remainingPlayers<=1)finishKnockout();else nextKoQuestion()} function skipKoQuestion(){nextKoQuestion()}"
+          new2="""function someoneGotIt(){remainingPlayers--;if(remainingPlayers<=1)finishKnockout();else nextKoQuestion()}
+function skipKoQuestion(){const box=document.getElementById('koSkipInsult'),skip=document.getElementById('koSkipBtn'),got=document.getElementById('koGotBtn');if(box){box.textContent=rand(SKIP_INSULTS);box.style.display='block'}if(skip)skip.disabled=true;if(got)got.disabled=true;setTimeout(nextKoQuestion,1250)}"""
+          if old2 not in s:
+              raise SystemExit('Skip function block not found')
+          s=s.replace(old2,new2,1)
+
+          p.write_text(s)
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Persist knockout question cycle and roast skips"
+          git push
