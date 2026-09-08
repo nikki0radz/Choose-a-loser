@@ -1,0 +1,31 @@
+name: Patch Spicy colour
+on:
+  push:
+    paths:
+      - '.github/workflows/spicy-colour-patch.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Darken Spicy chaos colour
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='.chaosBtn[data-level="2"].on{background:#9e64c6;color:#fff}'
+          new='.chaosBtn[data-level="2"].on{background:#63308f;color:#fff}'
+          if old not in s:
+              raise SystemExit('Expected Spicy colour rule not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Darken Spicy chaos colour"
+          git push
