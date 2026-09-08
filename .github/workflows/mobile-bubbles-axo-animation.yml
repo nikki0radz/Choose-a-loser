@@ -1,0 +1,115 @@
+name: Patch mobile bubbles and axolotl animation
+on:
+  push:
+    paths:
+      - '.github/workflows/mobile-bubbles-axo-animation.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch UI and mascot
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p=Path('index.html')
+          s=p.read_text()
+
+          css=r'''
+/* Bubble-mode refresh + mobile fixes */
+.modeButton{
+  position:relative;
+  overflow:hidden;
+  min-width:0;
+  border:1.5px solid rgba(255,255,255,.24);
+  border-radius:42px;
+  background-clip:padding-box;
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.22),inset 0 -12px 28px rgba(10,8,45,.18),0 8px 0 rgba(0,0,0,.10),0 18px 30px rgba(0,0,0,.18);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.modeButton::before{
+  content:"";
+  position:absolute;
+  left:9%;right:34%;top:8px;height:21px;
+  border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.03));
+  pointer-events:none;
+}
+.modeButton>*{position:relative;z-index:1}
+.proof{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.20),transparent 28%),linear-gradient(135deg,rgba(172,114,214,.72),rgba(126,73,169,.52))}
+.debate{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.16),transparent 28%),linear-gradient(135deg,rgba(89,43,132,.68),rgba(41,18,78,.50))}
+.knockout{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.18),transparent 28%),linear-gradient(135deg,rgba(34,191,178,.66),rgba(12,91,116,.50))}
+.bt{font-size:clamp(17px,5.7vw,22px);line-height:1.05;white-space:normal;overflow-wrap:anywhere;word-break:normal;max-width:100%}
+.bs{white-space:normal;overflow-wrap:anywhere;max-width:100%;line-height:1.25}
+#koAnswer{font-family:"Fredoka",sans-serif;font-size:clamp(30px,9vw,44px);line-height:1.08;font-weight:700;color:#fff;margin:5px 0 8px}
+.answerBox strong{font-size:inherit}
+
+/* Raster mascot generated for the app, animated entirely in CSS */
+.axoFaceStage{position:relative;width:100%;height:100%;display:grid;place-items:center;overflow:visible}
+.axoFaceImg{display:block;width:100%;max-height:100%;object-fit:contain;border-radius:32%;filter:drop-shadow(0 12px 18px rgba(0,0,0,.18));transform-origin:50% 60%}
+.axoHorns{position:absolute;inset:0;pointer-events:none;z-index:3}
+.axoHorn{position:absolute;top:1%;width:18%;height:28%;background:linear-gradient(145deg,#a51e50,#5c173b);border-radius:70% 18% 62% 20%;transform-origin:50% 100%;box-shadow:inset 3px 2px 0 rgba(255,255,255,.12)}
+.axoHorn.left{left:27%;transform:rotate(-27deg) skewY(-8deg)}
+.axoHorn.right{right:27%;transform:scaleX(-1) rotate(-27deg) skewY(-8deg)}
+.axoFaceStage.chaos2 .axoHorn{height:20%;top:8%;opacity:.75}
+.axoFaceStage.chaos1 .axoHorns{display:none}
+.axoFaceStage.loser .axoHorn{height:30%;top:-1%;background:linear-gradient(145deg,#b01849,#46122f)}
+.axoAccessory{position:absolute;inset:0;z-index:5;pointer-events:none}
+.axoGlasses{position:absolute;left:29%;top:42%;width:42%;height:22%;opacity:0;transform:translateY(-45%) rotate(-4deg)}
+.axoGlasses::before,.axoGlasses::after{content:"";position:absolute;top:0;width:38%;height:72%;border:5px solid #17131f;background:rgba(20,18,30,.76);border-radius:13px 13px 22px 22px}
+.axoGlasses::before{left:0}.axoGlasses::after{right:0}
+.axoGlasses i{position:absolute;left:37%;right:37%;top:22%;height:5px;background:#17131f;border-radius:9px}
+.axoTongue{position:absolute;left:46%;top:67%;width:8%;height:19%;background:linear-gradient(#ff9abb,#e85a8e);border-radius:0 0 999px 999px;opacity:0;transform:scaleY(.15);transform-origin:top}
+.axoCig{position:absolute;left:65%;top:64%;width:25%;height:7px;background:#f3eee8;border-radius:8px;transform:rotate(14deg);opacity:0;box-shadow:inset -9px 0 #d87659}
+.axoCig::after{content:"";position:absolute;right:-2px;top:0;width:7px;height:7px;border-radius:50%;background:#ff9c4a;box-shadow:0 0 9px #ff7b36}
+.axoSmoke{position:absolute;left:84%;top:45%;width:12px;height:12px;border:2px solid rgba(235,232,255,.7);border-radius:50%;opacity:0}
+.axoWink{position:absolute;left:31%;top:47%;width:18%;height:9%;background:#3a1637;border-radius:50%;opacity:0;transform:rotate(8deg)}
+.axoHide{position:absolute;left:4%;right:4%;bottom:-2%;height:48%;background:linear-gradient(180deg,rgba(6,20,55,.25),#061437 40%);border-radius:44% 44% 0 0;transform:translateY(100%);opacity:0}
+
+.axoFaceStage.act-float .axoFaceImg{animation:axoFloat 1.5s ease-in-out infinite}
+.axoFaceStage.act-glasses .axoGlasses{animation:glassesDrop 1.55s cubic-bezier(.2,.8,.2,1) infinite}
+.axoFaceStage.act-tongue .axoTongue{animation:tonguePop 1.45s ease-in-out infinite}
+.axoFaceStage.act-smoke .axoCig{animation:cigBob 1.7s ease-in-out infinite;opacity:1}.axoFaceStage.act-smoke .axoSmoke{animation:smokePuff 1.7s ease-out infinite}
+.axoFaceStage.act-wink .axoWink{animation:wink 1.7s ease-in-out infinite}
+.axoFaceStage.act-hide .axoHide{animation:hidePeek 1.8s ease-in-out infinite}.axoFaceStage.act-hide .axoFaceImg{animation:peekFace 1.8s ease-in-out infinite}
+.axoFaceStage.loser .axoFaceImg{animation:loserTilt .8s ease-in-out 1}
+@keyframes axoFloat{0%,100%{transform:translateY(2px) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
+@keyframes glassesDrop{0%,18%{opacity:0;transform:translateY(-55%) rotate(-4deg)}35%,76%{opacity:1;transform:translateY(0) rotate(-4deg)}88%,100%{opacity:0;transform:translateY(10%) rotate(-4deg)}}
+@keyframes tonguePop{0%,26%,80%,100%{opacity:0;transform:scaleY(.15)}40%,67%{opacity:1;transform:scaleY(1)}}
+@keyframes cigBob{0%,100%{transform:rotate(12deg) translateY(1px)}50%{transform:rotate(16deg) translateY(-2px)}}
+@keyframes smokePuff{0%{opacity:0;transform:translate(0,15px) scale(.4)}25%{opacity:.8}100%{opacity:0;transform:translate(15px,-36px) scale(1.8)}}
+@keyframes wink{0%,30%,58%,100%{opacity:0;transform:scaleY(.2) rotate(8deg)}38%,48%{opacity:1;transform:scaleY(1) rotate(8deg)}}
+@keyframes hidePeek{0%,12%,88%,100%{opacity:1;transform:translateY(16%)}34%,68%{opacity:1;transform:translateY(0)}}
+@keyframes peekFace{0%,12%,88%,100%{transform:translateY(26%)}34%,68%{transform:translateY(-2%)}}
+@keyframes loserTilt{0%{transform:rotate(0)}35%{transform:rotate(-5deg)}70%{transform:rotate(4deg)}100%{transform:rotate(0)}}
+@media(max-width:360px){.modeButton{padding:15px 17px;min-height:74px}.bt{font-size:18px}.bs{font-size:11px}.debate .bt{font-size:17px}}
+@media(prefers-reduced-motion:reduce){.axoFaceStage *{animation:none!important}.modeButton::before{display:none}}
+'''
+          if '/* Bubble-mode refresh + mobile fixes */' not in s:
+              s=s.replace('</style>',css+'\n</style>',1)
+
+          new_block=r'''function axo(level=1,expression='normal',act=''){
+const loser=expression==='loser';
+const chaosClass='chaos'+Math.max(1,Math.min(3,level));
+const actClass=act?' act-'+act:'';
+return `<div class="axoFaceStage ${chaosClass}${loser?' loser':''}${actClass}"><img class="axoFaceImg" src="assets/axolotl-face.webp" alt="Pink axolotl mascot"><div class="axoHorns"><span class="axoHorn left"></span><span class="axoHorn right"></span></div><div class="axoAccessory"><span class="axoGlasses"><i></i></span><span class="axoTongue"></span><span class="axoCig"></span><span class="axoSmoke"></span><span class="axoWink"></span><span class="axoHide"></span></div></div>`}
+function randomLoading(cb,ms=1500){const wrap=document.getElementById('loadingWrap');wrap.className='axowrap big thinking';wrap.innerHTML='<div id="loadingAxo"></div><div class="bubbleStream"><div class="mouthBubble"></div><div class="mouthBubble"></div><div class="mouthBubble"></div></div>';const acts=['float','glasses','tongue','smoke','wink','hide'];document.getElementById('loadingAxo').innerHTML=axo(chaos,'normal',rand(acts));showScreen('loadingScreen');setTimeout(cb,ms)}
+function startProven'''
+          s,n=re.subn(r"function axo\(level=1,expression='normal'\)\{.*?\nfunction startProven",new_block,s,count=1,flags=re.S)
+          if n!=1:
+              raise SystemExit('Could not replace axolotl block')
+
+          p.write_text(s)
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Refresh bubbles, mobile layout and animate axolotl face"
+          git push
