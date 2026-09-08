@@ -1,0 +1,38 @@
+name: Fix axolotl URL and hot pink
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-axo-url-hot-pink.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix broken mascot URL and deepen pink
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          bad='https://nikki0radz.github.io/Choose-a-loserhttps://nikki0radz.github.io/Choose-a-loser/assets/axolotl-face.webp?v=6?v=6'
+          good='assets/axolotl-face.webp?v=7'
+          if bad not in s:
+              raise SystemExit('Broken axolotl URL not found')
+          s=s.replace(bad,good,1)
+          css='''
+/* Hotter Anything Goes pink */
+.proof{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.24),transparent 28%),linear-gradient(135deg,rgba(255,74,151,.82),rgba(214,45,118,.62))}
+'''
+          if '/* Hotter Anything Goes pink */' not in s:
+              s=s.replace('</style>',css+'\n</style>',1)
+          p.write_text(s)
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Fix axolotl asset URL and make Anything Goes hotter pink"
+          git push
