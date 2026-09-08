@@ -11,26 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Replace broken image asset with inline SVG
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('index.html')
-          s=p.read_text()
-          old='<img class="axoFaceImg" src="assets/axolotl-face.webp?v=7" alt="Pink axolotl mascot">'
-          svg='''<svg class="axoFaceSvg" viewBox="0 0 240 180" role="img" aria-label="Pink axolotl mascot"><g class="axoBase"><path d="M49 75 C28 57 23 39 32 29 C43 17 59 29 69 45 C72 27 81 15 94 15 C109 15 116 31 120 46 C124 31 131 15 146 15 C159 15 168 27 171 45 C181 29 197 17 208 29 C217 39 212 57 191 75" fill="#ff5ca8" opacity=".95"/><path d="M46 90 C46 55 75 34 120 34 C165 34 194 55 194 90 C194 126 163 151 120 151 C77 151 46 126 46 90 Z" fill="#ff79b9"/><path d="M57 66 C72 49 92 43 120 43 C148 43 168 49 183 66" fill="none" stroke="#ff9dca" stroke-width="8" stroke-linecap="round" opacity=".65"/><ellipse cx="88" cy="88" rx="8" ry="10" fill="#28152d"/><ellipse cx="152" cy="88" rx="8" ry="10" fill="#28152d"/><circle cx="85" cy="84" r="2.5" fill="#fff"/><circle cx="149" cy="84" r="2.5" fill="#fff"/><path d="M103 111 Q120 122 137 111" fill="none" stroke="#7a2458" stroke-width="5" stroke-linecap="round"/><ellipse cx="68" cy="108" rx="13" ry="7" fill="#ff4f9f" opacity=".35"/><ellipse cx="172" cy="108" rx="13" ry="7" fill="#ff4f9f" opacity=".35"/></g></svg>'''
-          if old not in s:
-              raise SystemExit('Expected axolotl img tag not found')
-          s=s.replace(old,svg,1)
-          css='''
-/* Inline mascot + hotter pink */
-.axoFaceSvg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 12px 18px rgba(0,0,0,.18));transform-origin:50% 60%}
-.axoFaceStage.act-float .axoFaceSvg{animation:axoFloat 1.5s ease-in-out infinite}
-.proof{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.26),transparent 28%),linear-gradient(135deg,rgba(255,47,151,.88),rgba(224,20,119,.70))}
-'''
-          if '/* Inline mascot + hotter pink */' not in s:
-              s=s.replace('</style>',css+'\n</style>',1)
-          p.write_text(s)
-          PY
+        env:
+          PATCH_B64: CmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aApwPVBhdGgoImluZGV4Lmh0bWwiKQpzPXAucmVhZF90ZXh0KCkKb2xkPSc8aW1nIGNsYXNzPSJheG9GYWNlSW1nIiBzcmM9ImFzc2V0cy9heG9sb3RsLWZhY2Uud2VicD92PTciIGFsdD0iUGluayBheG9sb3RsIG1hc2NvdCI+Jwpzdmc9IiIiPHN2ZyBjbGFzcz0iYXhvRmFjZVN2ZyIgdmlld0JveD0iMCAwIDI0MCAxODAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iUGluayBheG9sb3RsIG1hc2NvdCI+PGcgY2xhc3M9ImF4b0Jhc2UiPjxwYXRoIGQ9Ik00OSA3NSBDMjggNTcgMjMgMzkgMzIgMjkgQzQzIDE3IDU5IDI5IDY5IDQ1IEM3MiAyNyA4MSAxNSA5NCAxNSBDMTA5IDE1IDExNiAzMSAxMjAgNDYgQzEyNCAzMSAxMzEgMTUgMTQ2IDE1IEMxNTkgMTUgMTY4IDI3IDE3MSA0NSBDMTgxIDI5IDE5NyAxNyAyMDggMjkgQzIxNyAzOSAyMTIgNTcgMTkxIDc1IiBmaWxsPSIjZmY1Y2E4IiBvcGFjaXR5PSIuOTUiLz48cGF0aCBkPSJNNDUgOTAgQzQ2IDU1IDc1IDM0IDEyMCAzNCBDMTY1IDM0IDE5NCA1NSAxOTQgOTAgQzE5NCAxMjYgMTYzIDE1MSAxMjAgMTUxIEM3NyAxNTEgNDYgMTI2IDQ2IDkwIFoiIGZpbGw9IiNmZjc5YjkiLz48cGF0aCBkPSJNNTcgNjYgQzcyIDQ5IDkyIDQzIDEyMCA0MyBDMTQ4IDQzIDE2OCA0OSAxODMgNjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmOWRjYSIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9Ii42NSIvPjxlbGxpcHNlIGN4PSI4OCIgY3k9Ijg4IiByeD0iOCIgcnk9IjEwIiBmaWxsPSIjMjgxNTJkIi8+PGVsbGlwc2UgY3g9IjE1MiIgY3k9Ijg4IiByeD0iOCIgcnk9IjEwIiBmaWxsPSIjMjgxNTJkIi8+PGNpcmNsZSBjeD0iODUiIGN5PSI4NCIgcj0iMi41IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTQ5IiBjeT0iODQiIHI9IjIuNSIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0xMDMgMTExIFExMjAgMTIyIDEzNyAxMTEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzdhMjQ1OCIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48ZWxsaXBzZSBjeD0iNjgiIGN5PSIxMDgiIHJ4PSIxMyIgcnk9IjciIGZpbGw9IiNmZjRmOWYiIG9wYWNpdHk9Ii4zNSIvPjxlbGxpcHNlIGN4PSIxNzIiIGN5PSIxMDgiIHJ4PSIxMyIgcnk9IjciIGZpbGw9IiNmZjRmOWYiIG9wYWNpdHk9Ii4zNSIvPjwvZz48L3N2Zz4iIiIKaWYgb2xkIG5vdCBpbiBzOgogICAgcmFpc2UgU3lzdGVtRXhpdCgiRXhwZWN0ZWQgYXhvbG90bCBpbWcgdGFnIG5vdCBmb3VuZCIpCnM9cy5yZXBsYWNlKG9sZCxzdmcsMSkKY3NzPSIiIgovKiBJbmxpbmUgbWFzY290ICsgaG90dGVyIHBpbmsgKi8KLmF4b0ZhY2VTdmd7ZGlzcGxheTpibG9jazt3aWR0aDoxMDAlO2hlaWdodDoxMDAlO292ZXJmbG93OnZpc2libGU7ZmlsdGVyOmRyb3Atc2hhZG93KDAgMTJweCAxOHB4IHJnYmEoMCwwLDAsLjE4KSk7dHJhbnNmb3JtLW9yaWdpbjo1MCUgNjAlfQouYXhvRmFjZVN0YWdlLmFjdC1mbG9hdCAuYXhvRmFjZVN2Z3thbmltYXRpb246YXhvRmxvYXQgMS41cyBlYXNlLWluLW91dCBpbmZpbml0ZX0KLnByb29me2JhY2tncm91bmQ6cmFkaWFsLWdyYWRpZW50KGNpcmNsZSBhdCAyMyUgMTUlLHJnYmEoMjU1LDI1NSwyNTUsLjI2KSx0cmFuc3BhcmVudCAyOCUpLGxpbmVhci1ncmFkaWVudCgxMzVkZWcscmdiYSgyNTUsNDcsMTUxLC44OCkscmdiYSgyMjQsMjAsMTE5LC43MCkpfQoiIiIKaWYgIi8qIElubGluZSBtYXNjb3QgKyBob3R0ZXIgcGluayAqLyIgbm90IGluIHM6CiAgICBzPXMucmVwbGFjZSgiPC9zdHlsZT4iLGNzcysiXG48L3N0eWxlPiIsMSkKcC53cml0ZV90ZXh0KHMpCg==
+        run: echo "$PATCH_B64" | base64 --decode | python
       - name: Commit patch
         run: |
           git config user.name "github-actions[bot]"
