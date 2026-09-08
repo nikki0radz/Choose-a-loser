@@ -1,0 +1,103 @@
+name: Expand edit trivia bank
+on:
+  push:
+    paths:
+      - '.github/workflows/expand-edit-trivia.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Expand edit-permission trivia bank
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text()
+          gates="""const GATES=[
+{q:'Which animal is the largest land animal?',c:['Elephant','Giraffe','Rhino'],a:0},
+{q:'What colour do you get by mixing blue and yellow?',c:['Green','Purple','Orange'],a:0},
+{q:'What is the capital of France?',c:['Paris','Rome','Madrid'],a:0},
+{q:'Which language is mainly spoken in Brazil?',c:['Portuguese','Spanish','French'],a:0},
+{q:'Which planet is closest to the Sun?',c:['Mercury','Venus','Earth'],a:0},
+{q:'How many days are in a leap year?',c:['366','365','364'],a:0},
+{q:'Which animal is famous for changing colour to camouflage?',c:['Chameleon','Otter','Panda'],a:0},
+{q:'Which country is shaped a bit like a boot?',c:['Italy','Portugal','Greece'],a:0},
+{q:'Which is the largest mammal?',c:['Blue whale','Elephant','Giraffe'],a:0},
+{q:'Which continent is Egypt in?',c:['Africa','Asia','Europe'],a:0},
+{q:'What is 6 × 7?',c:['42','36','48'],a:0},
+{q:'What is 54 ÷ 6?',c:['9','8','7'],a:0},
+{q:'What is 19 + 24?',c:['43','42','44'],a:0},
+{q:'What is 80 - 27?',c:['53','57','47'],a:0},
+{q:'What is 9 × 5?',c:['45','40','50'],a:0},
+{q:'Which is a vegetable?',c:['Carrot','Mango','Pear'],a:0},
+{q:'How many colours are traditionally listed in a rainbow?',c:['7','6','8'],a:0},
+{q:'How many rings are on the Olympic symbol?',c:['5','4','6'],a:0},
+{q:'Which animal says “moo”?',c:['Cow','Goat','Horse'],a:0},
+{q:'Which instrument usually has black and white keys?',c:['Piano','Violin','Trumpet'],a:0},
+{q:'Which is the tallest animal?',c:['Giraffe','Elephant','Camel'],a:0},
+{q:'What do bees make?',c:['Honey','Milk','Silk'],a:0},
+{q:'Which metal is attracted strongly to a magnet?',c:['Iron','Gold','Silver'],a:0},
+{q:'Which body part do you mainly use to smell?',c:['Nose','Ear','Elbow'],a:0},
+{q:'Which season comes after spring?',c:['Summer','Autumn','Winter'],a:0},
+{q:'How many months are in a year?',c:['12','10','14'],a:0},
+{q:'Which ocean lies between Africa and Australia?',c:['Indian Ocean','Atlantic Ocean','Arctic Ocean'],a:0},
+{q:'Which city is famous for the Eiffel Tower?',c:['Paris','Berlin','Vienna'],a:0},
+{q:'Which bird is often associated with delivering babies in stories?',c:['Stork','Penguin','Owl'],a:0},
+{q:'Which is the fastest land animal?',c:['Cheetah','Horse','Lion'],a:0},
+{q:'What is the name of the fairy-tale girl with very long hair?',c:['Rapunzel','Cinderella','Belle'],a:0},
+{q:'Which drink is made from roasted coffee beans?',c:['Coffee','Tea','Cocoa'],a:0},
+{q:'Which animal has black-and-white stripes?',c:['Zebra','Tiger','Leopard'],a:0},
+{q:'Which month has the fewest days?',c:['February','April','June'],a:0},
+{q:'Which shape has three sides?',c:['Triangle','Square','Circle'],a:0},
+{q:'Which country uses the yen?',c:['Japan','India','Canada'],a:0},
+{q:'Which planet is famous for its rings?',c:['Saturn','Mercury','Earth'],a:0},
+{q:'Which animal sleeps upside down?',c:['Bat','Rabbit','Fox'],a:0},
+{q:'Which fruit has seeds on the outside?',c:['Strawberry','Banana','Orange'],a:0},
+{q:'What is a baby cat called?',c:['Kitten','Calf','Cub'],a:0},
+{q:'Which is normally colder?',c:['The North Pole','The Sahara','The Amazon'],a:0},
+{q:'Which letter comes immediately after Q in the alphabet?',c:['R','P','S'],a:0},
+{q:'Which is heavier: 1 kg of feathers or 1 kg of bricks?',c:['They weigh the same','Bricks','Feathers'],a:0},
+{q:'Which day comes after Friday?',c:['Saturday','Thursday','Sunday'],a:0},
+{q:'True or false: Penguins can fly.',c:['True','False'],a:1},
+{q:'True or false: A spider has eight legs.',c:['True','False'],a:0},
+{q:'True or false: The Moon produces its own light.',c:['True','False'],a:1},
+{q:'True or false: Dolphins are mammals.',c:['True','False'],a:0},
+{q:'True or false: Lightning is hotter than the surface of the Sun.',c:['True','False'],a:0},
+{q:'True or false: Bananas grow on trees.',c:['True','False'],a:1},
+{q:'True or false: An octopus has three hearts.',c:['True','False'],a:0},
+{q:'True or false: Goldfish only remember things for three seconds.',c:['True','False'],a:1},
+{q:'True or false: Humans share the planet with more insects than mammals.',c:['True','False'],a:0},
+{q:'True or false: Sound travels faster than light.',c:['True','False'],a:1},
+{q:'Which creature can regrow a lost arm?',c:['Starfish','Rabbit','Penguin'],a:0},
+{q:'Which animal is known for carrying its baby in a pouch?',c:['Kangaroo','Tiger','Seal'],a:0},
+{q:'Which object tells you which direction is north?',c:['Compass','Thermometer','Stopwatch'],a:0},
+{q:'What is 25 + 25?',c:['50','45','55'],a:0},
+{q:'What is half of 90?',c:['45','40','50'],a:0},
+{q:'What is 11 + 18?',c:['29','28','30'],a:0},
+{q:'What is 7 × 4?',c:['28','24','32'],a:0},
+{q:'Which animal is famous for building dams?',c:['Beaver','Badger','Wolf'],a:0},
+{q:'Which fruit is traditionally used to make guacamole?',c:['Avocado','Kiwi','Lime'],a:0},
+{q:'Which country is home to the pyramids of Giza?',c:['Egypt','Mexico','Turkey'],a:0},
+{q:'Which is the smallest of these?',c:['Ant','Mouse','Cat'],a:0},
+{q:'Which one is not a mammal?',c:['Shark','Whale','Dolphin'],a:0},
+{q:'Which animal is known for laughing-like calls?',c:['Hyena','Moose','Panda'],a:0},
+{q:'Which common kitchen ingredient is made by bees?',c:['Honey','Salt','Flour'],a:0},
+{q:'Which of these normally floats on water?',c:['Cork','Brick','Coin'],a:0},
+{q:'Which animal can sleep standing up?',c:['Horse','Hamster','Otter'],a:0}
+];"""
+          ns,n=re.subn(r"const GATES=\[.*?\];\nconst INSULTS=",gates+"\nconst INSULTS=",s,count=1,flags=re.S)
+          if n!=1:
+              raise SystemExit('Could not locate GATES block')
+          p.write_text(ns)
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Expand edit permission trivia bank"
+          git push
