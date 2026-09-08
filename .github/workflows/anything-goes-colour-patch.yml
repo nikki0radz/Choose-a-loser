@@ -1,0 +1,31 @@
+name: Patch Anything Goes colour
+on:
+  push:
+    paths:
+      - '.github/workflows/anything-goes-colour-patch.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Soften Anything Goes pink
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='.proof{background:linear-gradient(135deg,#b51d5b,#7a123c)}'
+          new='.proof{background:linear-gradient(135deg,#c76083,#91435f)}'
+          if old not in s:
+              raise SystemExit('Expected Anything Goes colour rule not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Soften Anything Goes pink"
+          git push
