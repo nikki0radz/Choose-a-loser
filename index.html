@@ -57,6 +57,13 @@ html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;
 .axoFaceImg{width:100%;height:100%;max-height:none;object-fit:contain}
 .proof{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.22),transparent 28%),linear-gradient(135deg,rgba(245,142,184,.74),rgba(211,103,149,.54))}
 
+
+/* Axolotl hard visibility fix + hotter Anything Goes */
+.axowrap{isolation:isolate}
+.axowrap > div,.axoFaceStage{display:block!important;width:100%!important;height:100%!important;min-width:100%!important;min-height:100%!important;position:relative!important}
+.axoFaceImg{display:block!important;visibility:visible!important;opacity:1!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;position:relative!important;z-index:2!important;object-fit:contain!important}
+.proof{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.24),transparent 28%),linear-gradient(135deg,rgba(250,104,176,.76),rgba(213,66,139,.58))!important}
+
 </style>
 </head>
 <body>
@@ -215,7 +222,7 @@ function axo(level=1,expression='normal',act=''){
 const loser=expression==='loser';
 const chaosClass='chaos'+Math.max(1,Math.min(3,level));
 const actClass=act?' act-'+act:'';
-return `<div class="axoFaceStage ${chaosClass}${loser?' loser':''}${actClass}"><img class="axoFaceImg" src="assets/axolotl-face.webp" alt="Pink axolotl mascot"><div class="axoHorns"><span class="axoHorn left"></span><span class="axoHorn right"></span></div><div class="axoAccessory"><span class="axoGlasses"><i></i></span><span class="axoTongue"></span><span class="axoCig"></span><span class="axoSmoke"></span><span class="axoWink"></span><span class="axoHide"></span></div></div>`}
+return `<div class="axoFaceStage ${chaosClass}${loser?' loser':''}${actClass}"><img class="axoFaceImg" src="https://nikki0radz.github.io/Choose-a-loserhttps://nikki0radz.github.io/Choose-a-loser/assets/axolotl-face.webp?v=6?v=6" alt="Pink axolotl mascot"><div class="axoHorns"><span class="axoHorn left"></span><span class="axoHorn right"></span></div><div class="axoAccessory"><span class="axoGlasses"><i></i></span><span class="axoTongue"></span><span class="axoCig"></span><span class="axoSmoke"></span><span class="axoWink"></span><span class="axoHide"></span></div></div>`}
 function randomLoading(cb,ms=1500){const wrap=document.getElementById('loadingWrap');wrap.className='axowrap big thinking';wrap.innerHTML='<div id="loadingAxo"></div><div class="bubbleStream"><div class="mouthBubble"></div><div class="mouthBubble"></div><div class="mouthBubble"></div></div>';const acts=['float','glasses','tongue','smoke','wink','hide'];document.getElementById('loadingAxo').innerHTML=axo(chaos,'normal',rand(acts));showScreen('loadingScreen');setTimeout(cb,ms)}
 function startProven(){currentMode='proven';randomLoading(()=>{const q=drawQuestion('proven');if(!q){showScreen('homeScreen');return}document.getElementById('resultText').textContent=q.text;document.getElementById('resultAxo').innerHTML=axo(chaos,'loser');showScreen('resultScreen')})}
 function startDebatable(){currentMode='debate';randomLoading(()=>{const q=drawQuestion('debate');if(!q){showScreen('homeScreen');return}document.getElementById('debateQuestion').textContent=q.text;document.getElementById('debateAxo').innerHTML=axo(chaos);startTimer('debateTimer','debateNum',()=>{document.getElementById('debateDoneTitle').textContent="TIME'S UP.";document.getElementById('debateDoneText').textContent='Either sacrifice yourself... or vote.';document.getElementById('debateDoneAxo').innerHTML=axo(chaos,'loser');showScreen('debateDoneScreen')});showScreen('debateScreen')})}
