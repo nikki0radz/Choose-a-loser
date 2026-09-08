@@ -44,9 +44,7 @@
     --blue: #5362c7;
 
     --white: #ffffff;
-
     --soft-white: #dcdfff;
-
 }
 
 
@@ -56,9 +54,7 @@ body {
     margin: 0;
 
     width: 100%;
-    height: 100%;
-
-    overflow: hidden;
+    min-height: 100%;
 
     background: var(--navy);
 
@@ -68,6 +64,7 @@ body {
         "DM Sans",
         sans-serif;
 
+    overflow-x: hidden;
 }
 
 
@@ -76,14 +73,26 @@ body {
 }
 
 
-button {
+button,
+input,
+textarea {
+
     font-family: inherit;
+
+}
+
+
+button {
+
+    -webkit-tap-highlight-color:
+        transparent;
+
 }
 
 
 
 /* =========================
-   APP BACKGROUND
+   APP
 ========================= */
 
 
@@ -121,7 +130,7 @@ button {
 
 
 /* =========================
-   FLOATING DECORATIVE BUBBLES
+   BACKGROUND BUBBLES
 ========================= */
 
 
@@ -144,22 +153,15 @@ button {
             rgba(255,255,255,0.01) 70%
         );
 
-    box-shadow:
-
-        inset 0 0 20px
-        rgba(255,255,255,0.08),
-
-        0 0 30px
-        rgba(119,74,180,0.12);
-
     pointer-events: none;
+
+    opacity: 0.75;
 
     animation:
         bubbleDrift
         9s
         ease-in-out
         infinite;
-
 }
 
 
@@ -170,7 +172,6 @@ button {
 
     top: 10%;
     left: -45px;
-
 }
 
 
@@ -183,7 +184,6 @@ button {
     right: -20px;
 
     animation-delay: -3s;
-
 }
 
 
@@ -196,7 +196,6 @@ button {
     left: 22%;
 
     animation-delay: -6s;
-
 }
 
 
@@ -239,7 +238,7 @@ button {
     padding:
 
         max(
-            26px,
+            24px,
             env(safe-area-inset-top)
         )
 
@@ -268,9 +267,7 @@ button {
 
     transition:
 
-        opacity
-        0.35s
-        ease,
+        opacity 0.35s ease,
 
         transform
         0.45s
@@ -281,6 +278,7 @@ button {
             1
         );
 
+    overflow-y: auto;
 }
 
 
@@ -299,7 +297,7 @@ button {
 
 
 /* =========================
-   AXOLOTL WRAPPER
+   AXOLOTL
 ========================= */
 
 
@@ -317,7 +315,6 @@ button {
         3s
         ease-in-out
         infinite;
-
 }
 
 
@@ -325,7 +322,6 @@ button {
 
     width: 270px;
     height: 205px;
-
 }
 
 
@@ -363,88 +359,7 @@ button {
 
 
 /* =========================
-   AXOLOTL EXPRESSIONS
-========================= */
-
-
-.axolotlSVG .normalEyes,
-.axolotlSVG .evilBrows,
-.axolotlSVG .normalMouth,
-.axolotlSVG .tongueFace {
-
-    transition:
-        opacity
-        0.2s
-        ease;
-
-}
-
-
-.axolotlWrap.resultFace
-.normalEyes,
-
-.axolotlWrap.resultFace
-.evilBrows,
-
-.axolotlWrap.resultFace
-.normalMouth {
-
-    opacity: 0;
-
-}
-
-
-.axolotlWrap
-.tongueFace {
-
-    opacity: 0;
-
-}
-
-
-.axolotlWrap.resultFace
-.tongueFace {
-
-    opacity: 1;
-
-}
-
-
-.axolotlWrap.resultFace {
-
-    animation:
-        resultAxo
-        0.55s
-        cubic-bezier(
-            .2,
-            1.5,
-            .3,
-            1
-        );
-
-}
-
-
-@keyframes resultAxo {
-
-    0% {
-        transform: scale(0.7);
-    }
-
-    70% {
-        transform: scale(1.12);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-
-}
-
-
-
-/* =========================
-   BUBBLES FROM MOUTH
+   LOADING BUBBLES
 ========================= */
 
 
@@ -459,7 +374,6 @@ button {
     height: 100px;
 
     pointer-events: none;
-
 }
 
 
@@ -479,7 +393,6 @@ button {
         rgba(255,255,255,0.08);
 
     opacity: 0;
-
 }
 
 
@@ -490,7 +403,6 @@ button {
         2s
         ease-out
         infinite;
-
 }
 
 
@@ -500,7 +412,6 @@ button {
     height: 13px;
 
     left: 5px;
-
 }
 
 
@@ -513,7 +424,6 @@ button {
 
     animation-delay:
         0.55s !important;
-
 }
 
 
@@ -526,7 +436,6 @@ button {
 
     animation-delay:
         1.1s !important;
-
 }
 
 
@@ -543,9 +452,7 @@ button {
     }
 
     20% {
-
         opacity: 1;
-
     }
 
     100% {
@@ -571,7 +478,7 @@ button {
 .logo {
 
     margin:
-        12px 0 0;
+        10px 0 0;
 
     font-family:
         "Fredoka",
@@ -591,15 +498,11 @@ button {
         -0.04em;
 
     text-align: center;
-
 }
 
 
 .logo span {
-
-    color:
-        var(--pink);
-
+    color: var(--pink);
 }
 
 
@@ -608,7 +511,7 @@ button {
     max-width: 330px;
 
     margin:
-        15px auto 28px;
+        15px auto 25px;
 
     text-align: center;
 
@@ -622,7 +525,6 @@ button {
         1.5;
 
     opacity: 0.8;
-
 }
 
 
@@ -643,25 +545,23 @@ button {
         );
 
     text-align: center;
-
 }
 
 
 .screenSubtitle {
 
     margin:
-        0 0 24px;
+        0 0 22px;
 
     color:
         var(--soft-white);
 
-    opacity: 0.75;
+    opacity: 0.72;
 
     text-align: center;
 
     font-size:
         14px;
-
 }
 
 
@@ -708,10 +608,7 @@ button {
         rgba(0,0,0,0.22);
 
     transition:
-        transform
-        0.15s
-        ease;
-
+        transform 0.15s ease;
 }
 
 
@@ -720,33 +617,28 @@ button {
     transform:
         translateY(5px)
         scale(0.98);
-
 }
 
 
 .bigButton.anything {
 
     background:
-
         linear-gradient(
             135deg,
             #a65cd3,
             #6d36aa
         );
-
 }
 
 
 .bigButton.categories {
 
     background:
-
         linear-gradient(
             135deg,
             #5765cc,
             #38489e
         );
-
 }
 
 
@@ -760,7 +652,6 @@ button {
 
     font-size:
         22px;
-
 }
 
 
@@ -774,7 +665,155 @@ button {
         12px;
 
     opacity: 0.72;
+}
 
+
+
+/* =========================
+   SMALL HOME ACTIONS
+========================= */
+
+
+.homeUtilityRow {
+
+    width:
+        min(
+            100%,
+            365px
+        );
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+
+.utilityButton {
+
+    min-height: 50px;
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    border-radius: 18px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+
+/* =========================
+   DECK SELECTOR
+========================= */
+
+
+#deckChooser {
+
+    display: none;
+
+    width:
+        min(
+            100%,
+            365px
+        );
+
+    margin:
+        0 0 12px;
+
+    padding: 8px;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 7px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+}
+
+
+#deckChooser.visible {
+
+    display: grid;
+}
+
+
+.deckButton {
+
+    padding:
+        11px 7px;
+
+    border: 0;
+
+    border-radius: 14px;
+
+    background:
+        transparent;
+
+    color:
+        var(--soft-white);
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+}
+
+
+.deckButton.selected {
+
+    background:
+        var(--pink);
+
+    color:
+        #24152d;
 }
 
 
@@ -816,39 +855,45 @@ button {
     cursor: pointer;
 
     z-index: 10;
-
 }
 
 
 
 /* =========================
-   CATEGORY BUBBLES
+   CATEGORY CLOUD
 ========================= */
 
 
-.categoryGrid {
+.categoryCloud {
 
     width:
         min(
             100%,
-            390px
+            410px
         );
 
-    display: grid;
+    display: flex;
 
-    grid-template-columns:
-        repeat(
-            2,
-            1fr
-        );
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    align-items: flex-start;
 
     gap:
-        17px 14px;
+        15px 13px;
 
+    padding:
+        5px 0 20px;
 }
 
 
 .categoryItem {
+
+    width:
+        calc(
+            50% - 10px
+        );
 
     display: flex;
 
@@ -858,6 +903,35 @@ button {
 
     gap: 8px;
 
+    transition:
+        transform 0.3s ease;
+}
+
+
+/* irregular heights */
+
+.categoryItem:nth-child(6n + 1) {
+    transform: translateY(5px);
+}
+
+.categoryItem:nth-child(6n + 2) {
+    transform: translateY(-7px);
+}
+
+.categoryItem:nth-child(6n + 3) {
+    transform: translateY(12px);
+}
+
+.categoryItem:nth-child(6n + 4) {
+    transform: translateY(-2px);
+}
+
+.categoryItem:nth-child(6n + 5) {
+    transform: translateY(8px);
+}
+
+.categoryItem:nth-child(6n + 6) {
+    transform: translateY(-10px);
 }
 
 
@@ -865,22 +939,18 @@ button {
 
     position: relative;
 
-    width:
-        min(
-            31vw,
-            118px
-        );
-
-    height:
-        min(
-            31vw,
-            118px
-        );
+    width: 108px;
+    height: 108px;
 
     border:
 
         1px solid
-        rgba(255,255,255,0.30);
+        rgba(
+            255,
+            255,
+            255,
+            0.30
+        );
 
     border-radius: 50%;
 
@@ -915,12 +985,7 @@ button {
 
     color: white;
 
-    font-size:
-        clamp(
-            38px,
-            12vw,
-            55px
-        );
+    font-size: 48px;
 
     cursor: pointer;
 
@@ -929,36 +994,56 @@ button {
         4s
         ease-in-out
         infinite;
-
 }
 
 
-.categoryItem:nth-child(even)
+/* slight size irregularity */
+
+.categoryItem:nth-child(6n + 1)
 .categoryBubble {
 
-    animation-delay:
-        -2s;
-
+    width: 104px;
+    height: 104px;
 }
 
 
-@keyframes categoryBubbleFloat {
+.categoryItem:nth-child(6n + 2)
+.categoryBubble {
 
-    0%,
-    100% {
+    width: 113px;
+    height: 113px;
+}
 
-        transform:
-            translateY(0);
 
-    }
+.categoryItem:nth-child(6n + 3)
+.categoryBubble {
 
-    50% {
+    width: 108px;
+    height: 108px;
+}
 
-        transform:
-            translateY(-5px);
 
-    }
+.categoryItem:nth-child(6n + 4)
+.categoryBubble {
 
+    width: 101px;
+    height: 101px;
+}
+
+
+.categoryItem:nth-child(6n + 5)
+.categoryBubble {
+
+    width: 115px;
+    height: 115px;
+}
+
+
+.categoryItem:nth-child(6n + 6)
+.categoryBubble {
+
+    width: 106px;
+    height: 106px;
 }
 
 
@@ -977,13 +1062,44 @@ button {
     border-radius: 50%;
 
     background:
-        rgba(255,255,255,0.60);
+        rgba(
+            255,
+            255,
+            255,
+            0.62
+        );
 
     transform:
         rotate(-30deg);
 
     filter:
         blur(1px);
+}
+
+
+.categoryItem:nth-child(even)
+.categoryBubble {
+
+    animation-delay: -2s;
+}
+
+
+@keyframes categoryBubbleFloat {
+
+    0%,
+    100% {
+
+        translate:
+            0 0;
+
+    }
+
+    50% {
+
+        translate:
+            0 -5px;
+
+    }
 
 }
 
@@ -995,7 +1111,6 @@ button {
         0.35s
         ease-out
         forwards;
-
 }
 
 
@@ -1013,14 +1128,14 @@ button {
     45% {
 
         transform:
-            scale(0.84);
+            scale(0.82);
 
     }
 
     75% {
 
         transform:
-            scale(1.28);
+            scale(1.3);
 
         opacity: 0.75;
 
@@ -1043,20 +1158,17 @@ button {
     color:
         var(--soft-white);
 
-    font-size:
-        13px;
+    font-size: 13px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
     text-align: center;
-
 }
 
 
 
 /* =========================
-   LOADING / THINKING SCREEN
+   THINKING
 ========================= */
 
 
@@ -1072,7 +1184,6 @@ button {
         ),
 
         var(--navy);
-
 }
 
 
@@ -1085,29 +1196,24 @@ button {
         "Fredoka",
         sans-serif;
 
-    font-size:
-        30px;
+    font-size: 30px;
 
     text-align: center;
-
 }
 
 
 .thinkingText {
 
-    margin-top:
-        7px;
+    margin-top: 7px;
 
     color:
         var(--soft-white);
 
     opacity: 0.7;
 
-    font-size:
-        13px;
+    font-size: 13px;
 
     text-align: center;
-
 }
 
 
@@ -1125,8 +1231,7 @@ button {
             365px
         );
 
-    min-height:
-        245px;
+    min-height: 245px;
 
     padding:
         33px 27px;
@@ -1142,10 +1247,14 @@ button {
     border:
 
         1px solid
-        rgba(255,255,255,0.14);
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
 
-    border-radius:
-        39px;
+    border-radius: 39px;
 
     background:
 
@@ -1164,7 +1273,6 @@ button {
 
         0 28px 55px
         rgba(0,0,0,0.30);
-
 }
 
 
@@ -1179,7 +1287,6 @@ button {
             .3,
             1
         );
-
 }
 
 
@@ -1215,21 +1322,17 @@ button {
 
 .resultLabel {
 
-    margin-bottom:
-        13px;
+    margin-bottom: 13px;
 
     color:
         var(--pink);
 
-    font-size:
-        12px;
+    font-size: 12px;
 
-    font-weight:
-        800;
+    font-weight: 800;
 
     letter-spacing:
         0.12em;
-
 }
 
 
@@ -1250,30 +1353,20 @@ button {
 
     line-height:
         1.12;
-
 }
 
 
 #resultCategory {
 
-    margin-top:
-        17px;
+    margin-top: 17px;
 
     color:
         var(--soft-white);
 
     opacity: 0.65;
 
-    font-size:
-        12px;
-
+    font-size: 12px;
 }
-
-
-
-/* =========================
-   RESULT ACTIONS
-========================= */
 
 
 .resultActions {
@@ -1289,56 +1382,334 @@ button {
     grid-template-columns:
         1fr 1fr;
 
-    gap:
-        11px;
+    gap: 11px;
 
-    margin-top:
-        18px;
-
+    margin-top: 18px;
 }
 
 
 .smallButton {
 
-    min-height:
-        53px;
+    min-height: 53px;
 
     border: 0;
 
-    border-radius:
-        19px;
+    border-radius: 19px;
 
     background:
         var(--purple);
 
     color: white;
 
-    font-size:
-        15px;
+    font-size: 15px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
     cursor: pointer;
-
 }
 
 
 .smallButton.secondary {
 
     background:
-        rgba(255,255,255,0.08);
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
 
     border:
-        1px solid
-        rgba(255,255,255,0.10);
 
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
 }
 
 
 
 /* =========================
-   DEBATABLE TIMER
+   EDIT SCREENS
+========================= */
+
+
+.editContent {
+
+    width:
+        min(
+            100%,
+            390px
+        );
+
+    padding:
+        80px 0 35px;
+
+    margin: auto;
+}
+
+
+.editCategoryList {
+
+    display: grid;
+
+    gap: 10px;
+}
+
+
+.editCategoryButton {
+
+    width: 100%;
+
+    min-height: 58px;
+
+    padding:
+        14px 17px;
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.11
+        );
+
+    border-radius: 18px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+
+.editCategoryButton span:first-child {
+
+    font-weight: 800;
+}
+
+
+.addCategoryButton {
+
+    background:
+        rgba(
+            146,
+            82,
+            200,
+            0.25
+        );
+
+    border-color:
+        rgba(
+            199,
+            164,
+            239,
+            0.28
+        );
+}
+
+
+.questionList {
+
+    display: grid;
+
+    gap: 9px;
+
+    margin-top: 17px;
+}
+
+
+.questionRow {
+
+    padding:
+        13px 14px;
+
+    border-radius: 17px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.06
+        );
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    display: grid;
+
+    grid-template-columns:
+        1fr auto;
+
+    gap: 10px;
+
+    align-items: center;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+.questionRow.original {
+
+    opacity: 0.65;
+}
+
+
+.lockMark {
+
+    font-size: 12px;
+
+    opacity: 0.7;
+}
+
+
+.deleteQuestion {
+
+    width: 34px;
+    height: 34px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            245,
+            142,
+            184,
+            0.16
+        );
+
+    color:
+        var(--pink);
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+.addQuestionBox {
+
+    margin-top: 18px;
+
+    display: grid;
+
+    gap: 10px;
+}
+
+
+.textInput {
+
+    width: 100%;
+
+    padding:
+        14px 15px;
+
+    border:
+
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+    border-radius: 17px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+.textInput::placeholder {
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.42
+        );
+
+}
+
+
+.primaryAction {
+
+    min-height: 50px;
+
+    border: 0;
+
+    border-radius: 17px;
+
+    background:
+        var(--pink);
+
+    color:
+        #25162f;
+
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+
+.newCategoryForm {
+
+    margin-top: 18px;
+
+    display: grid;
+
+    gap: 10px;
+}
+
+
+
+/* =========================
+   TIMER
 ========================= */
 
 
@@ -1363,7 +1734,6 @@ button {
         1.15;
 
     text-align: center;
-
 }
 
 
@@ -1391,10 +1761,14 @@ button {
             var(--pink)
             var(--timer-progress,100%),
 
-            rgba(255,255,255,0.08)
+            rgba(
+                255,
+                255,
+                255,
+                0.08
+            )
             0
         );
-
 }
 
 
@@ -1410,7 +1784,6 @@ button {
 
     background:
         var(--navy);
-
 }
 
 
@@ -1424,16 +1797,8 @@ button {
         "Fredoka",
         sans-serif;
 
-    font-size:
-        72px;
-
+    font-size: 72px;
 }
-
-
-
-/* =========================
-   TIME UP
-========================= */
 
 
 #timeUpTitle {
@@ -1445,9 +1810,7 @@ button {
         "Fredoka",
         sans-serif;
 
-    font-size:
-        48px;
-
+    font-size: 48px;
 }
 
 
@@ -1461,22 +1824,21 @@ button {
 
     text-align: center;
 
-    font-size:
-        17px;
+    font-size: 17px;
 
-    line-height:
-        1.5;
-
+    line-height: 1.5;
 }
 
 
 
 /* =========================
-   SMALL PHONE
+   MOBILE
 ========================= */
 
 
-@media (max-height: 700px) {
+@media (
+    max-height: 700px
+) {
 
     .axolotlWrap.large {
 
@@ -1487,15 +1849,15 @@ button {
 
     .categoryBubble {
 
-        width: 91px;
-        height: 91px;
+        width: 92px !important;
+        height: 92px !important;
 
     }
 
-    .categoryGrid {
+    .categoryCloud {
 
         gap:
-            10px 12px;
+            7px 10px;
 
     }
 
@@ -1504,7 +1866,6 @@ button {
 </style>
 
 </head>
-
 
 
 <body>
@@ -1519,9 +1880,9 @@ button {
 
 
 
-<!-- ==================================
+<!-- =========================
      LOADING
-=================================== -->
+========================= -->
 
 
 <section
@@ -1529,264 +1890,21 @@ button {
     class="screen active"
 >
 
-
     <div
         class="axolotlWrap large thinking"
     >
 
-
-        <svg
-            class="axolotlSVG"
-            viewBox="0 0 260 190"
-        >
-
-
-            <!-- LEFT GILLS -->
-
-            <g
-                stroke="#d95f96"
-                stroke-width="14"
-                stroke-linecap="round"
-            >
-
-                <line
-                    x1="83"
-                    y1="70"
-                    x2="38"
-                    y2="35"
-                />
-
-                <line
-                    x1="75"
-                    y1="91"
-                    x2="26"
-                    y2="88"
-                />
-
-                <line
-                    x1="82"
-                    y1="110"
-                    x2="38"
-                    y2="140"
-                />
-
-
-                <!-- RIGHT GILLS -->
-
-                <line
-                    x1="177"
-                    y1="70"
-                    x2="222"
-                    y2="35"
-                />
-
-                <line
-                    x1="185"
-                    y1="91"
-                    x2="234"
-                    y2="88"
-                />
-
-                <line
-                    x1="178"
-                    y1="110"
-                    x2="222"
-                    y2="140"
-                />
-
-            </g>
-
-
-
-            <!-- HEAD -->
-
-            <ellipse
-                cx="130"
-                cy="95"
-                rx="82"
-                ry="59"
-                fill="#f58eb8"
-            />
-
-
-            <ellipse
-                cx="130"
-                cy="112"
-                rx="68"
-                ry="31"
-                fill="#ed78a7"
-                opacity="0.22"
-            />
-
-
-
-            <!-- NORMAL EYES -->
-
-            <g class="normalEyes">
-
-                <ellipse
-                    cx="98"
-                    cy="88"
-                    rx="8"
-                    ry="11"
-                    fill="#202437"
-                />
-
-                <ellipse
-                    cx="162"
-                    cy="88"
-                    rx="8"
-                    ry="11"
-                    fill="#202437"
-                />
-
-
-                <circle
-                    cx="95"
-                    cy="84"
-                    r="2.5"
-                    fill="white"
-                />
-
-                <circle
-                    cx="159"
-                    cy="84"
-                    r="2.5"
-                    fill="white"
-                />
-
-            </g>
-
-
-
-            <!-- EVIL EYEBROWS -->
-
-            <g
-                class="evilBrows"
-
-                stroke="#9f426c"
-
-                stroke-width="5"
-
-                stroke-linecap="round"
-            >
-
-                <line
-                    x1="86"
-                    y1="70"
-                    x2="107"
-                    y2="77"
-                />
-
-                <line
-                    x1="174"
-                    y1="70"
-                    x2="153"
-                    y2="77"
-                />
-
-            </g>
-
-
-
-            <!-- SMUG MOUTH -->
-
-            <path
-                class="normalMouth"
-
-                d="
-                    M109 112
-                    Q130 127
-                    153 109
-                "
-
-                fill="none"
-
-                stroke="#9e416c"
-
-                stroke-width="5"
-
-                stroke-linecap="round"
-            />
-
-
-
-            <!-- RESULT FACE -->
-
-            <g class="tongueFace">
-
-
-                <!-- CLOSED EVIL/HAPPY EYES -->
-
-                <path
-                    d="M87 88 Q98 77 109 88"
-                    fill="none"
-                    stroke="#29283a"
-                    stroke-width="5"
-                    stroke-linecap="round"
-                />
-
-                <path
-                    d="M151 88 Q162 77 173 88"
-                    fill="none"
-                    stroke="#29283a"
-                    stroke-width="5"
-                    stroke-linecap="round"
-                />
-
-
-                <!-- MOUTH -->
-
-                <path
-                    d="
-                        M111 109
-                        Q130 121
-                        149 109
-                    "
-
-                    fill="none"
-
-                    stroke="#9e416c"
-
-                    stroke-width="5"
-
-                    stroke-linecap="round"
-                />
-
-
-                <!-- TONGUE -->
-
-                <path
-                    d="
-                        M121 115
-                        Q130 133
-                        139 115
-                        Z
-                    "
-
-                    fill="#d54179"
-                />
-
-
-            </g>
-
-
-        </svg>
-
+        <div id="loadingAxo"></div>
 
         <div class="bubbleStream">
 
             <div class="mouthBubble b1"></div>
-
             <div class="mouthBubble b2"></div>
-
             <div class="mouthBubble b3"></div>
 
         </div>
 
-
     </div>
-
 
 
     <h1 class="logo">
@@ -1797,20 +1915,19 @@ button {
     </h1>
 
 
-    <p class="thinkingText">
+    <div class="thinkingText">
 
         Awakening the axolotl...
 
-    </p>
-
+    </div>
 
 </section>
 
 
 
-<!-- ==================================
+<!-- =========================
      HOME
-=================================== -->
+========================= -->
 
 
 <section
@@ -1818,125 +1935,11 @@ button {
     class="screen"
 >
 
-
     <div class="axolotlWrap">
 
-
-        <svg
-            class="axolotlSVG"
-            viewBox="0 0 260 190"
-        >
-
-
-            <g
-                stroke="#d95f96"
-                stroke-width="14"
-                stroke-linecap="round"
-            >
-
-                <line x1="83" y1="70" x2="38" y2="35"/>
-                <line x1="75" y1="91" x2="26" y2="88"/>
-                <line x1="82" y1="110" x2="38" y2="140"/>
-
-                <line x1="177" y1="70" x2="222" y2="35"/>
-                <line x1="185" y1="91" x2="234" y2="88"/>
-                <line x1="178" y1="110" x2="222" y2="140"/>
-
-            </g>
-
-
-            <ellipse
-                cx="130"
-                cy="95"
-                rx="82"
-                ry="59"
-                fill="#f58eb8"
-            />
-
-
-            <ellipse
-                cx="130"
-                cy="112"
-                rx="68"
-                ry="31"
-                fill="#ed78a7"
-                opacity="0.22"
-            />
-
-
-            <ellipse
-                cx="98"
-                cy="88"
-                rx="8"
-                ry="11"
-                fill="#202437"
-            />
-
-            <ellipse
-                cx="162"
-                cy="88"
-                rx="8"
-                ry="11"
-                fill="#202437"
-            />
-
-
-            <circle
-                cx="95"
-                cy="84"
-                r="2.5"
-                fill="white"
-            />
-
-            <circle
-                cx="159"
-                cy="84"
-                r="2.5"
-                fill="white"
-            />
-
-
-            <g
-                stroke="#9f426c"
-                stroke-width="5"
-                stroke-linecap="round"
-            >
-
-                <line
-                    x1="86"
-                    y1="70"
-                    x2="107"
-                    y2="77"
-                />
-
-                <line
-                    x1="174"
-                    y1="70"
-                    x2="153"
-                    y2="77"
-                />
-
-            </g>
-
-
-            <path
-                d="M109 112 Q130 127 153 109"
-
-                fill="none"
-
-                stroke="#9e416c"
-
-                stroke-width="5"
-
-                stroke-linecap="round"
-            />
-
-
-        </svg>
-
+        <div id="homeAxo"></div>
 
     </div>
-
 
 
     <h1 class="logo">
@@ -1956,6 +1959,27 @@ button {
     </p>
 
 
+    <div id="deckChooser">
+
+        <button
+            id="originalDeckButton"
+            class="deckButton"
+            onclick="setDeck('original')"
+        >
+            Original Deck
+        </button>
+
+
+        <button
+            id="riggedDeckButton"
+            class="deckButton"
+            onclick="setDeck('rigged')"
+        >
+            😈 Rigged Deck
+        </button>
+
+    </div>
+
 
     <button
         class="bigButton anything"
@@ -1963,57 +1987,64 @@ button {
     >
 
         <span class="buttonTitle">
-
             🎲 Anything Goes
-
         </span>
 
         <span class="buttonSub">
-
-            Hand your fate directly
-            to the suspicious pink creature.
-
+            Hand your fate to the axolotl.
         </span>
 
     </button>
-
 
 
     <button
         class="bigButton categories"
-        onclick="showScreen('categoryScreen')"
+        onclick="openCategories()"
     >
 
         <span class="buttonTitle">
-
             🫧 Choose a Category
-
         </span>
 
         <span class="buttonSub">
-
-            At least have some control
-            over your downfall.
-
+            At least pretend you have some control.
         </span>
 
     </button>
 
+
+    <div class="homeUtilityRow">
+
+        <button
+            class="utilityButton"
+            onclick="openEditCategories()"
+        >
+            ✏️ Edit Deck
+        </button>
+
+
+        <button
+            class="utilityButton"
+            onclick="resetCustomDeck()"
+        >
+            ↺ Reset Custom
+        </button>
+
+    </div>
 
 </section>
 
 
 
-<!-- ==================================
+<!-- =========================
      CATEGORIES
-=================================== -->
+========================= -->
 
 
 <section
     id="categoryScreen"
     class="screen"
 >
-
 
     <button
         class="backButton"
@@ -2037,151 +2068,18 @@ button {
     </p>
 
 
-
-    <div class="categoryGrid">
-
-
-
-        <div class="categoryItem">
-
-            <button
-                class="categoryBubble"
-                onclick="
-                    popCategory(
-                        this,
-                        'appearance'
-                    )
-                "
-            >
-                👀
-            </button>
-
-            <div class="categoryLabel">
-                Appearance
-            </div>
-
-        </div>
-
-
-
-        <div class="categoryItem">
-
-            <button
-                class="categoryBubble"
-                onclick="
-                    popCategory(
-                        this,
-                        'habits'
-                    )
-                "
-            >
-                ☀️
-            </button>
-
-            <div class="categoryLabel">
-                Daily Habits
-            </div>
-
-        </div>
-
-
-
-        <div class="categoryItem">
-
-            <button
-                class="categoryBubble"
-                onclick="
-                    popCategory(
-                        this,
-                        'personality'
-                    )
-                "
-            >
-                🧠
-            </button>
-
-            <div class="categoryLabel">
-                Personality
-            </div>
-
-        </div>
-
-
-
-        <div class="categoryItem">
-
-            <button
-                class="categoryBubble"
-                onclick="
-                    popCategory(
-                        this,
-                        'technology'
-                    )
-                "
-            >
-                📱
-            </button>
-
-            <div class="categoryLabel">
-                Phone & Tech
-            </div>
-
-        </div>
-
-
-
-        <div class="categoryItem">
-
-            <button
-                class="categoryBubble"
-                onclick="
-                    popCategory(
-                        this,
-                        'food'
-                    )
-                "
-            >
-                🍕
-            </button>
-
-            <div class="categoryLabel">
-                Food
-            </div>
-
-        </div>
-
-
-
-        <div class="categoryItem">
-
-            <button
-                class="categoryBubble"
-                onclick="
-                    popDebatable(
-                        this
-                    )
-                "
-            >
-                😈
-            </button>
-
-            <div class="categoryLabel">
-                Debatable...
-            </div>
-
-        </div>
-
-
-    </div>
-
+    <div
+        id="categoryCloud"
+        class="categoryCloud"
+    ></div>
 
 </section>
 
 
 
-<!-- ==================================
+<!-- =========================
      THINKING
-=================================== -->
+========================= -->
 
 
 <section
@@ -2189,104 +2087,11 @@ button {
     class="screen"
 >
 
-
     <div
-        id="thinkingAxolotl"
         class="axolotlWrap large thinking"
     >
 
-
-        <svg
-            class="axolotlSVG"
-            viewBox="0 0 260 190"
-        >
-
-
-            <g
-                stroke="#d95f96"
-                stroke-width="14"
-                stroke-linecap="round"
-            >
-
-                <line x1="83" y1="70" x2="38" y2="35"/>
-                <line x1="75" y1="91" x2="26" y2="88"/>
-                <line x1="82" y1="110" x2="38" y2="140"/>
-
-                <line x1="177" y1="70" x2="222" y2="35"/>
-                <line x1="185" y1="91" x2="234" y2="88"/>
-                <line x1="178" y1="110" x2="222" y2="140"/>
-
-            </g>
-
-
-            <ellipse
-                cx="130"
-                cy="95"
-                rx="82"
-                ry="59"
-                fill="#f58eb8"
-            />
-
-
-            <ellipse
-                cx="130"
-                cy="112"
-                rx="68"
-                ry="31"
-                fill="#ed78a7"
-                opacity="0.22"
-            />
-
-
-            <ellipse
-                cx="98"
-                cy="88"
-                rx="8"
-                ry="11"
-                fill="#202437"
-            />
-
-            <ellipse
-                cx="162"
-                cy="88"
-                rx="8"
-                ry="11"
-                fill="#202437"
-            />
-
-
-            <circle cx="95" cy="84" r="2.5" fill="white"/>
-            <circle cx="159" cy="84" r="2.5" fill="white"/>
-
-
-            <g
-                stroke="#9f426c"
-                stroke-width="5"
-                stroke-linecap="round"
-            >
-
-                <line x1="86" y1="70" x2="107" y2="77"/>
-                <line x1="174" y1="70" x2="153" y2="77"/>
-
-            </g>
-
-
-            <path
-                d="M109 112 Q130 127 153 109"
-
-                fill="none"
-
-                stroke="#9e416c"
-
-                stroke-width="5"
-
-                stroke-linecap="round"
-            />
-
-
-        </svg>
-
-
+        <div id="thinkingAxo"></div>
 
         <div class="bubbleStream">
 
@@ -2296,9 +2101,7 @@ button {
 
         </div>
 
-
     </div>
-
 
 
     <h2
@@ -2315,14 +2118,13 @@ button {
 
     </div>
 
-
 </section>
 
 
 
-<!-- ==================================
+<!-- =========================
      RESULT
-=================================== -->
+========================= -->
 
 
 <section
@@ -2330,94 +2132,17 @@ button {
     class="screen"
 >
 
+    <div class="axolotlWrap">
 
-    <div
-        class="axolotlWrap resultFace"
-    >
-
-
-        <svg
-            class="axolotlSVG"
-            viewBox="0 0 260 190"
-        >
-
-
-            <g
-                stroke="#d95f96"
-                stroke-width="14"
-                stroke-linecap="round"
-            >
-
-                <line x1="83" y1="70" x2="38" y2="35"/>
-                <line x1="75" y1="91" x2="26" y2="88"/>
-                <line x1="82" y1="110" x2="38" y2="140"/>
-
-                <line x1="177" y1="70" x2="222" y2="35"/>
-                <line x1="185" y1="91" x2="234" y2="88"/>
-                <line x1="178" y1="110" x2="222" y2="140"/>
-
-            </g>
-
-
-            <ellipse
-                cx="130"
-                cy="95"
-                rx="82"
-                ry="59"
-                fill="#f58eb8"
-            />
-
-
-            <path
-                d="M87 88 Q98 77 109 88"
-                fill="none"
-                stroke="#29283a"
-                stroke-width="5"
-                stroke-linecap="round"
-            />
-
-
-            <path
-                d="M151 88 Q162 77 173 88"
-                fill="none"
-                stroke="#29283a"
-                stroke-width="5"
-                stroke-linecap="round"
-            />
-
-
-            <path
-                d="M111 109 Q130 121 149 109"
-                fill="none"
-                stroke="#9e416c"
-                stroke-width="5"
-                stroke-linecap="round"
-            />
-
-
-            <path
-                d="
-                    M121 114
-                    Q130 136
-                    139 114
-                    Z
-                "
-                fill="#d54179"
-            />
-
-
-        </svg>
-
+        <div id="resultAxo"></div>
 
     </div>
-
 
 
     <div
         id="resultCard"
         class="resultCard"
     >
-
 
         <div class="resultLabel">
 
@@ -2439,21 +2164,14 @@ button {
 
         </div>
 
-
     </div>
-
 
 
     <div class="resultActions">
 
-
         <button
             class="smallButton secondary"
-            onclick="
-                showScreen(
-                    'homeScreen'
-                )
-            "
+            onclick="showScreen('homeScreen')"
         >
             Home
         </button>
@@ -2466,24 +2184,21 @@ button {
             🎲 Again
         </button>
 
-
     </div>
-
 
 </section>
 
 
 
-<!-- ==================================
-     DEBATABLE
-=================================== -->
+<!-- =========================
+     DEBATE
+========================= -->
 
 
 <section
     id="debateScreen"
     class="screen"
 >
-
 
     <button
         class="backButton"
@@ -2495,8 +2210,7 @@ button {
 
     <h2 id="debateQuestion">
 
-        Who would die first
-        in a horror movie?
+        Who would die first in a horror movie?
 
     </h2>
 
@@ -2519,14 +2233,13 @@ button {
 
     </div>
 
-
 </section>
 
 
 
-<!-- ==================================
+<!-- =========================
      TIME UP
-=================================== -->
+========================= -->
 
 
 <section
@@ -2534,80 +2247,11 @@ button {
     class="screen"
 >
 
+    <div class="axolotlWrap">
 
-    <div class="axolotlWrap resultFace">
-
-
-        <svg
-            class="axolotlSVG"
-            viewBox="0 0 260 190"
-        >
-
-
-            <g
-                stroke="#d95f96"
-                stroke-width="14"
-                stroke-linecap="round"
-            >
-
-                <line x1="83" y1="70" x2="38" y2="35"/>
-                <line x1="75" y1="91" x2="26" y2="88"/>
-                <line x1="82" y1="110" x2="38" y2="140"/>
-
-                <line x1="177" y1="70" x2="222" y2="35"/>
-                <line x1="185" y1="91" x2="234" y2="88"/>
-                <line x1="178" y1="110" x2="222" y2="140"/>
-
-            </g>
-
-
-            <ellipse
-                cx="130"
-                cy="95"
-                rx="82"
-                ry="59"
-                fill="#f58eb8"
-            />
-
-
-            <path
-                d="M87 88 Q98 77 109 88"
-                fill="none"
-                stroke="#29283a"
-                stroke-width="5"
-                stroke-linecap="round"
-            />
-
-
-            <path
-                d="M151 88 Q162 77 173 88"
-                fill="none"
-                stroke="#29283a"
-                stroke-width="5"
-                stroke-linecap="round"
-            />
-
-
-            <path
-                d="M111 109 Q130 121 149 109"
-                fill="none"
-                stroke="#9e416c"
-                stroke-width="5"
-                stroke-linecap="round"
-            />
-
-
-            <path
-                d="M121 114 Q130 136 139 114 Z"
-                fill="#d54179"
-            />
-
-
-        </svg>
-
+        <div id="timeUpAxo"></div>
 
     </div>
-
 
 
     <h2 id="timeUpTitle">
@@ -2628,7 +2272,6 @@ button {
     </div>
 
 
-
     <button
         class="bigButton anything"
         onclick="startDebate()"
@@ -2642,6 +2285,139 @@ button {
 
     </button>
 
+</section>
+
+
+
+<!-- =========================
+     EDIT CATEGORY PICKER
+========================= -->
+
+
+<section
+    id="editCategoriesScreen"
+    class="screen"
+>
+
+    <button
+        class="backButton"
+        onclick="showScreen('homeScreen')"
+    >
+        ←
+    </button>
+
+
+    <div class="editContent">
+
+        <h2 class="screenTitle">
+
+            Edit the deck.
+
+        </h2>
+
+
+        <p class="screenSubtitle">
+
+            Corrupt responsibly.
+
+        </p>
+
+
+        <div
+            id="editCategoryList"
+            class="editCategoryList"
+        ></div>
+
+
+        <div
+            id="newCategoryForm"
+            class="newCategoryForm"
+            style="display:none;"
+        >
+
+            <input
+                id="newCategoryName"
+                class="textInput"
+                placeholder="Category name"
+            >
+
+
+            <input
+                id="newCategoryEmoji"
+                class="textInput"
+                placeholder="Emoji, e.g. 🍸"
+            >
+
+
+            <button
+                class="primaryAction"
+                onclick="createNewCategory()"
+            >
+                Create Category
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     EDIT QUESTIONS
+========================= -->
+
+
+<section
+    id="editQuestionsScreen"
+    class="screen"
+>
+
+    <button
+        class="backButton"
+        onclick="openEditCategories()"
+    >
+        ←
+    </button>
+
+
+    <div class="editContent">
+
+        <h2
+            id="editQuestionTitle"
+            class="screenTitle"
+        >
+            Edit Category
+        </h2>
+
+
+        <div
+            id="questionList"
+            class="questionList"
+        ></div>
+
+
+        <div class="addQuestionBox">
+
+            <textarea
+                id="newQuestionInput"
+                class="textInput"
+                rows="3"
+                placeholder="Add a new question..."
+            ></textarea>
+
+
+            <button
+                class="primaryAction"
+                onclick="addQuestionToCurrentCategory()"
+            >
+                + Add Question
+            </button>
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -2653,96 +2429,431 @@ button {
 <script>
 
 
-
 /* =========================
-   QUESTIONS
+   AXOLOTL SVG
 ========================= */
 
 
-const questions = {
+function getAxolotlSVG(
+    expression = "normal"
+) {
 
 
-    appearance: [
+    const normalFace = `
 
-        "Whoever is wearing the most black.",
+        <ellipse
+            cx="98"
+            cy="88"
+            rx="8"
+            ry="11"
+            fill="#202437"
+        />
 
-        "Whoever has the messiest hair.",
+        <ellipse
+            cx="162"
+            cy="88"
+            rx="8"
+            ry="11"
+            fill="#202437"
+        />
 
-        "Whoever is wearing the most expensive shoes.",
+        <circle
+            cx="95"
+            cy="84"
+            r="2.5"
+            fill="white"
+        />
 
-        "Whoever took the longest to get ready.",
+        <circle
+            cx="159"
+            cy="84"
+            r="2.5"
+            fill="white"
+        />
 
-        "Whoever has the most accessories.",
+        <g
+            stroke="#9f426c"
+            stroke-width="5"
+            stroke-linecap="round"
+        >
 
-        "Whoever is wearing the brightest colour."
+            <line
+                x1="86"
+                y1="70"
+                x2="107"
+                y2="77"
+            />
 
-    ],
+            <line
+                x1="174"
+                y1="70"
+                x2="153"
+                y2="77"
+            />
 
+        </g>
 
-    habits: [
+        <path
+            d="M108 113 Q130 125 152 109"
 
-        "Whoever woke up first this morning.",
+            fill="none"
 
-        "Whoever went to bed latest last night.",
+            stroke="#9e416c"
 
-        "Whoever checked their phone most recently.",
+            stroke-width="5"
 
-        "Whoever had caffeine most recently.",
-
-        "Whoever travelled furthest today.",
-
-        "Whoever has been awake longest."
-
-    ],
-
-
-    personality: [
-
-        "Whoever is the most stubborn.",
-
-        "Whoever complains the most.",
-
-        "Whoever laughs the loudest.",
-
-        "Whoever is most likely to be late.",
-
-        "Whoever would survive longest without their phone.",
-
-        "Whoever is most likely to cancel plans."
-
-    ],
-
-
-    technology: [
-
-        "Whoever has the lowest phone battery.",
-
-        "Whoever has the most unread notifications.",
-
-        "Whoever has the most alarms set.",
-
-        "Whoever has the highest screen time today.",
-
-        "Whoever took the most recent photo.",
-
-        "Whoever has the oldest phone."
-
-    ],
+            stroke-linecap="round"
+        />
+    `;
 
 
-    food: [
 
-        "Whoever ate most recently.",
+    const loserFace = `
 
-        "Whoever is the pickiest eater.",
+        <path
+            d="M87 88 Q98 78 109 88"
 
-        "Whoever ordered the most expensive thing.",
+            fill="none"
 
-        "Whoever would eat dessert first.",
+            stroke="#29283a"
 
-        "Whoever had the most caffeine today.",
+            stroke-width="5"
 
-        "Whoever takes longest to choose from a menu."
+            stroke-linecap="round"
+        />
+
+        <path
+            d="M151 88 Q162 78 173 88"
+
+            fill="none"
+
+            stroke="#29283a"
+
+            stroke-width="5"
+
+            stroke-linecap="round"
+        />
+
+
+        <!-- FLAT unimpressed mouth -->
+
+        <line
+            x1="116"
+            y1="111"
+            x2="144"
+            y2="111"
+
+            stroke="#9e416c"
+
+            stroke-width="5"
+
+            stroke-linecap="round"
+        />
+
+
+        <!-- tongue -->
+
+        <path
+            d="
+                M121 112
+                L139 112
+                Q138 137
+                130 138
+                Q122 137
+                121 112
+                Z
+            "
+
+            fill="#d54179"
+        />
+
+
+        <line
+            x1="130"
+            y1="122"
+            x2="130"
+            y2="135"
+
+            stroke="#b92e63"
+
+            stroke-width="2.5"
+
+            stroke-linecap="round"
+        />
+    `;
+
+
+
+    const face =
+        expression === "loser"
+        ? loserFace
+        : normalFace;
+
+
+
+    return `
+
+    <svg
+        class="axolotlSVG"
+        viewBox="0 0 260 190"
+    >
+
+
+        <!-- LEFT GILLS -->
+
+        <g
+            stroke="#d95f96"
+            stroke-width="14"
+            stroke-linecap="round"
+        >
+
+            <line
+                x1="83"
+                y1="70"
+                x2="38"
+                y2="35"
+            />
+
+            <line
+                x1="75"
+                y1="91"
+                x2="26"
+                y2="88"
+            />
+
+            <line
+                x1="82"
+                y1="110"
+                x2="38"
+                y2="140"
+            />
+
+
+            <!-- RIGHT GILLS -->
+
+            <line
+                x1="177"
+                y1="70"
+                x2="222"
+                y2="35"
+            />
+
+            <line
+                x1="185"
+                y1="91"
+                x2="234"
+                y2="88"
+            />
+
+            <line
+                x1="178"
+                y1="110"
+                x2="222"
+                y2="140"
+            />
+
+        </g>
+
+
+        <ellipse
+            cx="130"
+            cy="95"
+            rx="82"
+            ry="59"
+            fill="#f58eb8"
+        />
+
+
+        <ellipse
+            cx="130"
+            cy="112"
+            rx="68"
+            ry="31"
+            fill="#ed78a7"
+            opacity="0.22"
+        />
+
+
+        ${face}
+
+
+    </svg>
+
+    `;
+
+}
+
+
+
+/* =========================
+   ORIGINAL DATA
+========================= */
+
+
+const originalCategories = {
+
+
+    appearance: {
+
+        name:
+            "Appearance",
+
+        emoji:
+            "👀",
+
+        questions: [
+
+            "Whoever is wearing the most black.",
+
+            "Whoever has the messiest hair.",
+
+            "Whoever is wearing the most expensive shoes.",
+
+            "Whoever took the longest to get ready.",
+
+            "Whoever has the most accessories.",
+
+            "Whoever is wearing the brightest colour."
+
+        ]
+
+    },
+
+
+    habits: {
+
+        name:
+            "Daily Habits",
+
+        emoji:
+            "☀️",
+
+        questions: [
+
+            "Whoever woke up first this morning.",
+
+            "Whoever went to bed latest last night.",
+
+            "Whoever checked their phone most recently.",
+
+            "Whoever had caffeine most recently.",
+
+            "Whoever travelled furthest today.",
+
+            "Whoever has been awake longest."
+
+        ]
+
+    },
+
+
+    personality: {
+
+        name:
+            "Personality",
+
+        emoji:
+            "🧠",
+
+        questions: [
+
+            "Whoever is the most stubborn.",
+
+            "Whoever complains the most.",
+
+            "Whoever laughs the loudest.",
+
+            "Whoever is most likely to be late.",
+
+            "Whoever would survive longest without their phone.",
+
+            "Whoever is most likely to cancel plans."
+
+        ]
+
+    },
+
+
+    technology: {
+
+        name:
+            "Phone & Tech",
+
+        emoji:
+            "📱",
+
+        questions: [
+
+            "Whoever has the lowest phone battery.",
+
+            "Whoever has the most unread notifications.",
+
+            "Whoever has the most alarms set.",
+
+            "Whoever has the highest screen time today.",
+
+            "Whoever took the most recent photo.",
+
+            "Whoever has the oldest phone."
+
+        ]
+
+    },
+
+
+    food: {
+
+        name:
+            "Food",
+
+        emoji:
+            "🍕",
+
+        questions: [
+
+            "Whoever ate most recently.",
+
+            "Whoever is the pickiest eater.",
+
+            "Whoever ordered the most expensive thing.",
+
+            "Whoever would eat dessert first.",
+
+            "Whoever had the most caffeine today.",
+
+            "Whoever takes longest to choose from a menu."
+
+        ]
+
+    }
+
+};
+
+
+
+const originalDebatable = {
+
+    name:
+        "Debatable...",
+
+    emoji:
+        "😈",
+
+    questions: [
+
+        "Who would die first in a horror movie?",
+
+        "Who would survive longest on a desert island?",
+
+        "Who is most likely to accidentally join a cult?",
+
+        "Who would be worst to get stuck in a lift with?",
+
+        "Who would betray the group first in a zombie apocalypse?",
+
+        "Who would be easiest to convince that their house is haunted?",
+
+        "Who is most likely to become famous for something ridiculous?"
 
     ]
 
@@ -2750,58 +2861,98 @@ const questions = {
 
 
 
-const categoryNames = {
+/* =========================
+   CUSTOM DATA
+========================= */
 
-    appearance:
-        "Appearance",
 
-    habits:
-        "Daily Habits",
+let customData = {
 
-    personality:
-        "Personality",
+    addedQuestions: {},
 
-    technology:
-        "Phone & Tech",
-
-    food:
-        "Food"
+    customCategories: {}
 
 };
 
 
 
-const debateQuestions = [
+let selectedDeck =
+    "original";
 
-    "Who would die first in a horror movie?",
 
-    "Who would survive longest on a desert island?",
-
-    "Who is most likely to accidentally join a cult?",
-
-    "Who would be worst to get stuck in a lift with?",
-
-    "Who would betray the group first in a zombie apocalypse?",
-
-    "Who would be easiest to convince that their house is haunted?",
-
-    "Who is most likely to become famous for something ridiculous?"
-
-];
-
+let currentCategoryKey =
+    null;
 
 
 let currentMode =
     null;
 
 
-let currentCategory =
+let currentEditCategory =
     null;
 
 
 let debateInterval =
     null;
 
+
+
+function loadCustomData() {
+
+
+    const saved =
+        localStorage.getItem(
+            "chooseALoserCustomData"
+        );
+
+
+    if (!saved) {
+        return;
+    }
+
+
+    try {
+
+        customData =
+            JSON.parse(saved);
+
+    }
+
+    catch {
+
+        console.log(
+            "Could not load custom deck."
+        );
+
+    }
+
+}
+
+
+
+function saveCustomData() {
+
+
+    localStorage.setItem(
+
+        "chooseALoserCustomData",
+
+        JSON.stringify(
+            customData
+        )
+
+    );
+
+
+    refreshDeckChooser();
+
+}
+
+
+
+/* =========================
+   HELPERS
+========================= */
 
 
 function randomItem(array) {
@@ -2812,6 +2963,217 @@ function randomItem(array) {
             array.length
         )
     ];
+
+}
+
+
+
+function hasCustomContent() {
+
+
+    const hasQuestions =
+        Object.values(
+            customData.addedQuestions
+        )
+        .some(
+            array =>
+                Array.isArray(array) &&
+                array.length > 0
+        );
+
+
+    const hasCategories =
+        Object.keys(
+            customData.customCategories
+        ).length > 0;
+
+
+    return (
+        hasQuestions ||
+        hasCategories
+    );
+
+}
+
+
+
+/* =========================
+   DECK MODE
+========================= */
+
+
+function refreshDeckChooser() {
+
+
+    const chooser =
+        document.getElementById(
+            "deckChooser"
+        );
+
+
+    if (
+        hasCustomContent()
+    ) {
+
+        chooser.classList.add(
+            "visible"
+        );
+
+    }
+
+    else {
+
+        chooser.classList.remove(
+            "visible"
+        );
+
+        selectedDeck =
+            "original";
+
+    }
+
+
+    updateDeckButtons();
+
+}
+
+
+
+function setDeck(deck) {
+
+
+    selectedDeck =
+        deck;
+
+
+    updateDeckButtons();
+
+}
+
+
+
+function updateDeckButtons() {
+
+
+    document
+        .getElementById(
+            "originalDeckButton"
+        )
+        .classList
+        .toggle(
+            "selected",
+            selectedDeck === "original"
+        );
+
+
+    document
+        .getElementById(
+            "riggedDeckButton"
+        )
+        .classList
+        .toggle(
+            "selected",
+            selectedDeck === "rigged"
+        );
+
+}
+
+
+
+/* =========================
+   GET ACTIVE CATEGORIES
+========================= */
+
+
+function getCategoryData(key) {
+
+
+    if (
+        originalCategories[key]
+    ) {
+
+
+        const base =
+            originalCategories[key];
+
+
+        let questions =
+            [...base.questions];
+
+
+        if (
+            selectedDeck === "rigged"
+        ) {
+
+
+            const added =
+                customData
+                    .addedQuestions[key] ||
+                [];
+
+
+            questions =
+                questions.concat(
+                    added
+                );
+
+        }
+
+
+        return {
+
+            key: key,
+
+            name:
+                base.name,
+
+            emoji:
+                base.emoji,
+
+            questions:
+                questions,
+
+            custom:
+                false
+
+        };
+
+    }
+
+
+
+    const custom =
+        customData
+            .customCategories[key];
+
+
+    if (
+        custom &&
+        selectedDeck === "rigged"
+    ) {
+
+        return {
+
+            key: key,
+
+            name:
+                custom.name,
+
+            emoji:
+                custom.emoji,
+
+            questions:
+                custom.questions,
+
+            custom:
+                true
+
+        };
+
+    }
+
+
+    return null;
 
 }
 
@@ -2830,13 +3192,11 @@ function showScreen(id) {
             ".screen"
         )
         .forEach(
-            function(screen) {
+            screen => {
 
-                screen
-                    .classList
-                    .remove(
-                        "active"
-                    );
+                screen.classList.remove(
+                    "active"
+                );
 
             }
         );
@@ -2847,13 +3207,213 @@ function showScreen(id) {
 
             document
                 .getElementById(id)
-                .classList
-                .add(
+                .classList.add(
                     "active"
                 );
 
         },
         70
+    );
+
+}
+
+
+
+/* =========================
+   CATEGORY DISPLAY
+========================= */
+
+
+function openCategories() {
+
+
+    renderCategories();
+
+
+    showScreen(
+        "categoryScreen"
+    );
+
+}
+
+
+
+function renderCategories() {
+
+
+    const cloud =
+        document.getElementById(
+            "categoryCloud"
+        );
+
+
+    cloud.innerHTML =
+        "";
+
+
+    const keys =
+        Object.keys(
+            originalCategories
+        );
+
+
+    if (
+        selectedDeck === "rigged"
+    ) {
+
+        keys.push(
+            ...Object.keys(
+                customData.customCategories
+            )
+        );
+
+    }
+
+
+
+    keys.forEach(
+        function(key) {
+
+
+            const data =
+                getCategoryData(key);
+
+
+            if (!data) {
+                return;
+            }
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "categoryItem";
+
+
+            const bubble =
+                document.createElement(
+                    "button"
+                );
+
+
+            bubble.className =
+                "categoryBubble";
+
+
+            bubble.textContent =
+                data.emoji;
+
+
+            bubble.onclick =
+                function() {
+
+                    popCategory(
+                        bubble,
+                        key
+                    );
+
+                };
+
+
+            const label =
+                document.createElement(
+                    "div"
+                );
+
+
+            label.className =
+                "categoryLabel";
+
+
+            label.textContent =
+                data.name;
+
+
+            item.appendChild(
+                bubble
+            );
+
+
+            item.appendChild(
+                label
+            );
+
+
+            cloud.appendChild(
+                item
+            );
+
+        }
+    );
+
+
+
+    /* debatable always appears */
+
+    const debateItem =
+        document.createElement(
+            "div"
+        );
+
+
+    debateItem.className =
+        "categoryItem";
+
+
+    const debateBubble =
+        document.createElement(
+            "button"
+        );
+
+
+    debateBubble.className =
+        "categoryBubble";
+
+
+    debateBubble.textContent =
+        originalDebatable.emoji;
+
+
+    debateBubble.onclick =
+        function() {
+
+            popDebatable(
+                debateBubble
+            );
+
+        };
+
+
+    const debateLabel =
+        document.createElement(
+            "div"
+        );
+
+
+    debateLabel.className =
+        "categoryLabel";
+
+
+    debateLabel.textContent =
+        originalDebatable.name;
+
+
+    debateItem.appendChild(
+        debateBubble
+    );
+
+
+    debateItem.appendChild(
+        debateLabel
+    );
+
+
+    cloud.appendChild(
+        debateItem
     );
 
 }
@@ -2867,38 +3427,36 @@ function showScreen(id) {
 
 function popCategory(
     button,
-    category
+    key
 ) {
 
 
-    button
-        .classList
-        .add(
-            "popping"
-        );
+    button.classList.add(
+        "popping"
+    );
 
 
     setTimeout(
         function() {
 
+
+            button.classList.remove(
+                "popping"
+            );
+
+
             currentMode =
                 "category";
 
 
-            currentCategory =
-                category;
+            currentCategoryKey =
+                key;
 
 
             thinkThenReveal(
-                category
+                key
             );
 
-
-            button
-                .classList
-                .remove(
-                    "popping"
-                );
 
         },
         330
@@ -2911,24 +3469,22 @@ function popCategory(
 function popDebatable(button) {
 
 
-    button
-        .classList
-        .add(
-            "popping"
-        );
+    button.classList.add(
+        "popping"
+    );
 
 
     setTimeout(
         function() {
 
-            button
-                .classList
-                .remove(
-                    "popping"
-                );
+
+            button.classList.remove(
+                "popping"
+            );
 
 
             startDebate();
+
 
         },
         330
@@ -2946,33 +3502,38 @@ function popDebatable(button) {
 function anythingGoes() {
 
 
-    const categories = [
+    let keys =
+        Object.keys(
+            originalCategories
+        );
 
-        "appearance",
 
-        "habits",
+    if (
+        selectedDeck === "rigged"
+    ) {
 
-        "personality",
+        keys =
+            keys.concat(
+                Object.keys(
+                    customData.customCategories
+                )
+            );
 
-        "technology",
-
-        "food"
-
-    ];
+    }
 
 
     currentMode =
         "anything";
 
 
-    currentCategory =
+    currentCategoryKey =
         randomItem(
-            categories
+            keys
         );
 
 
     thinkThenReveal(
-        currentCategory
+        currentCategoryKey
     );
 
 }
@@ -2980,11 +3541,11 @@ function anythingGoes() {
 
 
 /* =========================
-   THINK
+   THINKING
 ========================= */
 
 
-function thinkThenReveal(category) {
+function thinkThenReveal(key) {
 
 
     document
@@ -2994,17 +3555,11 @@ function thinkThenReveal(category) {
         .textContent =
         randomItem(
             [
-
                 "Hmm...",
-
                 "Interesting...",
-
                 "Choosing carefully...",
-
                 "Someone's unlucky...",
-
                 "Let me see..."
-
             ]
         );
 
@@ -3018,7 +3573,7 @@ function thinkThenReveal(category) {
         function() {
 
             revealResult(
-                category
+                key
             );
 
         },
@@ -3034,7 +3589,27 @@ function thinkThenReveal(category) {
 ========================= */
 
 
-function revealResult(category) {
+function revealResult(key) {
+
+
+    const data =
+        getCategoryData(
+            key
+        );
+
+
+    if (
+        !data ||
+        data.questions.length === 0
+    ) {
+
+        showScreen(
+            "homeScreen"
+        );
+
+        return;
+
+    }
 
 
     document
@@ -3043,9 +3618,7 @@ function revealResult(category) {
         )
         .textContent =
         randomItem(
-            questions[
-                category
-            ]
+            data.questions
         );
 
 
@@ -3054,9 +3627,17 @@ function revealResult(category) {
             "resultCategory"
         )
         .textContent =
-        categoryNames[
-            category
-        ];
+        data.name;
+
+
+    document
+        .getElementById(
+            "resultAxo"
+        )
+        .innerHTML =
+        getAxolotlSVG(
+            "loser"
+        );
 
 
     showScreen(
@@ -3070,21 +3651,17 @@ function revealResult(category) {
         );
 
 
-    card
-        .classList
-        .remove(
-            "pop"
-        );
+    card.classList.remove(
+        "pop"
+    );
 
 
     void card.offsetWidth;
 
 
-    card
-        .classList
-        .add(
-            "pop"
-        );
+    card.classList.add(
+        "pop"
+    );
 
 }
 
@@ -3110,7 +3687,7 @@ function chooseAgain() {
     else {
 
         thinkThenReveal(
-            currentCategory
+            currentCategoryKey
         );
 
     }
@@ -3138,7 +3715,7 @@ function startDebate() {
         )
         .textContent =
         randomItem(
-            debateQuestions
+            originalDebatable.questions
         );
 
 
@@ -3213,6 +3790,16 @@ function startDebate() {
                     );
 
 
+                    document
+                        .getElementById(
+                            "timeUpAxo"
+                        )
+                        .innerHTML =
+                        getAxolotlSVG(
+                            "loser"
+                        );
+
+
                     showScreen(
                         "timeUpScreen"
                     );
@@ -3236,8 +3823,196 @@ function cancelDebate() {
     );
 
 
+    openCategories();
+
+}
+
+
+
+/* =========================
+   EDIT CATEGORY LIST
+========================= */
+
+
+function openEditCategories() {
+
+
+    renderEditCategories();
+
+
     showScreen(
-        "categoryScreen"
+        "editCategoriesScreen"
+    );
+
+}
+
+
+
+function renderEditCategories() {
+
+
+    const list =
+        document.getElementById(
+            "editCategoryList"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    Object.keys(
+        originalCategories
+    )
+    .forEach(
+        function(key) {
+
+
+            const category =
+                originalCategories[key];
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "editCategoryButton";
+
+
+            button.innerHTML = `
+
+                <span>
+                    ${category.emoji}
+                    ${category.name}
+                </span>
+
+                <span>
+                    Edit ›
+                </span>
+
+            `;
+
+
+            button.onclick =
+                function() {
+
+                    openQuestionEditor(
+                        key
+                    );
+
+                };
+
+
+            list.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+
+    Object.keys(
+        customData.customCategories
+    )
+    .forEach(
+        function(key) {
+
+
+            const category =
+                customData
+                    .customCategories[key];
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "editCategoryButton";
+
+
+            button.innerHTML = `
+
+                <span>
+                    ${category.emoji}
+                    ${category.name}
+                </span>
+
+                <span>
+                    Custom ›
+                </span>
+
+            `;
+
+
+            button.onclick =
+                function() {
+
+                    openQuestionEditor(
+                        key
+                    );
+
+                };
+
+
+            list.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+
+    const add =
+        document.createElement(
+            "button"
+        );
+
+
+    add.className =
+        "editCategoryButton addCategoryButton";
+
+
+    add.innerHTML = `
+
+        <span>
+            ＋ New Category
+        </span>
+
+        <span>
+            ✨
+        </span>
+
+    `;
+
+
+    add.onclick =
+        function() {
+
+
+            const form =
+                document.getElementById(
+                    "newCategoryForm"
+                );
+
+
+            form.style.display =
+                form.style.display === "grid"
+                ? "none"
+                : "grid";
+
+        };
+
+
+    list.appendChild(
+        add
     );
 
 }
@@ -3245,13 +4020,601 @@ function cancelDebate() {
 
 
 /* =========================
-   INITIAL LOAD
+   QUESTION EDITOR
+========================= */
+
+
+function openQuestionEditor(key) {
+
+
+    currentEditCategory =
+        key;
+
+
+    const original =
+        originalCategories[key];
+
+
+    const custom =
+        customData
+            .customCategories[key];
+
+
+    const title =
+        original
+        ? original.name
+        : custom.name;
+
+
+    document
+        .getElementById(
+            "editQuestionTitle"
+        )
+        .textContent =
+        "Edit " + title;
+
+
+    renderQuestionList();
+
+
+    showScreen(
+        "editQuestionsScreen"
+    );
+
+}
+
+
+
+function renderQuestionList() {
+
+
+    const list =
+        document.getElementById(
+            "questionList"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    const original =
+        originalCategories[
+            currentEditCategory
+        ];
+
+
+    if (original) {
+
+
+        original.questions
+            .forEach(
+                function(question) {
+
+
+                    const row =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    row.className =
+                        "questionRow original";
+
+
+                    row.innerHTML = `
+
+                        <span>
+                            ${question}
+                        </span>
+
+                        <span class="lockMark">
+                            🔒
+                        </span>
+
+                    `;
+
+
+                    list.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+
+
+        const added =
+            customData
+                .addedQuestions[
+                    currentEditCategory
+                ] ||
+            [];
+
+
+        added.forEach(
+            function(
+                question,
+                index
+            ) {
+
+
+                const row =
+                    createCustomQuestionRow(
+                        question,
+                        index,
+                        false
+                    );
+
+
+                list.appendChild(
+                    row
+                );
+
+            }
+        );
+
+    }
+
+
+    else {
+
+
+        const custom =
+            customData
+                .customCategories[
+                    currentEditCategory
+                ];
+
+
+        custom.questions.forEach(
+            function(
+                question,
+                index
+            ) {
+
+
+                const row =
+                    createCustomQuestionRow(
+                        question,
+                        index,
+                        true
+                    );
+
+
+                list.appendChild(
+                    row
+                );
+
+            }
+        );
+
+    }
+
+}
+
+
+
+function createCustomQuestionRow(
+    question,
+    index,
+    customCategory
+) {
+
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+
+    row.className =
+        "questionRow";
+
+
+    const text =
+        document.createElement(
+            "span"
+        );
+
+
+    text.textContent =
+        question;
+
+
+    const deleteButton =
+        document.createElement(
+            "button"
+        );
+
+
+    deleteButton.className =
+        "deleteQuestion";
+
+
+    deleteButton.textContent =
+        "×";
+
+
+    deleteButton.onclick =
+        function() {
+
+
+            deleteCustomQuestion(
+                index,
+                customCategory
+            );
+
+        };
+
+
+    row.appendChild(
+        text
+    );
+
+
+    row.appendChild(
+        deleteButton
+    );
+
+
+    return row;
+
+}
+
+
+
+/* =========================
+   ADD QUESTION
+========================= */
+
+
+function addQuestionToCurrentCategory() {
+
+
+    const input =
+        document.getElementById(
+            "newQuestionInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+        return;
+    }
+
+
+    if (
+        originalCategories[
+            currentEditCategory
+        ]
+    ) {
+
+
+        if (
+            !customData
+                .addedQuestions[
+                    currentEditCategory
+                ]
+        ) {
+
+            customData
+                .addedQuestions[
+                    currentEditCategory
+                ] =
+                [];
+
+        }
+
+
+        customData
+            .addedQuestions[
+                currentEditCategory
+            ]
+            .push(
+                text
+            );
+
+    }
+
+
+    else {
+
+
+        customData
+            .customCategories[
+                currentEditCategory
+            ]
+            .questions
+            .push(
+                text
+            );
+
+    }
+
+
+    input.value =
+        "";
+
+
+    saveCustomData();
+
+
+    renderQuestionList();
+
+}
+
+
+
+/* =========================
+   DELETE QUESTION
+========================= */
+
+
+function deleteCustomQuestion(
+    index,
+    customCategory
+) {
+
+
+    if (customCategory) {
+
+
+        customData
+            .customCategories[
+                currentEditCategory
+            ]
+            .questions
+            .splice(
+                index,
+                1
+            );
+
+    }
+
+
+    else {
+
+
+        customData
+            .addedQuestions[
+                currentEditCategory
+            ]
+            .splice(
+                index,
+                1
+            );
+
+    }
+
+
+    saveCustomData();
+
+
+    renderQuestionList();
+
+}
+
+
+
+/* =========================
+   NEW CATEGORY
+========================= */
+
+
+function createNewCategory() {
+
+
+    const nameInput =
+        document.getElementById(
+            "newCategoryName"
+        );
+
+
+    const emojiInput =
+        document.getElementById(
+            "newCategoryEmoji"
+        );
+
+
+    const name =
+        nameInput.value.trim();
+
+
+    const emoji =
+        emojiInput.value.trim() ||
+        "🫧";
+
+
+    if (!name) {
+        return;
+    }
+
+
+    const key =
+        "custom_" +
+        Date.now();
+
+
+    customData
+        .customCategories[
+            key
+        ] = {
+
+            name:
+                name,
+
+            emoji:
+                emoji,
+
+            questions:
+                []
+
+        };
+
+
+    nameInput.value =
+        "";
+
+
+    emojiInput.value =
+        "";
+
+
+    document
+        .getElementById(
+            "newCategoryForm"
+        )
+        .style
+        .display =
+        "none";
+
+
+    saveCustomData();
+
+
+    renderEditCategories();
+
+
+    openQuestionEditor(
+        key
+    );
+
+}
+
+
+
+/* =========================
+   RESET CUSTOM
+========================= */
+
+
+function resetCustomDeck() {
+
+
+    if (
+        !hasCustomContent()
+    ) {
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "Delete all your custom questions and categories?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    customData = {
+
+        addedQuestions: {},
+
+        customCategories: {}
+
+    };
+
+
+    saveCustomData();
+
+
+    selectedDeck =
+        "original";
+
+
+    refreshDeckChooser();
+
+}
+
+
+
+/* =========================
+   INITIALISE AXOLOTLS
+========================= */
+
+
+function initialiseAxolotls() {
+
+
+    document
+        .getElementById(
+            "loadingAxo"
+        )
+        .innerHTML =
+        getAxolotlSVG(
+            "normal"
+        );
+
+
+    document
+        .getElementById(
+            "homeAxo"
+        )
+        .innerHTML =
+        getAxolotlSVG(
+            "normal"
+        );
+
+
+    document
+        .getElementById(
+            "thinkingAxo"
+        )
+        .innerHTML =
+        getAxolotlSVG(
+            "normal"
+        );
+
+
+    document
+        .getElementById(
+            "resultAxo"
+        )
+        .innerHTML =
+        getAxolotlSVG(
+            "loser"
+        );
+
+
+    document
+        .getElementById(
+            "timeUpAxo"
+        )
+        .innerHTML =
+        getAxolotlSVG(
+            "loser"
+        );
+
+}
+
+
+
+/* =========================
+   START
 ========================= */
 
 
 window.addEventListener(
     "load",
     function() {
+
+
+        loadCustomData();
+
+
+        initialiseAxolotls();
+
+
+        refreshDeckChooser();
 
 
         setTimeout(
