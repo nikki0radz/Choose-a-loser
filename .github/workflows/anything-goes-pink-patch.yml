@@ -1,0 +1,31 @@
+name: Patch Anything Goes pink
+on:
+  push:
+    paths:
+      - '.github/workflows/anything-goes-pink-patch.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Match Anything Goes to axolotl pink
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='.proof{background:linear-gradient(135deg,#c76083,#91435f)}'
+          new='.proof{background:linear-gradient(135deg,#d86f99,#b84f77)}'
+          if old not in s:
+              raise SystemExit('Expected Anything Goes colour rule not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Match Anything Goes to darker axolotl pink"
+          git push
