@@ -1,1 +1,2740 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#f6cbd6">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>Choose a Loser</title>
+
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fredoka:wght@500;600;700&display=swap');
+
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        :root {
+
+            --pink: #f6cbd6;
+            --pink-dark: #df8fa7;
+
+            --cream: #fff8f3;
+
+            --purple: #8d7ab8;
+            --purple-light: #dcd3f2;
+
+            --green: #b9dfcf;
+
+            --yellow: #f5df9d;
+
+            --blue: #b9ddec;
+
+            --text: #342f3c;
+
+            --soft-text: #716a78;
+
+            --white: #ffffff;
+        }
+
+
+        html,
+        body {
+
+            margin: 0;
+
+            width: 100%;
+            min-height: 100%;
+
+            background:
+                var(--cream);
+
+            color:
+                var(--text);
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
+            overflow-x: hidden;
+        }
+
+
+        body {
+
+            min-height:
+                100dvh;
+        }
+
+
+        button {
+
+            font-family:
+                inherit;
+        }
+
+
+
+        /* =========================
+           APP
+        ========================= */
+
+
+        #app {
+
+            position: relative;
+
+            width: 100%;
+
+            min-height:
+                100dvh;
+
+            overflow: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(246, 203, 214, 0.55),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(185, 221, 236, 0.45),
+                    transparent 32%
+                ),
+
+                var(--cream);
+        }
+
+
+
+        /* =========================
+           FLOATING BACKGROUND BLOBS
+        ========================= */
+
+
+        .blob {
+
+            position: fixed;
+
+            border-radius: 50%;
+
+            filter:
+                blur(1px);
+
+            opacity:
+                0.45;
+
+            pointer-events: none;
+
+            animation:
+                blobFloat
+                8s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        .blob.one {
+
+            width: 130px;
+            height: 130px;
+
+            background:
+                var(--pink);
+
+            top: -45px;
+            left: -35px;
+
+        }
+
+
+        .blob.two {
+
+            width: 90px;
+            height: 90px;
+
+            background:
+                var(--purple-light);
+
+            right: -20px;
+            top: 30%;
+
+            animation-delay:
+                -2s;
+
+        }
+
+
+        .blob.three {
+
+            width: 120px;
+            height: 120px;
+
+            background:
+                var(--green);
+
+            bottom: -40px;
+            left: 15%;
+
+            animation-delay:
+                -4s;
+
+        }
+
+
+        @keyframes blobFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-18px)
+                    scale(1.06);
+
+            }
+
+        }
+
+
+
+        /* =========================
+           SCREENS
+        ========================= */
+
+
+        .screen {
+
+            position: absolute;
+
+            inset: 0;
+
+            min-height:
+                100dvh;
+
+            padding:
+
+                max(
+                    24px,
+                    env(safe-area-inset-top)
+                )
+
+                22px
+
+                max(
+                    24px,
+                    env(safe-area-inset-bottom)
+                );
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transform:
+                translateY(25px)
+                scale(0.97);
+
+            transition:
+
+                opacity
+                0.38s
+                ease,
+
+                transform
+                0.5s
+                cubic-bezier(
+                    0.2,
+                    1.2,
+                    0.3,
+                    1
+                );
+
+        }
+
+
+        .screen.active {
+
+            opacity: 1;
+
+            pointer-events: auto;
+
+            transform:
+                translateY(0)
+                scale(1);
+
+        }
+
+
+
+        /* =========================
+           AXOLOTL
+        ========================= */
+
+
+        .axolotl {
+
+            position: relative;
+
+            width: 150px;
+            height: 120px;
+
+            margin-bottom: 18px;
+
+            animation:
+
+                axolotlFloat
+                3s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        @keyframes axolotlFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0)
+                    rotate(-1deg);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-10px)
+                    rotate(1deg);
+
+            }
+
+        }
+
+
+        .axo-head {
+
+            position: absolute;
+
+            width: 105px;
+            height: 78px;
+
+            left: 22px;
+            top: 22px;
+
+            border-radius:
+                46% 46% 48% 48%;
+
+            background:
+                #f3a9ba;
+
+            box-shadow:
+                inset 0 -7px 0
+                rgba(208, 113, 142, 0.14);
+
+            z-index: 3;
+
+        }
+
+
+        .axo-eye {
+
+            position: absolute;
+
+            width: 10px;
+            height: 13px;
+
+            top: 29px;
+
+            border-radius: 50%;
+
+            background:
+                #342f3c;
+
+        }
+
+
+        .axo-eye.left {
+
+            left: 27px;
+
+        }
+
+
+        .axo-eye.right {
+
+            right: 27px;
+
+        }
+
+
+        .axo-eye::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 3px;
+            height: 3px;
+
+            top: 2px;
+            left: 2px;
+
+            border-radius: 50%;
+
+            background:
+                white;
+
+        }
+
+
+        .axo-mouth {
+
+            position: absolute;
+
+            width: 25px;
+            height: 11px;
+
+            left: 40px;
+            top: 48px;
+
+            border-bottom:
+                3px solid
+                #9f536c;
+
+            border-radius:
+                0 0 50% 50%;
+
+        }
+
+
+
+        /* GILLS */
+
+
+        .gills {
+
+            position: absolute;
+
+            width: 40px;
+            height: 60px;
+
+            top: 25px;
+
+            z-index: 2;
+
+        }
+
+
+        .gills.left {
+
+            left: 0;
+
+            transform:
+                rotate(-13deg);
+
+        }
+
+
+        .gills.right {
+
+            right: 0;
+
+            transform:
+                scaleX(-1)
+                rotate(-13deg);
+
+        }
+
+
+        .gill {
+
+            position: absolute;
+
+            width: 34px;
+            height: 10px;
+
+            left: 8px;
+
+            border-radius:
+                20px;
+
+            background:
+                #d8789c;
+
+            transform-origin:
+                left center;
+
+        }
+
+
+        .gill:nth-child(1) {
+
+            top: 4px;
+
+            transform:
+                rotate(-35deg);
+
+        }
+
+
+        .gill:nth-child(2) {
+
+            top: 22px;
+
+            transform:
+                rotate(-5deg);
+
+        }
+
+
+        .gill:nth-child(3) {
+
+            top: 40px;
+
+            transform:
+                rotate(30deg);
+
+        }
+
+
+
+        /* AXOLOTL LOADING BUBBLES */
+
+
+        .axo-bubble {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            border:
+                2px solid
+                rgba(141, 122, 184, 0.4);
+
+            animation:
+                bubbleRise
+                2.2s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        .axo-bubble.b1 {
+
+            width: 12px;
+            height: 12px;
+
+            right: 4px;
+            top: 7px;
+
+        }
+
+
+        .axo-bubble.b2 {
+
+            width: 8px;
+            height: 8px;
+
+            right: -10px;
+            top: 32px;
+
+            animation-delay:
+                -0.7s;
+
+        }
+
+
+        .axo-bubble.b3 {
+
+            width: 17px;
+            height: 17px;
+
+            right: 10px;
+            top: -12px;
+
+            animation-delay:
+                -1.4s;
+
+        }
+
+
+        @keyframes bubbleRise {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(4px)
+                    scale(0.8);
+
+                opacity:
+                    0.3;
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-8px)
+                    scale(1.1);
+
+                opacity:
+                    1;
+
+            }
+
+        }
+
+
+
+        /* =========================
+           TYPOGRAPHY
+        ========================= */
+
+
+        .logo {
+
+            margin: 0;
+
+            font-family:
+                "Fredoka",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    38px,
+                    11vw,
+                    62px
+                );
+
+            line-height:
+                0.95;
+
+            text-align:
+                center;
+
+            letter-spacing:
+                -0.04em;
+
+        }
+
+
+        .logo span {
+
+            color:
+                var(--pink-dark);
+
+        }
+
+
+        .subtitle {
+
+            max-width:
+                330px;
+
+            margin:
+                13px auto 28px;
+
+            text-align:
+                center;
+
+            color:
+                var(--soft-text);
+
+            font-size:
+                15px;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        .screen-title {
+
+            margin:
+                0 0 8px;
+
+            font-family:
+                "Fredoka",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    31px,
+                    9vw,
+                    48px
+                );
+
+            text-align:
+                center;
+
+        }
+
+
+        .screen-subtitle {
+
+            margin:
+                0 0 24px;
+
+            text-align:
+                center;
+
+            color:
+                var(--soft-text);
+
+            font-size:
+                14px;
+
+        }
+
+
+
+        /* =========================
+           LOADING
+        ========================= */
+
+
+        #loadingScreen {
+
+            z-index: 50;
+
+            background:
+                var(--cream);
+
+        }
+
+
+        .loading-dots {
+
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 9px;
+
+        }
+
+
+        .loading-dots span {
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background:
+                var(--pink-dark);
+
+            animation:
+                loadingBounce
+                1s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        .loading-dots span:nth-child(2) {
+
+            animation-delay:
+                0.14s;
+
+        }
+
+
+        .loading-dots span:nth-child(3) {
+
+            animation-delay:
+                0.28s;
+
+        }
+
+
+        @keyframes loadingBounce {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+
+                opacity:
+                    0.45;
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-8px);
+
+                opacity:
+                    1;
+
+            }
+
+        }
+
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+
+        .big-button {
+
+            width:
+                min(
+                    100%,
+                    360px
+                );
+
+            min-height:
+                82px;
+
+            margin:
+                7px 0;
+
+            padding:
+                18px 20px;
+
+            border:
+                0;
+
+            border-radius:
+                27px;
+
+            color:
+                var(--text);
+
+            text-align:
+                left;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+
+                0 8px 0
+                rgba(82, 69, 95, 0.09),
+
+                0 15px 30px
+                rgba(82, 69, 95, 0.08);
+
+            transition:
+                transform
+                0.15s
+                ease;
+
+        }
+
+
+        .big-button:active {
+
+            transform:
+                translateY(5px)
+                scale(0.98);
+
+        }
+
+
+        .big-button.anything {
+
+            background:
+                var(--pink);
+
+        }
+
+
+        .big-button.category {
+
+            background:
+                var(--purple-light);
+
+        }
+
+
+        .button-title {
+
+            display: block;
+
+            font-family:
+                "Fredoka",
+                sans-serif;
+
+            font-size:
+                22px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .button-description {
+
+            display: block;
+
+            margin-top: 4px;
+
+            font-size:
+                12px;
+
+            opacity:
+                0.65;
+
+        }
+
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+
+        .back-button {
+
+            position: absolute;
+
+            top:
+                max(
+                    18px,
+                    env(safe-area-inset-top)
+                );
+
+            left: 18px;
+
+            width: 46px;
+            height: 46px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.75);
+
+            color:
+                var(--text);
+
+            font-size:
+                22px;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+                0 5px 18px
+                rgba(70, 60, 80, 0.08);
+
+        }
+
+
+
+        /* =========================
+           CATEGORIES
+        ========================= */
+
+
+        .category-grid {
+
+            width:
+                min(
+                    100%,
+                    390px
+                );
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    1fr
+                );
+
+            gap:
+                13px;
+
+        }
+
+
+        .category-bubble {
+
+            position: relative;
+
+            min-height:
+                125px;
+
+            padding:
+                17px 12px;
+
+            border:
+                0;
+
+            border-radius:
+                34px;
+
+            color:
+                var(--text);
+
+            cursor:
+                pointer;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+
+                0 7px 0
+                rgba(75, 64, 88, 0.08),
+
+                0 14px 25px
+                rgba(75, 64, 88, 0.06);
+
+            transition:
+                transform
+                0.18s
+                ease;
+
+            animation:
+                categoryFloat
+                4s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        .category-bubble:nth-child(even) {
+
+            animation-delay:
+                -2s;
+
+        }
+
+
+        .category-bubble:active {
+
+            transform:
+                translateY(5px)
+                scale(0.96);
+
+        }
+
+
+        @keyframes categoryFloat {
+
+            0%,
+            100% {
+
+                translate:
+                    0 0;
+
+            }
+
+            50% {
+
+                translate:
+                    0 -4px;
+
+            }
+
+        }
+
+
+        .category-icon {
+
+            font-size:
+                30px;
+
+            margin-bottom:
+                6px;
+
+        }
+
+
+        .category-name {
+
+            font-family:
+                "Fredoka",
+                sans-serif;
+
+            font-size:
+                16px;
+
+            font-weight:
+                600;
+
+            text-align:
+                center;
+
+        }
+
+
+        .appearance {
+
+            background:
+                var(--pink);
+
+        }
+
+
+        .habits {
+
+            background:
+                var(--yellow);
+
+        }
+
+
+        .personality {
+
+            background:
+                var(--green);
+
+        }
+
+
+        .technology {
+
+            background:
+                var(--blue);
+
+        }
+
+
+        .food {
+
+            background:
+                #f4d3b5;
+
+        }
+
+
+        .debatable {
+
+            background:
+                var(--purple);
+
+            color:
+                white;
+
+        }
+
+
+
+        /* =========================
+           RESULT CARD
+        ========================= */
+
+
+        .result-card {
+
+            position: relative;
+
+            width:
+                min(
+                    100%,
+                    370px
+                );
+
+            min-height:
+                260px;
+
+            padding:
+                36px 27px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius:
+                42px;
+
+            background:
+                white;
+
+            text-align:
+                center;
+
+            box-shadow:
+
+                0 10px 0
+                rgba(81, 69, 94, 0.07),
+
+                0 25px 55px
+                rgba(81, 69, 94, 0.12);
+
+            overflow: hidden;
+
+        }
+
+
+        .result-card.pop {
+
+            animation:
+                resultPop
+                0.55s
+                cubic-bezier(
+                    0.18,
+                    1.4,
+                    0.35,
+                    1
+                );
+
+        }
+
+
+        @keyframes resultPop {
+
+            0% {
+
+                transform:
+                    scale(0.7)
+                    rotate(-3deg);
+
+                opacity:
+                    0;
+
+            }
+
+            70% {
+
+                transform:
+                    scale(1.04)
+                    rotate(1deg);
+
+            }
+
+            100% {
+
+                transform:
+                    scale(1)
+                    rotate(0);
+
+                opacity:
+                    1;
+
+            }
+
+        }
+
+
+        .result-label {
+
+            margin-bottom:
+                13px;
+
+            color:
+                var(--pink-dark);
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                0.12em;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        #resultText {
+
+            margin: 0;
+
+            font-family:
+                "Fredoka",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    27px,
+                    8vw,
+                    42px
+                );
+
+            line-height:
+                1.12;
+
+        }
+
+
+        #resultCategory {
+
+            margin-top:
+                17px;
+
+            color:
+                var(--soft-text);
+
+            font-size:
+                12px;
+
+        }
+
+
+
+        /* =========================
+           RESULT BUTTONS
+        ========================= */
+
+
+        .result-actions {
+
+            width:
+                min(
+                    100%,
+                    370px
+                );
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                11px;
+
+            margin-top:
+                20px;
+
+        }
+
+
+        .small-button {
+
+            min-height:
+                54px;
+
+            padding:
+                12px;
+
+            border:
+                0;
+
+            border-radius:
+                20px;
+
+            background:
+                var(--pink);
+
+            color:
+                var(--text);
+
+            font-size:
+                15px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .small-button.secondary {
+
+            background:
+                rgba(255, 255, 255, 0.8);
+
+        }
+
+
+
+        /* =========================
+           DEBATABLE TIMER
+        ========================= */
+
+
+        #timerNumber {
+
+            margin:
+                5px 0 12px;
+
+            font-family:
+                "Fredoka",
+                sans-serif;
+
+            font-size:
+                82px;
+
+            color:
+                var(--purple);
+
+            line-height:
+                1;
+
+        }
+
+
+        .timer-ring {
+
+            position: relative;
+
+            width:
+                165px;
+
+            height:
+                165px;
+
+            margin:
+                18px 0;
+
+            border-radius:
+                50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                conic-gradient(
+                    var(--purple)
+                    var(--timer-progress, 100%),
+
+                    var(--purple-light)
+                    0
+                );
+
+        }
+
+
+        .timer-ring::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset:
+                12px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--cream);
+
+        }
+
+
+        #timerNumber {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        #debateQuestion {
+
+            max-width:
+                360px;
+
+            margin:
+                0;
+
+            font-family:
+                "Fredoka",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    25px,
+                    7vw,
+                    36px
+                );
+
+            line-height:
+                1.12;
+
+            text-align:
+                center;
+
+        }
+
+
+
+        /* =========================
+           TIME UP
+        ========================= */
+
+
+        .sacrifice {
+
+            font-size:
+                60px;
+
+            margin-bottom:
+                10px;
+
+            animation:
+                sacrificeBounce
+                1.4s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        @keyframes sacrificeBounce {
+
+            0%,
+            100% {
+
+                transform:
+                    rotate(-5deg)
+                    scale(1);
+
+            }
+
+            50% {
+
+                transform:
+                    rotate(5deg)
+                    scale(1.08);
+
+            }
+
+        }
+
+
+        #timeUpTitle {
+
+            margin: 0;
+
+            font-family:
+                "Fredoka",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    38px,
+                    11vw,
+                    58px
+                );
+
+        }
+
+
+        #timeUpText {
+
+            max-width:
+                320px;
+
+            margin:
+                14px auto 26px;
+
+            color:
+                var(--soft-text);
+
+            font-size:
+                18px;
+
+            line-height:
+                1.45;
+
+            text-align:
+                center;
+
+        }
+
+
+
+        /* =========================
+           MOBILE HEIGHT
+        ========================= */
+
+
+        @media (
+            max-height: 700px
+        ) {
+
+            .axolotl {
+
+                transform:
+                    scale(0.82);
+
+                margin-bottom:
+                    0;
+
+            }
+
+
+            .category-bubble {
+
+                min-height:
+                    105px;
+
+            }
+
+
+            .category-grid {
+
+                gap:
+                    9px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+<div id="app">
+
+
+    <div class="blob one"></div>
+
+    <div class="blob two"></div>
+
+    <div class="blob three"></div>
+
+
+
+    <!-- =========================
+         LOADING
+    ========================== -->
+
+
+    <section
+        id="loadingScreen"
+        class="screen active"
+    >
+
+
+        <div class="axolotl">
+
+            <div class="gills left">
+
+                <div class="gill"></div>
+                <div class="gill"></div>
+                <div class="gill"></div>
+
+            </div>
+
+
+            <div class="gills right">
+
+                <div class="gill"></div>
+                <div class="gill"></div>
+                <div class="gill"></div>
+
+            </div>
+
+
+            <div class="axo-head">
+
+                <div class="axo-eye left"></div>
+
+                <div class="axo-eye right"></div>
+
+                <div class="axo-mouth"></div>
+
+            </div>
+
+
+            <div class="axo-bubble b1"></div>
+
+            <div class="axo-bubble b2"></div>
+
+            <div class="axo-bubble b3"></div>
+
+        </div>
+
+
+        <h1 class="logo">
+
+            CHOOSE<br>
+
+            A <span>LOSER</span>
+
+        </h1>
+
+
+        <div class="loading-dots">
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         HOME
+    ========================== -->
+
+
+    <section
+        id="homeScreen"
+        class="screen"
+    >
+
+
+        <div class="axolotl">
+
+            <div class="gills left">
+
+                <div class="gill"></div>
+                <div class="gill"></div>
+                <div class="gill"></div>
+
+            </div>
+
+
+            <div class="gills right">
+
+                <div class="gill"></div>
+                <div class="gill"></div>
+                <div class="gill"></div>
+
+            </div>
+
+
+            <div class="axo-head">
+
+                <div class="axo-eye left"></div>
+
+                <div class="axo-eye right"></div>
+
+                <div class="axo-mouth"></div>
+
+            </div>
+
+        </div>
+
+
+        <h1 class="logo">
+
+            CHOOSE A
+            <span>LOSER</span>
+
+        </h1>
+
+
+        <p class="subtitle">
+
+            Can't decide who gets the short straw?
+
+            Perfect.
+
+        </p>
+
+
+
+        <button
+            class="big-button anything"
+            onclick="anythingGoes()"
+        >
+
+            <span class="button-title">
+
+                🎲 Anything Goes
+
+            </span>
+
+
+            <span class="button-description">
+
+                No category. No strategy.
+                Let fate do the dirty work.
+
+            </span>
+
+        </button>
+
+
+
+        <button
+            class="big-button category"
+            onclick="showScreen('categoryScreen')"
+        >
+
+            <span class="button-title">
+
+                🫧 Choose a Category
+
+            </span>
+
+
+            <span class="button-description">
+
+                Narrow down exactly how
+                you'd like to lose.
+
+            </span>
+
+        </button>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================== -->
+
+
+    <section
+        id="categoryScreen"
+        class="screen"
+    >
+
+
+        <button
+            class="back-button"
+            onclick="showScreen('homeScreen')"
+        >
+            ←
+        </button>
+
+
+        <h2 class="screen-title">
+
+            Pick your poison.
+
+        </h2>
+
+
+        <p class="screen-subtitle">
+
+            Choose a category.
+
+        </p>
+
+
+
+        <div class="category-grid">
+
+
+            <button
+                class="category-bubble appearance"
+                onclick="chooseCategory('appearance')"
+            >
+
+                <span class="category-icon">
+                    👀
+                </span>
+
+                <span class="category-name">
+                    Appearance
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="category-bubble habits"
+                onclick="chooseCategory('habits')"
+            >
+
+                <span class="category-icon">
+                    ☀️
+                </span>
+
+                <span class="category-name">
+                    Daily Habits
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="category-bubble personality"
+                onclick="chooseCategory('personality')"
+            >
+
+                <span class="category-icon">
+                    🧠
+                </span>
+
+                <span class="category-name">
+                    Personality
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="category-bubble technology"
+                onclick="chooseCategory('technology')"
+            >
+
+                <span class="category-icon">
+                    📱
+                </span>
+
+                <span class="category-name">
+                    Phone & Tech
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="category-bubble food"
+                onclick="chooseCategory('food')"
+            >
+
+                <span class="category-icon">
+                    🍕
+                </span>
+
+                <span class="category-name">
+                    Food
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="category-bubble debatable"
+                onclick="startDebate()"
+            >
+
+                <span class="category-icon">
+                    😈
+                </span>
+
+                <span class="category-name">
+                    Debatable...
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         RESULT
+    ========================== -->
+
+
+    <section
+        id="resultScreen"
+        class="screen"
+    >
+
+
+        <button
+            class="back-button"
+            onclick="showScreen('homeScreen')"
+        >
+            ←
+        </button>
+
+
+
+        <div
+            id="resultCard"
+            class="result-card"
+        >
+
+
+            <div class="result-label">
+
+                THE LOSER IS...
+
+            </div>
+
+
+            <h2 id="resultText">
+
+                Whoever woke up first.
+
+            </h2>
+
+
+            <div id="resultCategory">
+
+                Daily Habits
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="result-actions">
+
+
+            <button
+                class="small-button secondary"
+                onclick="showScreen('homeScreen')"
+            >
+
+                Home
+
+            </button>
+
+
+            <button
+                class="small-button"
+                onclick="chooseAgain()"
+            >
+
+                🎲 Again
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         DEBATE
+    ========================== -->
+
+
+    <section
+        id="debateScreen"
+        class="screen"
+    >
+
+
+        <button
+            class="back-button"
+            onclick="cancelDebate()"
+        >
+            ←
+        </button>
+
+
+        <p class="screen-subtitle">
+
+            You have 15 seconds to argue your case.
+
+        </p>
+
+
+        <h2 id="debateQuestion">
+
+            Who would die first
+            in a horror movie?
+
+        </h2>
+
+
+
+        <div
+            id="timerRing"
+            class="timer-ring"
+        >
+
+            <div id="timerNumber">
+                15
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         TIME UP
+    ========================== -->
+
+
+    <section
+        id="timeUpScreen"
+        class="screen"
+    >
+
+
+        <div class="sacrifice">
+            🫵
+        </div>
+
+
+        <h2 id="timeUpTitle">
+
+            TIME'S UP.
+
+        </h2>
+
+
+        <p id="timeUpText">
+
+            Either sacrifice yourself...
+
+            <br>
+
+            or vote.
+
+        </p>
+
+
+        <button
+            class="big-button anything"
+            onclick="startDebate()"
+        >
+
+            <span class="button-title">
+
+                😈 Another one
+
+            </span>
+
+        </button>
+
+
+        <button
+            class="small-button secondary"
+            onclick="showScreen('homeScreen')"
+            style="margin-top:12px; width:200px;"
+        >
+
+            Home
+
+        </button>
+
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+
+
+    /* =========================
+       QUESTIONS
+    ========================= */
+
+
+    const questions = {
+
+
+        appearance: [
+
+            "Whoever is wearing the most black.",
+
+            "Whoever has the messiest hair.",
+
+            "Whoever is wearing the most expensive shoes.",
+
+            "Whoever took the longest to get ready.",
+
+            "Whoever has the most accessories on.",
+
+            "Whoever is wearing the brightest colour."
+
+        ],
+
+
+
+        habits: [
+
+            "Whoever woke up first this morning.",
+
+            "Whoever went to bed latest last night.",
+
+            "Whoever checked their phone most recently.",
+
+            "Whoever had caffeine most recently.",
+
+            "Whoever has travelled the furthest today.",
+
+            "Whoever has been awake the longest."
+
+        ],
+
+
+
+        personality: [
+
+            "Whoever is the most stubborn.",
+
+            "Whoever is most likely to cancel plans.",
+
+            "Whoever complains the most.",
+
+            "Whoever laughs the loudest.",
+
+            "Whoever is most likely to be late.",
+
+            "Whoever would survive longest without their phone."
+
+        ],
+
+
+
+        technology: [
+
+            "Whoever has the lowest phone battery.",
+
+            "Whoever has the most unread notifications.",
+
+            "Whoever has the most alarms set.",
+
+            "Whoever has the highest screen time today.",
+
+            "Whoever took the most recent photo.",
+
+            "Whoever has the oldest phone."
+
+        ],
+
+
+
+        food: [
+
+            "Whoever ate most recently.",
+
+            "Whoever is the pickiest eater.",
+
+            "Whoever ordered the most expensive thing.",
+
+            "Whoever would eat dessert first.",
+
+            "Whoever has had the most caffeine today.",
+
+            "Whoever takes longest to choose from a menu."
+
+        ]
+
+    };
+
+
+
+    const categoryNames = {
+
+        appearance:
+            "Appearance",
+
+        habits:
+            "Daily Habits",
+
+        personality:
+            "Personality",
+
+        technology:
+            "Phone & Tech",
+
+        food:
+            "Food"
+
+    };
+
+
+
+    const debateQuestions = [
+
+        "Who would die first in a horror movie?",
+
+        "Who would survive longest on a desert island?",
+
+        "Who is most likely to accidentally join a cult?",
+
+        "Who would be the worst person to be stuck in a lift with?",
+
+        "Who would be the first to betray the group in a zombie apocalypse?",
+
+        "Who would be easiest to convince that their house is haunted?",
+
+        "Who would be most likely to become famous for something ridiculous?",
+
+        "Who would cope worst with being stranded without Wi-Fi?"
+
+    ];
+
+
+
+    /* =========================
+       STATE
+    ========================= */
+
+
+    let currentCategory =
+        null;
+
+
+    let debateInterval =
+        null;
+
+
+
+    /* =========================
+       SCREEN CHANGER
+    ========================= */
+
+
+    function showScreen(
+        screenId
+    ) {
+
+
+        document
+            .querySelectorAll(
+                ".screen"
+            )
+            .forEach(
+                function (screen) {
+
+                    screen
+                        .classList
+                        .remove(
+                            "active"
+                        );
+
+                }
+            );
+
+
+        const nextScreen =
+            document.getElementById(
+                screenId
+            );
+
+
+        setTimeout(
+            function () {
+
+                nextScreen
+                    .classList
+                    .add(
+                        "active"
+                    );
+
+            },
+            80
+        );
+
+    }
+
+
+
+    /* =========================
+       RANDOM HELPER
+    ========================= */
+
+
+    function randomItem(
+        array
+    ) {
+
+        return array[
+            Math.floor(
+                Math.random() *
+                array.length
+            )
+        ];
+
+    }
+
+
+
+    /* =========================
+       ANYTHING GOES
+    ========================= */
+
+
+    function anythingGoes() {
+
+
+        const safeCategories = [
+
+            "appearance",
+
+            "habits",
+
+            "personality",
+
+            "technology",
+
+            "food"
+
+        ];
+
+
+        const category =
+            randomItem(
+                safeCategories
+            );
+
+
+        showResult(
+            category
+        );
+
+    }
+
+
+
+    /* =========================
+       CATEGORY
+    ========================= */
+
+
+    function chooseCategory(
+        category
+    ) {
+
+
+        currentCategory =
+            category;
+
+
+        showResult(
+            category
+        );
+
+    }
+
+
+
+    /* =========================
+       SHOW RESULT
+    ========================= */
+
+
+    function showResult(
+        category
+    ) {
+
+
+        currentCategory =
+            category;
+
+
+        const question =
+            randomItem(
+                questions[
+                    category
+                ]
+            );
+
+
+        document
+            .getElementById(
+                "resultText"
+            )
+            .textContent =
+            question;
+
+
+        document
+            .getElementById(
+                "resultCategory"
+            )
+            .textContent =
+            categoryNames[
+                category
+            ];
+
+
+        showScreen(
+            "resultScreen"
+        );
+
+
+        const card =
+            document.getElementById(
+                "resultCard"
+            );
+
+
+        card
+            .classList
+            .remove(
+                "pop"
+            );
+
+
+        void card.offsetWidth;
+
+
+        card
+            .classList
+            .add(
+                "pop"
+            );
+
+    }
+
+
+
+    /* =========================
+       AGAIN
+    ========================= */
+
+
+    function chooseAgain() {
+
+
+        if (
+            currentCategory
+        ) {
+
+            showResult(
+                currentCategory
+            );
+
+        } else {
+
+            anythingGoes();
+
+        }
+
+    }
+
+
+
+    /* =========================
+       DEBATABLE
+    ========================= */
+
+
+    function startDebate() {
+
+
+        clearInterval(
+            debateInterval
+        );
+
+
+        const question =
+            randomItem(
+                debateQuestions
+            );
+
+
+        document
+            .getElementById(
+                "debateQuestion"
+            )
+            .textContent =
+            question;
+
+
+        let seconds =
+            15;
+
+
+        const timerNumber =
+            document.getElementById(
+                "timerNumber"
+            );
+
+
+        const timerRing =
+            document.getElementById(
+                "timerRing"
+            );
+
+
+        timerNumber
+            .textContent =
+            seconds;
+
+
+        timerRing
+            .style
+            .setProperty(
+                "--timer-progress",
+                "100%"
+            );
+
+
+        showScreen(
+            "debateScreen"
+        );
+
+
+        debateInterval =
+            setInterval(
+                function () {
+
+
+                    seconds--;
+
+
+                    timerNumber
+                        .textContent =
+                        seconds;
+
+
+                    const percentage =
+                        (
+                            seconds /
+                            15
+                        ) *
+                        100;
+
+
+                    timerRing
+                        .style
+                        .setProperty(
+                            "--timer-progress",
+                            percentage +
+                            "%"
+                        );
+
+
+                    if (
+                        seconds <= 0
+                    ) {
+
+
+                        clearInterval(
+                            debateInterval
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+                                showScreen(
+                                    "timeUpScreen"
+                                );
+
+                            },
+                            300
+                        );
+
+                    }
+
+
+                },
+                1000
+            );
+
+    }
+
+
+
+    function cancelDebate() {
+
+
+        clearInterval(
+            debateInterval
+        );
+
+
+        showScreen(
+            "categoryScreen"
+        );
+
+    }
+
+
+
+    /* =========================
+       LOADING SCREEN
+    ========================= */
+
+
+    window.addEventListener(
+        "load",
+        function () {
+
+
+            setTimeout(
+                function () {
+
+                    showScreen(
+                        "homeScreen"
+                    );
+
+                },
+                1900
+            );
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
