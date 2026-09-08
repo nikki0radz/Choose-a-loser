@@ -68,6 +68,12 @@ html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;
 /* Hotter Anything Goes pink */
 .proof{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.24),transparent 28%),linear-gradient(135deg,rgba(255,55,145,.88),rgba(220,30,112,.68))}
 
+
+/* Inline mascot + hotter pink */
+.axoFaceSvg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 12px 18px rgba(0,0,0,.18));transform-origin:50% 60%}
+.axoFaceStage.act-float .axoFaceSvg{animation:axoFloat 1.5s ease-in-out infinite}
+.proof{background:radial-gradient(circle at 23% 15%,rgba(255,255,255,.26),transparent 28%),linear-gradient(135deg,rgba(255,47,151,.88),rgba(224,20,119,.70))}
+
 </style>
 </head>
 <body>
@@ -226,7 +232,7 @@ function axo(level=1,expression='normal',act=''){
 const loser=expression==='loser';
 const chaosClass='chaos'+Math.max(1,Math.min(3,level));
 const actClass=act?' act-'+act:'';
-return `<div class="axoFaceStage ${chaosClass}${loser?' loser':''}${actClass}"><img class="axoFaceImg" src="assets/axolotl-face.webp?v=7" alt="Pink axolotl mascot"><div class="axoHorns"><span class="axoHorn left"></span><span class="axoHorn right"></span></div><div class="axoAccessory"><span class="axoGlasses"><i></i></span><span class="axoTongue"></span><span class="axoCig"></span><span class="axoSmoke"></span><span class="axoWink"></span><span class="axoHide"></span></div></div>`}
+return `<div class="axoFaceStage ${chaosClass}${loser?' loser':''}${actClass}"><svg class="axoFaceSvg" viewBox="0 0 240 180" role="img" aria-label="Pink axolotl mascot"><g class="axoBase"><path d="M49 75 C28 57 23 39 32 29 C43 17 59 29 69 45 C72 27 81 15 94 15 C109 15 116 31 120 46 C124 31 131 15 146 15 C159 15 168 27 171 45 C181 29 197 17 208 29 C217 39 212 57 191 75" fill="#ff5ca8" opacity=".95"/><path d="M45 90 C46 55 75 34 120 34 C165 34 194 55 194 90 C194 126 163 151 120 151 C77 151 46 126 46 90 Z" fill="#ff79b9"/><path d="M57 66 C72 49 92 43 120 43 C148 43 168 49 183 66" fill="none" stroke="#ff9dca" stroke-width="8" stroke-linecap="round" opacity=".65"/><ellipse cx="88" cy="88" rx="8" ry="10" fill="#28152d"/><ellipse cx="152" cy="88" rx="8" ry="10" fill="#28152d"/><circle cx="85" cy="84" r="2.5" fill="#fff"/><circle cx="149" cy="84" r="2.5" fill="#fff"/><path d="M103 111 Q120 122 137 111" fill="none" stroke="#7a2458" stroke-width="5" stroke-linecap="round"/><ellipse cx="68" cy="108" rx="13" ry="7" fill="#ff4f9f" opacity=".35"/><ellipse cx="172" cy="108" rx="13" ry="7" fill="#ff4f9f" opacity=".35"/></g></svg><div class="axoHorns"><span class="axoHorn left"></span><span class="axoHorn right"></span></div><div class="axoAccessory"><span class="axoGlasses"><i></i></span><span class="axoTongue"></span><span class="axoCig"></span><span class="axoSmoke"></span><span class="axoWink"></span><span class="axoHide"></span></div></div>`}
 function randomLoading(cb,ms=1500){const wrap=document.getElementById('loadingWrap');wrap.className='axowrap big thinking';wrap.innerHTML='<div id="loadingAxo"></div><div class="bubbleStream"><div class="mouthBubble"></div><div class="mouthBubble"></div><div class="mouthBubble"></div></div>';const acts=['float','glasses','tongue','smoke','wink','hide'];document.getElementById('loadingAxo').innerHTML=axo(chaos,'normal',rand(acts));showScreen('loadingScreen');setTimeout(cb,ms)}
 function startProven(){currentMode='proven';randomLoading(()=>{const q=drawQuestion('proven');if(!q){showScreen('homeScreen');return}document.getElementById('resultText').textContent=q.text;document.getElementById('resultAxo').innerHTML=axo(chaos,'loser');showScreen('resultScreen')})}
 function startDebatable(){currentMode='debate';randomLoading(()=>{const q=drawQuestion('debate');if(!q){showScreen('homeScreen');return}document.getElementById('debateQuestion').textContent=q.text;document.getElementById('debateAxo').innerHTML=axo(chaos);startTimer('debateTimer','debateNum',()=>{document.getElementById('debateDoneTitle').textContent="TIME'S UP.";document.getElementById('debateDoneText').textContent='Either sacrifice yourself... or vote.';document.getElementById('debateDoneAxo').innerHTML=axo(chaos,'loser');showScreen('debateDoneScreen')});showScreen('debateScreen')})}
