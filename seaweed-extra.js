@@ -4,46 +4,55 @@ window.addEventListener('DOMContentLoaded',()=>{
   const style=document.createElement('style');
   style.id='codedSeaweedStyle';
   style.textContent=`
-    .codedSeaweedScene{position:fixed;left:0;right:0;bottom:0;height:66vh;pointer-events:none;overflow:hidden;z-index:0}
-    .codedSeaweedScene svg{position:absolute;left:50%;bottom:-2px;width:112%;height:100%;transform:translateX(-50%);overflow:visible}
-    .codedSeaweedScene .kelp{transform-box:fill-box;transform-origin:50% 100%;animation:seaSway 8s ease-in-out infinite alternate}
-    .codedSeaweedScene .kelp.alt{animation:seaSwayAlt 9.5s ease-in-out infinite alternate}
-    @keyframes seaSway{from{transform:rotate(-.45deg) translateX(-1px)}to{transform:rotate(.55deg) translateX(2px)}}
-    @keyframes seaSwayAlt{from{transform:rotate(.4deg) translateX(1px)}to{transform:rotate(-.5deg) translateX(-2px)}}
+    .codedSeaweedScene{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+    .codedSeaweedScene svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+    .codedSeaweedScene .kelp{transform-box:fill-box;transform-origin:50% 100%;animation:seaSway 10s ease-in-out infinite alternate}
+    .codedSeaweedScene .kelp.alt{animation:seaSwayAlt 12s ease-in-out infinite alternate}
+    @keyframes seaSway{from{transform:rotate(-.35deg)}to{transform:rotate(.45deg)}}
+    @keyframes seaSwayAlt{from{transform:rotate(.3deg)}to{transform:rotate(-.4deg)}}
   `;
   document.head.appendChild(style);
 
   const scene=document.createElement('div');
   scene.className='codedSeaweedScene';
   scene.innerHTML=`
-    <svg viewBox="0 0 390 650" preserveAspectRatio="none" aria-hidden="true">
-      <g fill="#0a2454" opacity=".72">
-        <path class="kelp" d="M4 650 C-6 604 15 570 4 530 C-7 489 17 454 6 414 C-4 375 19 341 9 302 C1 270 17 242 12 211 C27 236 25 263 19 289 C12 319 25 348 18 378 C11 408 24 438 17 468 C10 499 22 532 16 564 C11 595 18 622 17 650 Z"/>
-        <path class="kelp alt" d="M52 650 C40 620 57 596 49 568 C40 538 57 512 49 484 C41 456 57 430 50 402 C44 378 55 354 54 328 C67 350 65 373 60 394 C54 419 65 442 59 466 C53 490 63 514 58 539 C53 565 62 592 59 650 Z"/>
-        <path class="kelp" d="M101 650 C88 592 110 547 98 494 C85 441 111 394 100 341 C89 289 115 244 103 194 C95 158 110 121 107 82 C126 114 122 151 115 185 C105 224 121 260 112 297 C103 336 118 373 109 412 C101 450 116 490 107 529 C99 569 111 612 108 650 Z"/>
-        <path class="kelp alt" d="M148 650 C139 630 151 611 145 592 C139 572 151 553 145 534 C139 515 150 496 145 477 C140 460 149 444 149 426 C158 442 157 459 153 474 C149 492 156 509 152 526 C148 544 156 562 152 580 C148 600 153 620 153 650 Z"/>
-        <path class="kelp" d="M205 650 C193 609 213 576 202 538 C191 499 213 464 203 426 C193 388 216 354 207 316 C199 281 219 249 212 216 C206 190 216 164 215 135 C229 158 227 184 221 207 C214 234 226 259 220 285 C213 313 225 339 219 367 C212 395 223 424 217 453 C211 481 221 511 216 541 C211 571 219 603 218 650 Z"/>
-        <path class="kelp alt" d="M258 650 C247 626 263 603 255 580 C247 556 263 533 255 510 C247 487 263 465 256 442 C250 422 261 402 261 380 C272 399 271 420 266 438 C261 460 271 480 266 501 C261 523 270 544 265 566 C261 589 267 614 266 650 Z"/>
-        <path class="kelp" d="M313 650 C300 596 322 553 310 505 C299 456 323 414 312 365 C301 317 326 274 315 226 C307 191 322 155 320 116 C338 147 335 183 328 215 C319 252 333 286 325 322 C317 358 330 394 322 431 C314 469 328 507 320 545 C313 584 323 619 321 650 Z"/>
-        <path class="kelp alt" d="M366 650 C356 616 374 588 365 557 C356 525 375 495 366 464 C357 433 376 404 368 373 C361 346 374 320 372 291 C386 315 383 343 378 367 C371 395 383 421 377 448 C370 476 381 504 375 532 C369 560 379 591 374 620 L374 650 Z"/>
+    <svg viewBox="0 0 390 844" preserveAspectRatio="none" aria-hidden="true">
+      <!-- Far kelp: same navy hue family as the foreground, simply dimmer. -->
+      <g fill="#0b2852" opacity=".48">
+        <path class="kelp alt" d="M15 844 C2 792 27 748 13 699 C0 651 29 608 16 559 C4 512 30 469 18 421 C8 380 28 343 22 302 C18 271 29 241 28 208 C44 237 41 270 35 299 C27 334 41 366 33 399 C25 434 39 467 31 502 C23 537 37 572 29 607 C22 642 34 680 28 717 C22 755 31 798 29 844 Z"/>
+        <path class="kelp" d="M105 844 C94 820 111 797 103 774 C95 750 111 727 104 704 C97 682 111 660 105 638 C100 619 109 600 109 579 C120 597 118 617 114 635 C109 656 118 676 113 697 C108 718 117 739 112 760 C107 782 114 806 113 844 Z"/>
+        <path class="kelp alt" d="M223 844 C210 807 231 776 220 742 C209 707 231 675 221 640 C211 606 233 575 224 541 C216 510 233 482 228 452 C224 429 232 407 231 382 C244 403 242 427 237 448 C231 473 242 496 236 520 C230 546 241 570 235 595 C229 621 239 648 234 674 C228 700 238 728 233 755 C228 782 236 812 235 844 Z"/>
+        <path class="kelp" d="M372 844 C359 798 380 761 369 720 C358 678 381 641 370 599 C360 558 382 521 373 480 C365 447 381 415 376 383 C373 358 381 334 380 307 C395 331 392 359 387 384 C379 413 392 440 385 468 C378 498 391 526 384 556 C377 586 389 617 382 648 C375 679 387 711 380 743 C374 775 383 810 381 844 Z"/>
       </g>
 
-      <g fill="#123a69" opacity=".88">
-        <path class="kelp alt" d="M22 650 C9 621 28 596 20 570 C11 541 29 515 21 488 C13 460 29 434 22 406 C16 382 27 359 26 333 C39 355 37 379 32 400 C26 425 37 448 31 472 C25 497 36 521 31 546 C26 572 34 600 32 650 Z"/>
-        <path class="kelp" d="M73 650 C60 605 81 569 70 528 C58 485 81 448 70 407 C60 366 83 330 73 291 C65 256 84 225 78 194 C73 170 82 146 82 120 C96 143 93 168 88 190 C81 216 93 240 87 265 C80 291 92 316 86 342 C79 369 91 396 84 423 C78 450 89 478 83 506 C77 535 86 565 82 594 C79 619 82 635 82 650 Z"/>
-        <path class="kelp alt" d="M126 650 C115 627 131 605 124 583 C117 560 132 538 125 516 C118 493 133 472 126 449 C120 430 130 410 130 389 C141 407 139 427 135 445 C130 465 139 484 134 504 C129 524 138 544 133 564 C129 586 136 610 135 650 Z"/>
-        <path class="kelp" d="M175 650 C162 588 185 540 172 485 C159 430 187 381 175 325 C163 272 188 224 178 173 C170 133 186 94 183 51 C202 87 199 128 191 165 C181 207 198 246 188 286 C179 328 195 367 186 408 C177 450 193 493 184 535 C176 578 188 619 185 650 Z"/>
-        <path class="kelp alt" d="M232 650 C221 611 241 579 231 544 C221 508 242 475 232 440 C223 404 243 372 234 337 C226 305 244 277 238 247 C233 224 242 201 241 176 C254 198 252 222 247 244 C241 269 252 292 246 317 C240 343 251 368 245 393 C239 419 249 446 244 472 C238 498 248 526 243 553 C238 580 246 609 245 650 Z"/>
-        <path class="kelp" d="M287 650 C275 618 293 590 284 561 C275 531 294 502 285 473 C276 443 295 415 286 385 C279 359 292 333 290 305 C304 329 301 355 296 379 C289 406 301 431 295 457 C289 484 300 510 294 537 C288 565 298 595 293 622 L293 650 Z"/>
-        <path class="kelp alt" d="M340 650 C328 603 349 565 338 522 C327 479 350 441 339 397 C329 354 352 316 342 273 C334 238 351 205 346 171 C343 145 351 119 351 91 C367 116 364 145 358 170 C350 200 364 228 357 257 C350 287 363 316 356 346 C348 376 361 407 354 438 C347 469 359 501 352 533 C345 565 355 600 353 650 Z"/>
+      <!-- Near kelp: identical hue direction, brighter rather than a different blue. -->
+      <g fill="#123a69" opacity=".82">
+        <!-- One hero strand reaches almost to the top. -->
+        <path class="kelp" d="M56 844 C42 760 70 691 54 614 C39 538 72 470 57 393 C44 321 75 255 61 186 C51 134 68 83 65 25 C88 72 83 125 74 173 C62 228 82 279 71 332 C60 387 79 439 68 494 C58 549 76 606 66 663 C56 720 70 782 68 844 Z"/>
+        <path class="kelp alt" d="M151 844 C138 789 160 745 148 696 C136 646 161 602 150 553 C139 505 163 462 153 415 C145 377 162 341 158 303 C175 334 171 372 164 405 C155 444 170 480 161 517 C153 556 167 593 159 632 C151 672 165 713 157 754 C150 795 160 823 160 844 Z"/>
+        <!-- Second tall strand, but clearly shorter than the hero. -->
+        <path class="kelp" d="M304 844 C290 776 315 720 301 658 C287 596 318 540 304 478 C292 420 319 367 308 310 C299 267 316 224 313 177 C333 216 329 261 321 301 C311 347 327 390 317 434 C308 480 324 525 315 571 C306 618 321 666 312 714 C304 763 315 808 313 844 Z"/>
+        <path class="kelp alt" d="M348 844 C339 819 353 796 347 773 C340 749 354 726 348 703 C342 681 353 659 348 637 C343 618 352 599 352 578 C363 596 361 616 357 634 C352 655 361 675 356 696 C351 717 360 738 355 759 C351 781 357 806 356 844 Z"/>
       </g>
 
-      <g fill="#07163e" opacity=".95">
-        <ellipse cx="28" cy="646" rx="48" ry="24"/><ellipse cx="92" cy="651" rx="57" ry="31"/><ellipse cx="162" cy="648" rx="52" ry="27"/><ellipse cx="229" cy="653" rx="61" ry="33"/><ellipse cx="305" cy="649" rx="58" ry="30"/><ellipse cx="374" cy="653" rx="51" ry="27"/>
+      <!-- A few tiny background strands only, leaving most of the screen open. -->
+      <g fill="#0b2852" opacity=".42">
+        <path class="kelp" d="M184 844 C175 824 188 805 182 786 C176 766 188 748 182 729 C177 712 186 695 186 676 C196 692 194 710 190 726 C186 744 193 761 189 779 C185 797 191 817 191 844 Z"/>
+        <path class="kelp alt" d="M263 844 C253 817 269 793 261 768 C253 742 270 718 262 693 C255 670 268 648 267 623 C279 644 277 667 272 688 C267 712 277 734 272 757 C267 781 275 808 274 844 Z"/>
       </g>
 
-      <g fill="none" stroke="#1b4b78" stroke-width="2" opacity=".55">
-        <circle cx="136" cy="286" r="4"/><circle cx="140" cy="268" r="3"/><circle cx="137" cy="250" r="2"/><circle cx="142" cy="232" r="1.7"/>
+      <!-- Dark rounded rocks along the seabed. -->
+      <g fill="#07163e" opacity=".98">
+        <ellipse cx="15" cy="838" rx="55" ry="34"/>
+        <ellipse cx="82" cy="846" rx="62" ry="40"/>
+        <ellipse cx="160" cy="841" rx="55" ry="32"/>
+        <ellipse cx="229" cy="849" rx="66" ry="43"/>
+        <ellipse cx="310" cy="842" rx="59" ry="35"/>
+        <ellipse cx="384" cy="848" rx="55" ry="39"/>
+      </g>
+
+      <g fill="none" stroke="#123a69" stroke-width="1.6" opacity=".42">
+        <circle cx="205" cy="511" r="3.6"/><circle cx="209" cy="492" r="2.7"/><circle cx="206" cy="474" r="1.8"/>
       </g>
     </svg>`;
 
