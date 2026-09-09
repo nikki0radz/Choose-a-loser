@@ -367,3 +367,93 @@ window.addEventListener('DOMContentLoaded',()=>{
   const originalShowScreen=window.showScreen;const initialHoldUntil=Date.now()+3000;let initialHomeQueued=false;
   window.showScreen=function(id){if(id==='homeScreen'&&Date.now()<initialHoldUntil){if(!initialHomeQueued){initialHomeQueued=true;setTimeout(()=>originalShowScreen('homeScreen'),Math.max(0,initialHoldUntil-Date.now()));}return;}return originalShowScreen(id);};
 });
+
+window.addEventListener('DOMContentLoaded',()=>{
+  const familyQuips={
+    "Who is the tallest?":"Enjoy the view. You're still paying.",
+    "Who is the shortest?":"Compact. Efficient. Financially liable.",
+    "If height were a podium, who gets silver?":"Second place in height. First place in consequences.",
+    "Who has the longest hair?":"Rapunzel, but the tower has a bar tab.",
+    "Who has the shortest hair?":"Less hair, same liability.",
+    "Who is wearing the most black?":"Dressed for the funeral of your bank balance.",
+    "Who is wearing the brightest colour?":"Easy to identify. Convenient.",
+    "Who is wearing the most different colours?":"A visual warning label.",
+    "Who is wearing the most layers?":"Peel responsibly.",
+    "Who has the most visible pockets?":"Excellent. Plenty of places to hide the receipt.",
+    "Who has the most jewellery on right now?":"Portable assets detected.",
+    "Who has the most visible tattoos?":"Permanent decisions. Temporary wealth.",
+    "Who has the biggest shoe size?":"Big footprint. Bigger bill.",
+    "Who has the smallest shoe size?":"Tiny shoes, adult-sized consequences.",
+    "Who has the biggest hands?":"Perfect for holding the bill.",
+    "Who has the longest first name?":"More letters, more liability.",
+    "Who has the shortest first name?":"Efficient name. Inefficient luck.",
+    "Who has the most letters in their full name?":"Your name needs pagination.",
+    "Who has the fewest letters in their full name?":"Minimalist branding. Maximum exposure.",
+    "Whose birthday comes next?":"Early birthday present: the bill.",
+    "Whose birthday was most recent?":"Hope you kept the birthday money.",
+    "Who is the oldest?":"Wisdom allegedly comes with age. Use some.",
+    "Who is the youngest?":"Youth has consequences.",
+    "If age were race time, who takes the silver medal?":"Silver medal. Gold-standard bad luck.",
+    "Who woke up earliest today?":"All that extra day, and it led here.",
+    "Who woke up latest today?":"Good morning. You owe us.",
+    "Who had the least sleep last night?":"Sleep-deprived and now financially compromised.",
+    "Who had the most sleep last night?":"Well-rested enough to process this loss.",
+    "Who has the lowest phone battery right now?":"Your phone and finances are both in low-power mode.",
+    "Who has the highest phone battery right now?":"Excellent. You can Apple Pay.",
+    "Whose phone battery is second from death?":"Not dead yet. Your bank balance might be.",
+    "Who has the most unread notifications right now?":"Even your phone is trying to tell you something.",
+    "Who has the most browser tabs open on their phone?":"Close a tab. Open your banking app.",
+    "Who has the most photos on their phone?":"A historian. Unfortunately history remembers this.",
+    "Who has the highest screen time today?":"Your screen knows you better than we do.",
+    "Who has the lowest screen time today?":"Touching grass didn't save you.",
+    "Who has the earliest alarm set for tomorrow?":"Tomorrow starts early. Tonight ends expensive.",
+    "Who has the latest alarm set for tomorrow?":"Sleep in. You've earned absolutely nothing.",
+    "Who got here first?":"First here, first punished.",
+    "Who got here last?":"Late and still somehow selected.",
+    "Who travelled the furthest to be here?":"You came all this way for this.",
+    "Who lives closest to here?":"At least the walk of shame is short.",
+    "Who has known the host the longest?":"Loyalty has finally stopped paying.",
+    "Who has known the host for the shortest time?":"Welcome. This is your initiation fee.",
+    "Who has lived at their current address the longest?":"Stable housing, unstable outcome.",
+    "Who has lived at their current address the shortest time?":"New home, old problem.",
+    "Who has been in their current job the longest?":"Seniority has benefits. This is not one.",
+    "Who started their current job most recently?":"Probation period just got expensive.",
+    "Who has the biggest family?":"Excellent. Start a collection.",
+    "Who has the most siblings?":"Surely one of them can lend you money.",
+    "Who has the fewest siblings?":"No sibling bailout. Tragic.",
+    "Who has the most pets?":"Tell the dependants dinner may be delayed.",
+    "Who got the highest grades at school?":"All that academic promise, and here we are.",
+    "Who left school most recently?":"Education may be over. Fees continue.",
+    "Who has been in a relationship for the longest?":"Commitment champion. Commit to the bill.",
+    "Who has been single for the longest?":"Independent in love. Not in payment.",
+    "Who has been abroad to the most countries?":"Well-travelled, poorly protected.",
+    "Who has travelled abroad most recently?":"Holiday glow, domestic consequences.",
+    "Who has the most keys on their keyring?":"Keyholder. Unfortunately not to financial freedom.",
+    "Who has the most things in their pockets right now?":"Inventory full. Wallet about to empty.",
+    "Who has the most coins on them right now?":"Perfect. We accept exact change.",
+    "Who has the newest phone?":"Shiny phone, dirty outcome.",
+    "Who has had their current phone the longest?":"Loyal to a handset. Betrayed by an axolotl.",
+    "Who ate most recently?":"Good. You won't be paying on an empty stomach.",
+    "Who has had the most caffeine today?":"Heart racing? Wait till you see the bill.",
+    "Who has had the least caffeine today?":"Sober nervous system. Same bad luck."
+  };
+  const applyFamilyQuips=list=>{if(!Array.isArray(list))return;list.forEach(q=>{const quip=familyQuips[q.text];if(quip)q.insult=quip;});};
+  applyFamilyQuips(DEFAULTS.proven);applyFamilyQuips(data.proven);
+
+  const motionStyle=document.getElementById('loadingMotionStyles');
+  if(motionStyle)motionStyle.textContent=`
+    #loadingScreen{overflow:hidden}
+    #loadingScreen #loadingAxo{position:relative;z-index:2;transform-origin:50% 58%}
+    #loadingScreen.active #loadingAxo{animation:axoThinkTilt .5s step-end infinite}
+    @keyframes axoThinkTilt{0%,49.999%{transform:rotate(-7deg)}50%,100%{transform:rotate(7deg)}}
+    .thoughtBubbles{position:absolute;left:50%;top:50%;width:300px;height:220px;transform:translate(-50%,-57%);pointer-events:none;z-index:3}
+    .thoughtBubble{position:absolute;border:2px solid rgba(210,239,255,.82);border-radius:50%;background:rgba(171,225,255,.10);box-shadow:inset 2px 2px 5px rgba(255,255,255,.22);opacity:0;animation:bubbleUp 2.25s ease-out infinite}
+    .thoughtBubble:nth-child(1){width:10px;height:10px;left:58%;top:53%;animation-delay:0s}.thoughtBubble:nth-child(2){width:15px;height:15px;left:63%;top:48%;animation-delay:.35s}.thoughtBubble:nth-child(3){width:8px;height:8px;left:55%;top:52%;animation-delay:.75s}.thoughtBubble:nth-child(4){width:19px;height:19px;left:67%;top:45%;animation-delay:1.1s}.thoughtBubble:nth-child(5){width:11px;height:11px;left:61%;top:50%;animation-delay:1.45s}.thoughtBubble:nth-child(6){width:14px;height:14px;left:57%;top:49%;animation-delay:1.8s}
+    @keyframes bubbleUp{0%{transform:translate(0,8px) scale(.65);opacity:0}15%{opacity:.85}75%{opacity:.65}100%{transform:translate(38px,-105px) scale(1.18);opacity:0}}
+  `;
+
+  document.querySelectorAll('.modeButton.proof .bt').forEach(el=>{if(el.textContent.includes('Anything Goes'))el.textContent="🍬 Pick 'n' Mix";});
+  document.querySelectorAll('.colourControl span').forEach(el=>{if(el.textContent.trim()==='Anything Goes')el.textContent="Pick 'n' Mix";});
+  const previousOpenEditor=window.openEditor;
+  window.openEditor=function(mode){previousOpenEditor(mode);if(mode==='proven')document.getElementById('editorTitle').textContent="Edit Pick 'n' Mix";};
+});
