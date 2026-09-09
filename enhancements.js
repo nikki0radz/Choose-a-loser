@@ -1,0 +1,32 @@
+window.addEventListener('DOMContentLoaded',()=>{
+  const style=document.createElement('style');style.id='oceanEditEnhancements';style.textContent=`
+    select.field,select.field option{background:#0b2148!important;color:#fff!important}
+    .editMeta{display:grid;grid-template-columns:1fr 1fr;gap:8px}.editMeta.one{grid-template-columns:1fr}
+    .editLabel{font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--soft);opacity:.65;margin:2px 2px -3px}
+    .seaweedGarden{height:58vh!important;bottom:-12px!important}
+    .kelpPlant{position:absolute;bottom:-8px;width:62px;height:var(--h);transform-origin:50% 100%;opacity:var(--op);animation:kelpSway var(--speed) ease-in-out infinite alternate}
+    .kelpRibbon{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+    @keyframes kelpSway{from{transform:rotate(-2.2deg) translateX(-2px)}to{transform:rotate(2.6deg) translateX(3px)}}
+    .thoughtBubbles{top:42%!important;transform:translate(-50%,-50%)!important;height:520px!important}
+    .thoughtBubble:nth-child(1){left:49%!important;top:59%!important}.thoughtBubble:nth-child(2){left:52%!important;top:58%!important}.thoughtBubble:nth-child(3){left:48%!important;top:60%!important}.thoughtBubble:nth-child(4){left:53%!important;top:57%!important}.thoughtBubble:nth-child(5){left:50%!important;top:59%!important}.thoughtBubble:nth-child(6){left:51%!important;top:58%!important}
+    @keyframes bubbleUp{0%{transform:translate(0,0) scale(.65);opacity:0}10%{opacity:.88}82%{opacity:.58}100%{transform:translate(42px,-310px) scale(1.25);opacity:0}}
+  `;document.head.appendChild(style);
+
+  const oldGarden=document.querySelector('.seaweedGarden');if(oldGarden)oldGarden.remove();
+  const garden=document.createElement('div');garden.className='seaweedGarden';
+  const palette=['#0b2852','#0d315f','#103865','#09244b','#123c69'];
+  const positions=[-3,3,9,15,22,29,36,43,51,59,67,75,83,91,98];
+  positions.forEach((x,i)=>{const p=document.createElement('div');p.className='kelpPlant';p.style.left=x+'%';p.style.setProperty('--h',(155+Math.random()*280)+'px');p.style.setProperty('--speed',(4+Math.random()*3)+'s');p.style.setProperty('--op',(0.42+Math.random()*.38));const c=palette[i%palette.length];p.innerHTML=`<svg class="kelpRibbon" viewBox="0 0 62 400" preserveAspectRatio="none"><path d="M31 405 C18 370 45 340 28 304 C12 270 46 241 29 207 C14 174 46 145 31 111 C18 80 43 49 30 5" fill="none" stroke="${c}" stroke-width="12" stroke-linecap="round"/><path d="M29 330 C12 316 8 295 13 276 C25 289 31 303 31 320 M31 278 C48 263 53 244 48 224 C37 238 30 252 29 267 M29 219 C12 204 9 184 14 164 C25 178 31 192 31 210 M31 158 C48 144 53 123 48 104 C37 117 30 132 29 149 M30 99 C15 84 13 65 18 48 C27 60 32 73 32 91" fill="${c}" opacity=".96"/></svg>`;garden.appendChild(p)});document.body.prepend(garden);
+
+  const originalOpenEditor=window.openEditor;
+  window.openEditor=function(mode){originalOpenEditor(mode);const chaos=document.getElementById('newChaos');if(chaos&&mode!=='whoSaid'){chaos.style.display='block';chaos.innerHTML='<option value="1">🌱 Family Friendly</option><option value="3">🎰 Question Roulette</option>';}let quip=document.getElementById('newInsult');if(!quip&&mode==='proven'){quip=document.createElement('textarea');quip.id='newInsult';quip.className='field';quip.rows=2;quip.placeholder='Sarcastic comment (optional)';document.getElementById('newChaos').before(quip)}if(quip)quip.style.display=mode==='proven'?'block':'none';};
+
+  window.renderEditor=function(){let list=document.getElementById('editList');list.innerHTML='';data[currentMode].forEach((q,i)=>{let row=document.createElement('div'),top=document.createElement('div'),text=document.createElement('textarea'),del=document.createElement('button');row.className='editRow';top.className='editRowTop';text.className='field';text.rows=2;text.value=q.text;text.placeholder='Question';text.onchange=()=>{q.text=text.value.trim()||q.text;save();localStorage.removeItem('chooseLoserQuestionHistory')};del.className='iconBtn danger';del.textContent='Delete';del.onclick=()=>requestDelete(i);top.append(text,del);row.append(top);
+    if(currentMode!=='whoSaid'){let label=document.createElement('div');label.className='editLabel';label.textContent='QUESTION MODE';row.append(label);let sel=document.createElement('select');sel.className='field';sel.innerHTML='<option value="1">🌱 Family Friendly</option><option value="3">🎰 Question Roulette</option>';sel.value=String(q.chaos||1);sel.onchange=()=>{q.chaos=+sel.value;save();localStorage.removeItem('chooseLoserQuestionHistory')};row.append(sel)}
+    if(currentMode==='proven'){let label=document.createElement('div');label.className='editLabel';label.textContent='SARCASTIC COMMENT';row.append(label);let x=document.createElement('textarea');x.className='field';x.rows=2;x.value=q.insult||'';x.placeholder='Sarcastic comment';x.onchange=()=>{q.insult=x.value.trim();save()};row.append(x)}
+    if(currentMode==='knockout'){[['answer','Answer'],['explain','Explanation']].forEach(([k,p])=>{let label=document.createElement('div');label.className='editLabel';label.textContent=p.toUpperCase();row.append(label);let x=document.createElement('input');x.className='field';x.value=q[k]||'';x.placeholder=p;x.onchange=()=>{q[k]=x.value;save()};row.append(x)})}
+    if(currentMode==='whoSaid'){let label=document.createElement('div');label.className='editLabel';label.textContent='WHO SAID IT?';row.append(label);let x=document.createElement('input');x.className='field';x.value=q.who||'';x.placeholder='Who said it?';x.onchange=()=>{q.who=x.value;save()};row.append(x)}list.append(row)})};
+
+  const originalRequestAdd=window.requestAdd;
+  window.requestAdd=function(){if(currentMode!=='proven')return originalRequestAdd();let text=document.getElementById('newQ').value.trim();if(!text)return;let payload={text,chaos:+document.getElementById('newChaos').value,insult:(document.getElementById('newInsult')?.value||'').trim()};gateAction=()=>{data[currentMode].push(payload);save();localStorage.removeItem('chooseLoserQuestionHistory');document.getElementById('newQ').value='';if(document.getElementById('newInsult'))document.getElementById('newInsult').value='';renderEditor();showScreen('editorScreen')};openGate()};
+});
