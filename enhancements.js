@@ -49,7 +49,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       <ellipse cx="25" cy="645" rx="42" ry="28"/><ellipse cx="82" cy="651" rx="54" ry="31"/><ellipse cx="151" cy="647" rx="49" ry="27"/><ellipse cx="214" cy="653" rx="57" ry="32"/><ellipse cx="285" cy="647" rx="51" ry="29"/><ellipse cx="355" cy="651" rx="55" ry="31"/>
     </g>
   </svg>`;
-  document.body.prepend(scene);
+  const app=document.getElementById('app');if(app)app.prepend(scene);else document.body.prepend(scene);
 
   const originalOpenEditor=window.openEditor;
   window.openEditor=function(mode){originalOpenEditor(mode);const chaos=document.getElementById('newChaos');if(chaos&&mode!=='whoSaid'){chaos.style.display='block';chaos.innerHTML='<option value="1">🌱 Family Friendly</option><option value="3">🎰 Question Roulette</option>';}let quip=document.getElementById('newInsult');if(!quip&&mode==='proven'){quip=document.createElement('textarea');quip.id='newInsult';quip.className='field';quip.rows=2;quip.placeholder='Sarcastic comment (optional)';document.getElementById('newChaos').before(quip)}if(quip)quip.style.display=mode==='proven'?'block':'none';};
