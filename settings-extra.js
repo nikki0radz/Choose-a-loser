@@ -2,6 +2,13 @@ window.addEventListener('DOMContentLoaded',()=>{
   const settingsScroll=document.querySelector('#settingsScreen .scroll');
   if(!settingsScroll)return;
 
+  if(!document.getElementById('settingsOverflowFix')){
+    const style=document.createElement('style');style.id='settingsOverflowFix';style.textContent=`
+      #settingsScreen{justify-content:flex-start!important;align-items:center!important;overflow-y:auto!important;overflow-x:hidden!important;padding-top:0!important;padding-bottom:0!important}
+      #settingsScreen .scroll{margin:0 auto!important;padding-top:max(76px,calc(env(safe-area-inset-top) + 58px))!important;padding-bottom:max(52px,calc(env(safe-area-inset-bottom) + 32px))!important;min-height:max-content!important;flex:0 0 auto!important}
+    `;document.head.appendChild(style);
+  }
+
   if(!document.getElementById('axoColourControls')){
     const wrap=document.createElement('div');
     wrap.id='axoColourControls';
@@ -68,4 +75,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   body.oninput=()=>{axoColours.body=body.value;saveAxoColours()};
   gills.oninput=()=>{axoColours.gills=gills.value;saveAxoColours()};
   outline.oninput=()=>{axoColours.outline=outline.value;saveAxoColours()};
+
+  const previousOpenSettings=window.openSettings;
+  window.openSettings=function(){previousOpenSettings();setTimeout(()=>{const screen=document.getElementById('settingsScreen');if(screen)screen.scrollTop=0},60);};
 });
