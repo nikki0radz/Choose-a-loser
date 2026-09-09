@@ -303,4 +303,67 @@ window.addEventListener('DOMContentLoaded',()=>{
   window.updateDebateTimerSetting=function(v){settings.debateTimer=+v;const value=document.getElementById('debateTimerSettingValue');if(value)value.textContent=v;saveSettings();};
   window.startTimer=function(r,n,done){stopTimer();const total=r==='debateTimer'?settings.debateTimer:settings.timer;let s=total,ring=document.getElementById(r),num=document.getElementById(n);num.textContent=s;ring.style.setProperty('--p','100%');timer=setInterval(()=>{s--;num.textContent=s;ring.style.setProperty('--p',(s/total*100)+'%');if(s<=0){stopTimer();done();}},1000);};
   try{const custom=JSON.parse(localStorage.getItem('chooseLoserCustomInsults')||'[]');const cleaned=custom.filter(x=>!/polyester/i.test(String(x)));if(cleaned.length!==custom.length)localStorage.setItem('chooseLoserCustomInsults',JSON.stringify(cleaned));}catch{}
+
+  const rouletteQuips={
+    "Who has the least money in their bank account right now?":"Poor you :( ...but you're about to be poorer.",
+    "Who has the most money in their bank account right now?":"Congratulations on winning capitalism. Unfortunately, you've also won the bill.",
+    "Who has the largest credit-card balance?":"Your credit card has been doing cardio.",
+    "Who has the highest monthly rent or mortgage?":"Congratulations, your landlord is tonight's real winner.",
+    "Who earns the most?":"Excellent. We've found the sponsor.",
+    "Who earns the least?":"A brave contribution from the budget department.",
+    "Who has had the most sex this month?":"Congratulations. Hydrate.",
+    "Who has had the least sex this month?":"A moment of silence for your calendar.",
+    "Who has gone the longest without having sex?":"At this point it's basically a sabbatical.",
+    "Who has had the most serious relationships?":"Experienced applicant. References available.",
+    "Who has had the longest relationship?":"Commitment detected. We can exploit that.",
+    "Who has been dumped the most times?":"Statistically, the market has spoken.",
+    "Who has dumped the most people?":"HR would like a word.",
+    "Who has the highest body count?":"Your LinkedIn says 'extensive experience'.",
+    "Who has the most dating apps installed right now?":"A diversified portfolio.",
+    "Who has the most unread messages from someone they're avoiding?":"Avoidance has entered the chat.",
+    "Who has blocked the most people?":"Your boundary list has a guest list.",
+    "Who has the most embarrassing recent search history?":"Incognito was invented for a reason.",
+    "Who spent the most money last weekend?":"Thank you for personally stimulating the economy.",
+    "Who has spent the most on a single night out?":"A fiscal crime scene.",
+    "Who has the most subscriptions they forgot they pay for?":"You're funding companies you don't even remember meeting.",
+    "Who has the biggest overdraft limit?":"The bank believes in you more than you do.",
+    "Who has the lowest credit score?":"The algorithm has concerns.",
+    "Who owes the most money to another person?":"Your creditor is suddenly very interested in this round.",
+    "Who is owed the most money by another person?":"Congratulations, you're now accepting repayment in drinks.",
+    "Who has had the most jobs?":"Your CV has seasons.",
+    "Who has been fired the most times?":"A rich and varied exit-interview history.",
+    "Who has called in sick the most this year?":"Attendance: conceptual.",
+    "Who has the most unused annual leave left?":"Your employer thanks you for the donation.",
+    "Who has the most screenshots in their camera roll?":"Your phone is less a camera roll and more an evidence locker.",
+    "Who has the most unread emails?":"Inbox zero has blocked you.",
+    "Who has the oldest unread message?":"Archaeologists have been notified.",
+    "Who has the most alarms set on their phone?":"Trust issues, but with mornings.",
+    "Who has spent the most time on their phone today?":"Your phone would like to list you as a dependent.",
+    "Who has the least storage left on their phone?":"Delete 14,000 screenshots or accept your fate.",
+    "Who has the most saved passwords?":"Cybersecurity roulette. Bold.",
+    "Who has the most people in their blocked contacts?":"A small private prison, apparently."
+  };
+  const applyRouletteQuips=list=>{if(!Array.isArray(list))return;list.forEach(q=>{const quip=rouletteQuips[q.text];if(quip)q.insult=quip;});};
+  applyRouletteQuips(DEFAULTS.proven);applyRouletteQuips(data.proven);
+
+  if(!document.getElementById('loadingMotionStyles')){
+    const style=document.createElement('style');style.id='loadingMotionStyles';style.textContent=`
+      #loadingScreen{overflow:hidden}
+      #loadingScreen #loadingAxo{position:relative;z-index:2;transform-origin:50% 58%}
+      #loadingScreen.active #loadingAxo{animation:axoThinkTilt 3s steps(1,end) infinite}
+      @keyframes axoThinkTilt{0%,100%{transform:rotate(-5deg)}22%{transform:rotate(0deg)}44%{transform:rotate(5deg)}66%{transform:rotate(0deg)}82%{transform:rotate(-3deg)}}
+      .thoughtBubbles{position:absolute;left:50%;top:50%;width:300px;height:220px;transform:translate(-50%,-57%);pointer-events:none;z-index:3}
+      .thoughtBubble{position:absolute;border:2px solid rgba(210,239,255,.82);border-radius:50%;background:rgba(171,225,255,.10);box-shadow:inset 2px 2px 5px rgba(255,255,255,.22);opacity:0;animation:bubbleUp 2.25s ease-out infinite}
+      .thoughtBubble:nth-child(1){width:10px;height:10px;left:58%;top:53%;animation-delay:0s}.thoughtBubble:nth-child(2){width:15px;height:15px;left:63%;top:48%;animation-delay:.35s}.thoughtBubble:nth-child(3){width:8px;height:8px;left:55%;top:52%;animation-delay:.75s}.thoughtBubble:nth-child(4){width:19px;height:19px;left:67%;top:45%;animation-delay:1.1s}.thoughtBubble:nth-child(5){width:11px;height:11px;left:61%;top:50%;animation-delay:1.45s}.thoughtBubble:nth-child(6){width:14px;height:14px;left:57%;top:49%;animation-delay:1.8s}
+      @keyframes bubbleUp{0%{transform:translate(0,8px) scale(.65);opacity:0}15%{opacity:.85}75%{opacity:.65}100%{transform:translate(38px,-105px) scale(1.18);opacity:0}}
+    `;document.head.appendChild(style);
+  }
+  const loadingScreen=document.getElementById('loadingScreen');
+  if(loadingScreen&&!loadingScreen.querySelector('.thoughtBubbles')){
+    const bubbles=document.createElement('div');bubbles.className='thoughtBubbles';bubbles.innerHTML='<i class="thoughtBubble"></i><i class="thoughtBubble"></i><i class="thoughtBubble"></i><i class="thoughtBubble"></i><i class="thoughtBubble"></i><i class="thoughtBubble"></i>';loadingScreen.appendChild(bubbles);
+  }
+  window.randomLoading=function(cb){document.getElementById('loadingAxo').innerHTML=axo(chaos===3?'unhinged':'neutral');showScreen('loadingScreen');setTimeout(cb,3000);};
+
+  const originalShowScreen=window.showScreen;const initialHoldUntil=Date.now()+3000;let initialHomeQueued=false;
+  window.showScreen=function(id){if(id==='homeScreen'&&Date.now()<initialHoldUntil){if(!initialHomeQueued){initialHomeQueued=true;setTimeout(()=>originalShowScreen('homeScreen'),Math.max(0,initialHoldUntil-Date.now()));}return;}return originalShowScreen(id);};
 });
