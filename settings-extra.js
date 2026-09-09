@@ -24,46 +24,6 @@ window.addEventListener('DOMContentLoaded',()=>{
     if(coloursRow)coloursRow.after(wrap);else settingsScroll.appendChild(wrap);
   }
 
-  if(!document.getElementById('resetEditsBtn')){
-    const reset=document.createElement('button');
-    reset.id='resetEditsBtn';
-    reset.className='ghost';
-    reset.style.cssText='width:100%;margin-top:16px;border-color:rgba(255,140,170,.22);color:#ffb0c7';
-    reset.textContent='↺ Reset colours & formatting';
-    reset.onclick=()=>{
-      if(!confirm('Reset timers, font, opacity, colours and axolotl colours to their defaults? Your questions will not be changed.'))return;
-      localStorage.removeItem('chooseLoserSettings');
-      localStorage.removeItem('chooseLoserAxoColours');
-      location.reload();
-    };
-    settingsScroll.appendChild(reset);
-  }
-
-  const questionResetBtn=[...document.querySelectorAll('#editHomeScreen button')].find(b=>b.textContent.includes('Reset game data'));
-  if(questionResetBtn){
-    questionResetBtn.textContent='↺ Reset questions';
-    questionResetBtn.onclick=()=>{
-      const heading=document.querySelector('#resetScreen .title');
-      const desc=document.querySelector('#resetScreen .sub');
-      const notice=document.querySelector('#resetScreen .notice');
-      const input=document.getElementById('resetInput');
-      const confirmBtn=document.querySelector('#resetScreen .primary');
-      if(heading)heading.textContent='Reset questions?';
-      if(desc)desc.textContent='This restores every question, answer, explanation and quote to the default question bank. Your colours and settings stay exactly as they are.';
-      if(notice)notice.innerHTML='Type <strong>RESET QUESTIONS</strong> exactly.';
-      if(input){input.value='';input.placeholder='RESET QUESTIONS';}
-      if(confirmBtn){confirmBtn.textContent='Reset questions';confirmBtn.onclick=()=>{
-        if(input.value.trim()!=='RESET QUESTIONS')return alert('Type RESET QUESTIONS exactly.');
-        if(!confirm('Restore all question banks to their defaults?'))return;
-        data=clone(DEFAULTS);
-        save();
-        localStorage.removeItem('chooseLoserQuestionHistory');
-        showScreen('editHomeScreen');
-      };}
-      showScreen('resetScreen');
-    };
-  }
-
   const DEFAULT_AXO={body:'#f8bbc4',gills:'#f06f7f',outline:'#351921'};
   let axoColours={...DEFAULT_AXO};
   try{axoColours={...DEFAULT_AXO,...JSON.parse(localStorage.getItem('chooseLoserAxoColours')||'{}')}}catch{}
@@ -105,6 +65,83 @@ window.addEventListener('DOMContentLoaded',()=>{
   body.oninput=()=>{axoColours.body=body.value;saveAxoColours()};
   gills.oninput=()=>{axoColours.gills=gills.value;saveAxoColours()};
   outline.oninput=()=>{axoColours.outline=outline.value;saveAxoColours()};
+
+  if(!document.getElementById('resetEditsBtn')){
+    const reset=document.createElement('button');
+    reset.id='resetEditsBtn';
+    reset.className='ghost';
+    reset.style.cssText='width:100%;margin-top:16px;border-color:rgba(255,140,170,.22);color:#ffb0c7';
+    reset.textContent='↺ Reset colours & formatting';
+    reset.onclick=()=>{
+      if(!confirm('Reset timers, font, opacity, colours and axolotl colours to their defaults? Your questions will not be changed.'))return;
+
+      const fresh=defaultsSettings();
+      settings.timer=fresh.timer;
+      settings.font=fresh.font;
+      settings.opacity=fresh.opacity;
+      settings.colours={...fresh.colours};
+      settings.debateTimer=15;
+      localStorage.setItem('chooseLoserSettings',JSON.stringify(settings));
+
+      axoColours={...DEFAULT_AXO};
+      localStorage.removeItem('chooseLoserAxoColours');
+
+      applySettings();
+      const timerSlider=document.getElementById('timerSetting');
+      const timerValue=document.getElementById('timerSettingValue');
+      const debateSlider=document.getElementById('debateTimerSetting');
+      const debateValue=document.getElementById('debateTimerSettingValue');
+      const opacitySlider=document.getElementById('opacitySetting');
+      const opacityValue=document.getElementById('opacitySettingValue');
+      const fontSelect=document.getElementById('fontSetting');
+      if(timerSlider)timerSlider.value=settings.timer;
+      if(timerValue)timerValue.textContent=settings.timer;
+      if(debateSlider)debateSlider.value=settings.debateTimer;
+      if(debateValue)debateValue.textContent=settings.debateTimer;
+      if(opacitySlider)opacitySlider.value=Math.round(settings.opacity*100);
+      if(opacityValue)opacityValue.textContent=Math.round(settings.opacity*100);
+      if(fontSelect)fontSelect.value=settings.font;
+      ['bg','proof','debate','knockout','quote'].forEach(k=>{const input=document.getElementById(k+'Colour');if(input)input.value=settings.colours[k];});
+
+      body.value=axoColours.body;
+      gills.value=axoColours.gills;
+      outline.value=axoColours.outline;
+      refreshVisibleAxos();
+      alert('Colours and formatting reset.');
+    };
+    settingsScroll.appendChild(reset);
+  }
+
+  const questionResetBtn=[...document.querySelectorAll('#editHomeScreen button')].find(b=>/Reset (game data|questions)/i.test(b.textContent));
+  if(questionResetBtn){
+    questionResetBtn.textContent='↺ Reset questions';
+    questionResetBtn.onclick=()=>{
+      const heading=document.querySelector('#resetScreen .title');
+      const desc=document.querySelector('#resetScreen .sub');
+      const notice=document.querySelector('#resetScreen .notice');
+      const input=document.getElementById('resetInput');
+      const confirmBtn=document.querySelector('#resetScreen .primary');
+      if(heading)heading.textContent='Reset questions?';
+      if(desc)desc.textContent='This restores every question, answer, explanation and quote to the default question bank. Your colours and settings stay exactly as they are.';
+      if(notice)notice.innerHTML='Type <strong>RESET QUESTIONS</strong> exactly.';
+      if(input){input.value='';input.placeholder='RESET QUESTIONS';}
+      if(confirmBtn){
+        confirmBtn.textContent='Reset questions';
+        confirmBtn.onclick=()=>{
+          if(input.value.trim()!=='RESET QUESTIONS')return alert('Type RESET QUESTIONS exactly.');
+          if(!confirm('Restore all question banks to their defaults?'))return;
+          data=clone(DEFAULTS);
+          localStorage.setItem('chooseALoserGameData',JSON.stringify(data));
+          localStorage.setItem('chooseALoserDataVersion',DATA_VERSION);
+          localStorage.removeItem('chooseLoserQuestionHistory');
+          renderEditor && currentMode && document.getElementById('editorScreen').classList.contains('active') && renderEditor();
+          alert('Questions reset to defaults.');
+          showScreen('editHomeScreen');
+        };
+      }
+      showScreen('resetScreen');
+    };
+  }
 
   const previousOpenSettings=window.openSettings;
   window.openSettings=function(){previousOpenSettings();setTimeout(()=>{const screen=document.getElementById('settingsScreen');if(screen)screen.scrollTop=0},60);};
