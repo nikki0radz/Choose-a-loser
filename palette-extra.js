@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded',()=>{
   // Category colours sampled from the reference screenshot.
-  const DEFAULT_BG='#030b24';
+  const DEFAULT_BG='#010615';
   const PALETTE={
     bg:DEFAULT_BG,
     proof:'#b72f7b',
@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     knockout:'#80677d',
     quote:'#43298b'
   };
-  const LEGACY_BACKGROUNDS=['#030059','#061437'];
+  const LEGACY_BACKGROUNDS=['#030059','#061437','#030b24'];
   const LEGACY_CATEGORY_SETS={
     proof:['#ff4497','#ff3d96'],
     debate:['#5b2d89','#fc68b6'],
