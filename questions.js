@@ -1,5 +1,5 @@
 window.CHOOSE_A_LOSER_CONTENT = {
-  version: '5',
+  version: '6',
   defaults: {
     proven: [
       {text:"Who is the tallest?",chaos:1},{text:"Who is the second tallest?",chaos:1},{text:"Who is the shortest?",chaos:1},{text:"Who is the second shortest?",chaos:1},{text:"Who has the longest hair?",chaos:1},{text:"Who has the shortest hair?",chaos:1},{text:"Who is wearing the most black?",chaos:1},{text:"Who is wearing the least black?",chaos:1},{text:"Who is wearing the brightest colour?",chaos:1},{text:"Who is wearing the most layers?",chaos:1},{text:"Who has the most visible pockets?",chaos:1},{text:"Who has the most jewellery on right now?",chaos:1},{text:"Who has the most visible tattoos?",chaos:1},{text:"Who has the fewest visible tattoos?",chaos:1},{text:"Who has the biggest shoe size?",chaos:1},{text:"Who has the smallest shoe size?",chaos:1},{text:"Who has the longest sleeves right now?",chaos:1},{text:"Who has the shortest first name?",chaos:1},{text:"Who has the longest first name?",chaos:1},{text:"Whose birthday comes next?",chaos:1},{text:"Whose birthday was most recent?",chaos:1},{text:"Who is the second oldest?",chaos:1},{text:"Who is the second youngest?",chaos:1},{text:"Who woke up earliest this morning?",chaos:1},{text:"Who woke up latest this morning?",chaos:1},{text:"Who had the least sleep last night?",chaos:1},{text:"Who had the most sleep last night?",chaos:1},{text:"Who ate most recently?",chaos:1},{text:"Who has gone longest since eating?",chaos:1},{text:"Who has had the most caffeine today?",chaos:1},{text:"Who has had the least caffeine today?",chaos:1},{text:"Who has the lowest phone battery right now?",chaos:1},{text:"Who has the second lowest phone battery right now?",chaos:1},{text:"Who has the highest phone battery right now?",chaos:1},{text:"Who got here last?",chaos:1},{text:"Who got here first?",chaos:1},{text:"Who travelled the furthest to be here?",chaos:1},{text:"Who travelled the shortest distance to be here?",chaos:1},{text:"Who has lived at their current address the longest?",chaos:1},{text:"Who has lived at their current address the shortest time?",chaos:1},{text:"Who has owned their current phone the longest?",chaos:1},{text:"Who has owned their current car the longest?",chaos:1},{text:"Who last went abroad?",chaos:1},{text:"Who has the next alarm set?",chaos:1},{text:"Who has the earliest alarm set for tomorrow?",chaos:1},{text:"Who has the latest alarm set for tomorrow?",chaos:1},{text:"Who last changed jobs?",chaos:1},{text:"Who has been in their current job the longest?",chaos:1},{text:"Who has the oldest car?",chaos:1},{text:"Who has the newest car?",chaos:1},
@@ -46,3 +46,56 @@ window.CHOOSE_A_LOSER_CONTENT = {
     "Please do not make this your LinkedIn headline."
   ]
 };
+
+// Small runtime settings extension. Keeping this here lets the content file add a
+// separate Debatable timer without making the main app file harder to maintain.
+window.addEventListener('DOMContentLoaded', () => {
+  let storedSettings = {};
+  try { storedSettings = JSON.parse(localStorage.getItem('chooseLoserSettings') || '{}'); } catch {}
+  settings.debateTimer = Number(storedSettings.debateTimer || 15);
+
+  const knockoutRow = document.getElementById('timerSetting')?.closest('.settingRow');
+  if (knockoutRow && !document.getElementById('debateTimerSetting')) {
+    const debateRow = document.createElement('div');
+    debateRow.className = 'settingRow';
+    debateRow.innerHTML = `<label>Debatable timer: <span id="debateTimerSettingValue">${settings.debateTimer}</span>s</label><input id="debateTimerSetting" type="range" min="5" max="60" step="5" value="${settings.debateTimer}" oninput="updateDebateTimerSetting(this.value)">`;
+    knockoutRow.parentNode.insertBefore(debateRow, knockoutRow);
+  }
+
+  const originalOpenSettings = window.openSettings;
+  window.openSettings = function(){
+    originalOpenSettings();
+    const slider = document.getElementById('debateTimerSetting');
+    const value = document.getElementById('debateTimerSettingValue');
+    if (slider) slider.value = settings.debateTimer;
+    if (value) value.textContent = settings.debateTimer;
+  };
+
+  window.updateDebateTimerSetting = function(v){
+    settings.debateTimer = +v;
+    const value = document.getElementById('debateTimerSettingValue');
+    if (value) value.textContent = v;
+    saveSettings();
+  };
+
+  window.startTimer = function(r,n,done){
+    stopTimer();
+    const total = r === 'debateTimer' ? settings.debateTimer : settings.timer;
+    let s = total, ring = document.getElementById(r), num = document.getElementById(n);
+    num.textContent = s;
+    ring.style.setProperty('--p','100%');
+    timer = setInterval(() => {
+      s--;
+      num.textContent = s;
+      ring.style.setProperty('--p',(s/total*100)+'%');
+      if(s<=0){ stopTimer(); done(); }
+    },1000);
+  };
+
+  // Clean out any old cached/custom versions of the retired polyester joke.
+  try {
+    const custom = JSON.parse(localStorage.getItem('chooseLoserCustomInsults') || '[]');
+    const cleaned = custom.filter(x => !/polyester/i.test(String(x)));
+    if (cleaned.length !== custom.length) localStorage.setItem('chooseLoserCustomInsults', JSON.stringify(cleaned));
+  } catch {}
+});
