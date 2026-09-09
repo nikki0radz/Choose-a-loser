@@ -68,7 +68,6 @@ window.CHOOSE_A_LOSER_CONTENT = {
       {text:"Who ate most recently?",chaos:1},
       {text:"Who has had the most caffeine today?",chaos:1},
       {text:"Who has had the least caffeine today?",chaos:1},
-
       {text:"Who has the least money in their bank account right now?",chaos:3,insult:"Poor you :( ...but you're about to be poorer."},
       {text:"Who has the most money in their bank account right now?",chaos:3},
       {text:"Who has the largest credit-card balance?",chaos:3},
@@ -107,7 +106,6 @@ window.CHOOSE_A_LOSER_CONTENT = {
       {text:"Who has the most saved passwords?",chaos:3},
       {text:"Who has the most people in their blocked contacts?",chaos:3}
     ],
-
     debate: [
       {text:"Who is the most stubborn?",chaos:1},
       {text:"Who complains the most?",chaos:1},
@@ -146,7 +144,6 @@ window.CHOOSE_A_LOSER_CONTENT = {
       {text:"Who would survive longest in a haunted house alone?",chaos:1},
       {text:"Who would be the easiest person to live with?",chaos:1},
       {text:"Who would be the hardest person to live with?",chaos:1},
-
       {text:"Who has the coolest parents?",chaos:3},
       {text:"Who has the best relationship with their parents?",chaos:3},
       {text:"Who had the most traumatic childhood?",chaos:3},
@@ -205,7 +202,6 @@ window.CHOOSE_A_LOSER_CONTENT = {
       {text:"Who would be most likely to disappear for six months and come back married?",chaos:3},
       {text:"Who would be most likely to ruin Christmas over a board game?",chaos:3}
     ],
-
     knockout: [
       {text:"What is 12 × 8?",answer:"96",explain:"12 × 8 = 96.",chaos:1},
       {text:"Which planet is known as the Red Planet?",answer:"Mars",explain:"Iron minerals make Mars look reddish.",chaos:1},
@@ -222,7 +218,6 @@ window.CHOOSE_A_LOSER_CONTENT = {
       {text:"Which organ pumps blood around the body?",answer:"The heart",explain:"The heart pumps blood through the circulatory system.",chaos:1},
       {text:"What is the square root of 81?",answer:"9",explain:"9 × 9 = 81.",chaos:1},
       {text:"Which language is primarily spoken in Brazil?",answer:"Portuguese",explain:"Brazil's official language is Portuguese.",chaos:1},
-
       {text:"How many sides does a dodecagon have?",answer:"12",explain:"Dodeca means twelve.",chaos:3},
       {text:"Which element has the chemical symbol Fe?",answer:"Iron",explain:"Fe comes from ferrum.",chaos:3},
       {text:"If you overtake the person in second place, what place are you in?",answer:"Second place",explain:"You take their position.",chaos:3},
@@ -246,7 +241,6 @@ window.CHOOSE_A_LOSER_CONTENT = {
     ],
     whoSaid: []
   },
-
   gates: [
     {q:"What colour do you get by mixing blue and yellow?",c:["Green","Purple","Orange"],a:0},
     {q:"What is the capital of France?",c:["Paris","Rome","Madrid"],a:0},
@@ -259,7 +253,6 @@ window.CHOOSE_A_LOSER_CONTENT = {
     {q:"How many days are in a leap year?",c:["366","365","364"],a:0},
     {q:"Which animal is the largest land mammal?",c:["Elephant","Giraffe","Rhino"],a:0}
   ],
-
   skipInsults: [
     "Nobody knew that? Concerning, but statistically one of you had to be the stupidest.",
     "Not one answer. Excellent group performance.",
@@ -270,7 +263,6 @@ window.CHOOSE_A_LOSER_CONTENT = {
     "Nobody knew? Delete the evidence and move on.",
     "Interesting strategy. Unfortunately the question did have a correct answer."
   ],
-
   insults: [
     "That was academically concerning.",
     "Your final answer was apparently 'vibes'.",
@@ -288,7 +280,6 @@ window.CHOOSE_A_LOSER_CONTENT = {
     "Please do not make this your LinkedIn headline."
   ]
 };
-
 window.addEventListener('DOMContentLoaded',()=>{
   let storedSettings={};try{storedSettings=JSON.parse(localStorage.getItem('chooseLoserSettings')||'{}')}catch{}
   settings.debateTimer=Number(storedSettings.debateTimer||15);
@@ -303,7 +294,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   window.updateDebateTimerSetting=function(v){settings.debateTimer=+v;const value=document.getElementById('debateTimerSettingValue');if(value)value.textContent=v;saveSettings();};
   window.startTimer=function(r,n,done){stopTimer();const total=r==='debateTimer'?settings.debateTimer:settings.timer;let s=total,ring=document.getElementById(r),num=document.getElementById(n);num.textContent=s;ring.style.setProperty('--p','100%');timer=setInterval(()=>{s--;num.textContent=s;ring.style.setProperty('--p',(s/total*100)+'%');if(s<=0){stopTimer();done();}},1000);};
   try{const custom=JSON.parse(localStorage.getItem('chooseLoserCustomInsults')||'[]');const cleaned=custom.filter(x=>!/polyester/i.test(String(x)));if(cleaned.length!==custom.length)localStorage.setItem('chooseLoserCustomInsults',JSON.stringify(cleaned));}catch{}
-
   const rouletteQuips={
     "Who has the least money in their bank account right now?":"Poor you :( ...but you're about to be poorer.",
     "Who has the most money in their bank account right now?":"Congratulations on winning capitalism. Unfortunately, you've also won the bill.",
@@ -345,7 +335,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   };
   const applyRouletteQuips=list=>{if(!Array.isArray(list))return;list.forEach(q=>{const quip=rouletteQuips[q.text];if(quip)q.insult=quip;});};
   applyRouletteQuips(DEFAULTS.proven);applyRouletteQuips(data.proven);
-
   if(!document.getElementById('loadingMotionStyles')){
     const style=document.createElement('style');style.id='loadingMotionStyles';style.textContent=`
       #loadingScreen{overflow:hidden}
@@ -363,11 +352,9 @@ window.addEventListener('DOMContentLoaded',()=>{
     const bubbles=document.createElement('div');bubbles.className='thoughtBubbles';bubbles.innerHTML='<i class="thoughtBubble"></i><i class="thoughtBubble"></i><i class="thoughtBubble"></i><i class="thoughtBubble"></i><i class="thoughtBubble"></i><i class="thoughtBubble"></i>';loadingScreen.appendChild(bubbles);
   }
   window.randomLoading=function(cb){document.getElementById('loadingAxo').innerHTML=axo(chaos===3?'unhinged':'neutral');showScreen('loadingScreen');setTimeout(cb,3000);};
-
   const originalShowScreen=window.showScreen;const initialHoldUntil=Date.now()+3000;let initialHomeQueued=false;
   window.showScreen=function(id){if(id==='homeScreen'&&Date.now()<initialHoldUntil){if(!initialHomeQueued){initialHomeQueued=true;setTimeout(()=>originalShowScreen('homeScreen'),Math.max(0,initialHoldUntil-Date.now()));}return;}return originalShowScreen(id);};
 });
-
 window.addEventListener('DOMContentLoaded',()=>{
   const familyQuips={
     "Who is the tallest?":"Enjoy the view. You're still paying.",
@@ -439,19 +426,17 @@ window.addEventListener('DOMContentLoaded',()=>{
   };
   const applyFamilyQuips=list=>{if(!Array.isArray(list))return;list.forEach(q=>{const quip=familyQuips[q.text];if(quip)q.insult=quip;});};
   applyFamilyQuips(DEFAULTS.proven);applyFamilyQuips(data.proven);
-
   const motionStyle=document.getElementById('loadingMotionStyles');
   if(motionStyle)motionStyle.textContent=`
     #loadingScreen{overflow:hidden}
     #loadingScreen #loadingAxo{position:relative;z-index:2;transform-origin:50% 58%}
-    #loadingScreen.active #loadingAxo{animation:axoThinkTilt .5s step-end infinite}
+    #loadingScreen.active #loadingAxo{animation:axoThinkTilt .7s step-end infinite}
     @keyframes axoThinkTilt{0%,49.999%{transform:rotate(-7deg)}50%,100%{transform:rotate(7deg)}}
     .thoughtBubbles{position:absolute;left:50%;top:50%;width:300px;height:220px;transform:translate(-50%,-57%);pointer-events:none;z-index:3}
     .thoughtBubble{position:absolute;border:2px solid rgba(210,239,255,.82);border-radius:50%;background:rgba(171,225,255,.10);box-shadow:inset 2px 2px 5px rgba(255,255,255,.22);opacity:0;animation:bubbleUp 2.25s ease-out infinite}
     .thoughtBubble:nth-child(1){width:10px;height:10px;left:58%;top:53%;animation-delay:0s}.thoughtBubble:nth-child(2){width:15px;height:15px;left:63%;top:48%;animation-delay:.35s}.thoughtBubble:nth-child(3){width:8px;height:8px;left:55%;top:52%;animation-delay:.75s}.thoughtBubble:nth-child(4){width:19px;height:19px;left:67%;top:45%;animation-delay:1.1s}.thoughtBubble:nth-child(5){width:11px;height:11px;left:61%;top:50%;animation-delay:1.45s}.thoughtBubble:nth-child(6){width:14px;height:14px;left:57%;top:49%;animation-delay:1.8s}
     @keyframes bubbleUp{0%{transform:translate(0,8px) scale(.65);opacity:0}15%{opacity:.85}75%{opacity:.65}100%{transform:translate(38px,-105px) scale(1.18);opacity:0}}
   `;
-
   document.querySelectorAll('.modeButton.proof .bt').forEach(el=>{if(el.textContent.includes('Anything Goes'))el.textContent="🍬 Pick 'n' Mix";});
   document.querySelectorAll('.colourControl span').forEach(el=>{if(el.textContent.trim()==='Anything Goes')el.textContent="Pick 'n' Mix";});
   const previousOpenEditor=window.openEditor;
