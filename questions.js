@@ -1,1 +1,1 @@
-document.write('<script src="questions-core.js"><\/script><script src="enhancements.js"><\/script>');
+document.write('<script src="questions-core.js"><\/script><script src="enhancements.js"><\/script><script src="trivia-extra.js"><\/script><script src="settings-extra.js"><\/script>');
