@@ -3,11 +3,16 @@ window.addEventListener('DOMContentLoaded',()=>{
   if(typeof originalAxo!=='function')return;
 
   const EXTRA=['love','cool','dizzy','kiss','dead','puffed'];
-  const BUILTIN=['neutral','happy','smirk','tongue','surprised','wink','sad','angry','sleepy'];
-  const FUN=[...BUILTIN,...EXTRA];
+  const SILLY=['tongue','surprised','wink','sleepy','angry','smirk','happy','love','cool','dizzy','kiss','dead','puffed'];
+  let sillyBag=[];
   const neutralEyes='<g fill="#2b1c20"><circle cx="110" cy="96" r="12"/><circle cx="190" cy="96" r="12"/></g>';
   const neutralMouth='<path d="M139 126 L161 126" fill="none" stroke="#2b1c20" stroke-width="5" stroke-linecap="round"/>';
-  const randomFun=()=>FUN[Math.floor(Math.random()*FUN.length)];
+
+  function refillBag(){
+    sillyBag=[...SILLY];
+    for(let i=sillyBag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[sillyBag[i],sillyBag[j]]=[sillyBag[j],sillyBag[i]];}
+  }
+  function randomSilly(){if(!sillyBag.length)refillBag();return sillyBag.pop();}
 
   function swapFace(svg,eyes,mouth,extra=''){
     svg=svg.replace(neutralEyes,eyes).replace(neutralMouth,mouth);
@@ -16,7 +21,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   }
 
   window.axo=function(requested='auto'){
-    let ex=requested==='auto'?randomFun():requested;
+    let ex=requested==='auto'?randomSilly():requested;
     if(!EXTRA.includes(ex))return originalAxo(ex);
     let svg=originalAxo('neutral');
     const stroke='#2b1c20';
@@ -28,15 +33,12 @@ window.addEventListener('DOMContentLoaded',()=>{
     return swapFace(svg,`<g fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round"><path d="M98 97 Q110 85 122 97 M178 97 Q190 85 202 97"/></g>`,'<path d="M136 124 Q145 132 140 143 M164 124 Q155 132 160 143 M140 143 Q150 151 160 143" fill="none" stroke="#2b1c20" stroke-width="5" stroke-linecap="round"/>');
   };
 
-  // Patch the existing core loader itself. Because the original game functions call
-  // this global binding directly, assigning the declaration is what makes Again,
-  // Knockout next-question, and every other question transition use funny faces too.
   randomLoading=function(cb,ms=3000){
     const el=document.getElementById('loadingAxo');
     if(loadingTiltTimer)clearInterval(loadingTiltTimer);
     el.classList.remove('tiltLeft','tiltRight');
     el.classList.add('thinking','tiltLeft');
-    el.innerHTML=window.axo(randomFun());
+    el.innerHTML=window.axo(randomSilly());
     let left=true;
     loadingTiltTimer=setInterval(()=>{left=!left;el.classList.toggle('tiltLeft',left);el.classList.toggle('tiltRight',!left)},250);
     showScreen('loadingScreen');
