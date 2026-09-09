@@ -336,16 +336,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   const applyRouletteQuips=list=>{if(!Array.isArray(list))return;list.forEach(q=>{const quip=rouletteQuips[q.text];if(quip)q.insult=quip;});};
   applyRouletteQuips(DEFAULTS.proven);applyRouletteQuips(data.proven);
   if(!document.getElementById('loadingMotionStyles')){
-    const style=document.createElement('style');style.id='loadingMotionStyles';style.textContent=`
-      #loadingScreen{overflow:hidden}
-      #loadingScreen #loadingAxo{position:relative;z-index:2;transform-origin:50% 58%}
-      #loadingScreen.active #loadingAxo{animation:axoThinkTilt 3s steps(1,end) infinite}
-      @keyframes axoThinkTilt{0%,100%{transform:rotate(-5deg)}22%{transform:rotate(0deg)}44%{transform:rotate(5deg)}66%{transform:rotate(0deg)}82%{transform:rotate(-3deg)}}
-      .thoughtBubbles{position:absolute;left:50%;top:50%;width:300px;height:220px;transform:translate(-50%,-57%);pointer-events:none;z-index:3}
-      .thoughtBubble{position:absolute;border:2px solid rgba(210,239,255,.82);border-radius:50%;background:rgba(171,225,255,.10);box-shadow:inset 2px 2px 5px rgba(255,255,255,.22);opacity:0;animation:bubbleUp 2.25s ease-out infinite}
-      .thoughtBubble:nth-child(1){width:10px;height:10px;left:58%;top:53%;animation-delay:0s}.thoughtBubble:nth-child(2){width:15px;height:15px;left:63%;top:48%;animation-delay:.35s}.thoughtBubble:nth-child(3){width:8px;height:8px;left:55%;top:52%;animation-delay:.75s}.thoughtBubble:nth-child(4){width:19px;height:19px;left:67%;top:45%;animation-delay:1.1s}.thoughtBubble:nth-child(5){width:11px;height:11px;left:61%;top:50%;animation-delay:1.45s}.thoughtBubble:nth-child(6){width:14px;height:14px;left:57%;top:49%;animation-delay:1.8s}
-      @keyframes bubbleUp{0%{transform:translate(0,8px) scale(.65);opacity:0}15%{opacity:.85}75%{opacity:.65}100%{transform:translate(38px,-105px) scale(1.18);opacity:0}}
-    `;document.head.appendChild(style);
+    const style=document.createElement('style');style.id='loadingMotionStyles';document.head.appendChild(style);
   }
   const loadingScreen=document.getElementById('loadingScreen');
   if(loadingScreen&&!loadingScreen.querySelector('.thoughtBubbles')){
@@ -426,17 +417,39 @@ window.addEventListener('DOMContentLoaded',()=>{
   };
   const applyFamilyQuips=list=>{if(!Array.isArray(list))return;list.forEach(q=>{const quip=familyQuips[q.text];if(quip)q.insult=quip;});};
   applyFamilyQuips(DEFAULTS.proven);applyFamilyQuips(data.proven);
+
   const motionStyle=document.getElementById('loadingMotionStyles');
   if(motionStyle)motionStyle.textContent=`
     #loadingScreen{overflow:hidden}
     #loadingScreen #loadingAxo{position:relative;z-index:2;transform-origin:50% 58%}
     #loadingScreen.active #loadingAxo{animation:axoThinkTilt .7s step-end infinite}
     @keyframes axoThinkTilt{0%,49.999%{transform:rotate(-7deg)}50%,100%{transform:rotate(7deg)}}
-    .thoughtBubbles{position:absolute;left:50%;top:50%;width:300px;height:220px;transform:translate(-50%,-57%);pointer-events:none;z-index:3}
-    .thoughtBubble{position:absolute;border:2px solid rgba(210,239,255,.82);border-radius:50%;background:rgba(171,225,255,.10);box-shadow:inset 2px 2px 5px rgba(255,255,255,.22);opacity:0;animation:bubbleUp 2.25s ease-out infinite}
-    .thoughtBubble:nth-child(1){width:10px;height:10px;left:58%;top:53%;animation-delay:0s}.thoughtBubble:nth-child(2){width:15px;height:15px;left:63%;top:48%;animation-delay:.35s}.thoughtBubble:nth-child(3){width:8px;height:8px;left:55%;top:52%;animation-delay:.75s}.thoughtBubble:nth-child(4){width:19px;height:19px;left:67%;top:45%;animation-delay:1.1s}.thoughtBubble:nth-child(5){width:11px;height:11px;left:61%;top:50%;animation-delay:1.45s}.thoughtBubble:nth-child(6){width:14px;height:14px;left:57%;top:49%;animation-delay:1.8s}
-    @keyframes bubbleUp{0%{transform:translate(0,8px) scale(.65);opacity:0}15%{opacity:.85}75%{opacity:.65}100%{transform:translate(38px,-105px) scale(1.18);opacity:0}}
+    .thoughtBubbles{position:absolute;left:50%;top:50%;width:360px;height:500px;transform:translate(-50%,-43%);pointer-events:none;z-index:3}
+    .thoughtBubble{position:absolute;border:2px solid rgba(210,239,255,.82);border-radius:50%;background:rgba(171,225,255,.10);box-shadow:inset 2px 2px 5px rgba(255,255,255,.22);opacity:0;animation:bubbleUp 3s ease-out infinite}
+    .thoughtBubble:nth-child(1){width:10px;height:10px;left:55%;top:64%;animation-delay:0s}.thoughtBubble:nth-child(2){width:15px;height:15px;left:60%;top:62%;animation-delay:.45s}.thoughtBubble:nth-child(3){width:8px;height:8px;left:53%;top:65%;animation-delay:.9s}.thoughtBubble:nth-child(4){width:19px;height:19px;left:63%;top:61%;animation-delay:1.35s}.thoughtBubble:nth-child(5){width:11px;height:11px;left:58%;top:64%;animation-delay:1.8s}.thoughtBubble:nth-child(6){width:14px;height:14px;left:56%;top:63%;animation-delay:2.25s}
+    @keyframes bubbleUp{0%{transform:translate(0,8px) scale(.65);opacity:0}12%{opacity:.88}82%{opacity:.58}100%{transform:translate(55px,-285px) scale(1.25);opacity:0}}
+
+    .ambientOcean{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+    .ambientBubble{position:absolute;bottom:-45px;border:1.5px solid rgba(211,240,255,.34);border-radius:50%;background:rgba(188,229,255,.035);box-shadow:inset 1px 1px 4px rgba(255,255,255,.12);animation:ambientBubbleRise linear infinite}
+    @keyframes ambientBubbleRise{0%{transform:translate(0,0) scale(.75);opacity:0}8%{opacity:.48}82%{opacity:.3}100%{transform:translate(var(--drift),-115vh) scale(1.15);opacity:0}}
+    .seaweedGarden{position:fixed;left:0;right:0;bottom:-8px;height:52vh;pointer-events:none;overflow:hidden;z-index:0}
+    .seaweedPlant{position:absolute;bottom:-5px;width:44px;height:var(--h);transform-origin:50% 100%;animation:seaweedSway var(--speed) ease-in-out infinite alternate;opacity:var(--op)}
+    .seaweedStem{position:absolute;left:50%;bottom:0;width:9px;height:100%;border-radius:70% 30% 55% 45%;background:linear-gradient(90deg,rgba(28,112,100,.42),rgba(50,143,118,.68),rgba(24,91,87,.4));transform:translateX(-50%) rotate(var(--lean))}
+    .seaweedLeaf{position:absolute;width:32px;height:13px;border-radius:100% 0 100% 0;background:rgba(51,143,116,.55);transform-origin:0 50%}
+    .seaweedLeaf.r{left:51%;transform:rotate(var(--a)) scaleX(var(--s))}.seaweedLeaf.l{right:51%;transform-origin:100% 50%;transform:rotate(var(--a)) scaleX(var(--s)) scaleY(-1)}
+    @keyframes seaweedSway{from{transform:rotate(-2deg) translateX(-2px)}to{transform:rotate(3deg) translateX(3px)}}
   `;
+
+  if(!document.querySelector('.ambientOcean')){
+    const ocean=document.createElement('div');ocean.className='ambientOcean';
+    for(let i=0;i<18;i++){const b=document.createElement('i');b.className='ambientBubble';const size=5+Math.random()*15;b.style.width=size+'px';b.style.height=size+'px';b.style.left=(2+Math.random()*96)+'%';b.style.setProperty('--drift',(-45+Math.random()*90)+'px');b.style.animationDuration=(8+Math.random()*10)+'s';b.style.animationDelay=(-Math.random()*16)+'s';ocean.appendChild(b);}document.body.prepend(ocean);
+  }
+  if(!document.querySelector('.seaweedGarden')){
+    const garden=document.createElement('div');garden.className='seaweedGarden';
+    const positions=[-1,5,11,18,25,32,39,47,55,63,71,79,87,94,99];
+    positions.forEach((x,i)=>{const p=document.createElement('div');p.className='seaweedPlant';p.style.left=x+'%';p.style.setProperty('--h',(120+Math.random()*250)+'px');p.style.setProperty('--speed',(3.5+Math.random()*3.5)+'s');p.style.setProperty('--op',(0.32+Math.random()*.38));p.style.setProperty('--lean',(-7+Math.random()*14)+'deg');const stem=document.createElement('i');stem.className='seaweedStem';p.appendChild(stem);const leaves=4+Math.floor(Math.random()*4);for(let j=0;j<leaves;j++){const leaf=document.createElement('i');leaf.className='seaweedLeaf '+(j%2?'r':'l');leaf.style.bottom=(12+j*(72/(leaves-1)))+'%';leaf.style.setProperty('--a',(j%2?(-34-Math.random()*28):(34+Math.random()*28))+'deg');leaf.style.setProperty('--s',(0.65+Math.random()*.7));p.appendChild(leaf);}garden.appendChild(p);});document.body.prepend(garden);
+  }
+
   document.querySelectorAll('.modeButton.proof .bt').forEach(el=>{if(el.textContent.includes('Anything Goes'))el.textContent="🍬 Pick 'n' Mix";});
   document.querySelectorAll('.colourControl span').forEach(el=>{if(el.textContent.trim()==='Anything Goes')el.textContent="Pick 'n' Mix";});
   const previousOpenEditor=window.openEditor;
