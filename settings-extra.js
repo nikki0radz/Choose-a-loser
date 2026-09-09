@@ -29,9 +29,39 @@ window.addEventListener('DOMContentLoaded',()=>{
     reset.id='resetEditsBtn';
     reset.className='ghost';
     reset.style.cssText='width:100%;margin-top:16px;border-color:rgba(255,140,170,.22);color:#ffb0c7';
-    reset.textContent='↺ Reset all game edits';
-    reset.onclick=()=>openReset();
+    reset.textContent='↺ Reset colours & formatting';
+    reset.onclick=()=>{
+      if(!confirm('Reset timers, font, opacity, colours and axolotl colours to their defaults? Your questions will not be changed.'))return;
+      localStorage.removeItem('chooseLoserSettings');
+      localStorage.removeItem('chooseLoserAxoColours');
+      location.reload();
+    };
     settingsScroll.appendChild(reset);
+  }
+
+  const questionResetBtn=[...document.querySelectorAll('#editHomeScreen button')].find(b=>b.textContent.includes('Reset game data'));
+  if(questionResetBtn){
+    questionResetBtn.textContent='↺ Reset questions';
+    questionResetBtn.onclick=()=>{
+      const heading=document.querySelector('#resetScreen .title');
+      const desc=document.querySelector('#resetScreen .sub');
+      const notice=document.querySelector('#resetScreen .notice');
+      const input=document.getElementById('resetInput');
+      const confirmBtn=document.querySelector('#resetScreen .primary');
+      if(heading)heading.textContent='Reset questions?';
+      if(desc)desc.textContent='This restores every question, answer, explanation and quote to the default question bank. Your colours and settings stay exactly as they are.';
+      if(notice)notice.innerHTML='Type <strong>RESET QUESTIONS</strong> exactly.';
+      if(input){input.value='';input.placeholder='RESET QUESTIONS';}
+      if(confirmBtn){confirmBtn.textContent='Reset questions';confirmBtn.onclick=()=>{
+        if(input.value.trim()!=='RESET QUESTIONS')return alert('Type RESET QUESTIONS exactly.');
+        if(!confirm('Restore all question banks to their defaults?'))return;
+        data=clone(DEFAULTS);
+        save();
+        localStorage.removeItem('chooseLoserQuestionHistory');
+        showScreen('editHomeScreen');
+      };}
+      showScreen('resetScreen');
+    };
   }
 
   const DEFAULT_AXO={body:'#f8bbc4',gills:'#f06f7f',outline:'#351921'};
