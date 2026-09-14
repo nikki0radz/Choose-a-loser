@@ -1,5 +1,5 @@
 (()=>{
-  const v='20260914-axo-clean1';
+  const v='20260914-app1';
   document.write(
     '<script src="questions-core.js?v='+v+'"><\/script>'+ 
     '<script src="enhancements.js?v='+v+'"><\/script>'+ 
@@ -9,6 +9,7 @@
     '<script src="palette-extra.js?v='+v+'"><\/script>'+ 
     '<script src="seaweed-extra.js?v='+v+'"><\/script>'+ 
     '<script src="axolotl-extra.js?v='+v+'"><\/script>'+ 
-    '<script src="history-extra.js?v='+v+'"><\/script>'
+    '<script src="history-extra.js?v='+v+'"><\/script>'+ 
+    '<script src="app-extra.js?v='+v+'"><\/script>'
   );
 })();
