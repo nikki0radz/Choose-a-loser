@@ -1,0 +1,19 @@
+{
+  "name": "Choose a Loser",
+  "short_name": "Loser",
+  "description": "A chaotic little group game for deciding who loses.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#05042a",
+  "theme_color": "#05042a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
