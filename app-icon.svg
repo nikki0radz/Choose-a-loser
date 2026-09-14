@@ -10,10 +10,10 @@
     <path d="M96 112 C104 58 144 38 200 38 C256 38 296 58 304 112 L309 190 C313 244 268 276 200 276 C132 276 87 244 91 190Z" fill="#f8bbc4" stroke="#351921" stroke-width="13"/>
     <ellipse cx="138" cy="184" rx="24" ry="13" fill="#fc68b6" opacity=".55"/>
     <ellipse cx="262" cy="184" rx="24" ry="13" fill="#fc68b6" opacity=".55"/>
-    <g fill="#ffd75f" stroke="#351921" stroke-width="8" stroke-linejoin="round">
-      <path d="M138 120 148 142 172 144 154 160 160 184 138 171 116 184 122 160 104 144 128 142Z"/>
-      <path d="M262 120 272 142 296 144 278 160 284 184 262 171 240 184 246 160 228 144 252 142Z"/>
-    </g>
-    <path d="M166 210 Q200 248 234 210" fill="none" stroke="#351921" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="138" cy="144" r="18" fill="#351921"/>
+    <circle cx="262" cy="144" r="18" fill="#351921"/>
+    <circle cx="132" cy="137" r="5" fill="#ffffff" opacity=".75"/>
+    <circle cx="256" cy="137" r="5" fill="#ffffff" opacity=".75"/>
+    <path d="M164 209 Q200 238 236 209" fill="none" stroke="#351921" stroke-width="12" stroke-linecap="round"/>
   </g>
 </svg>
