@@ -78,5 +78,6 @@ function defaultsSettings(){return{timer:15,font:'dm',opacity:.36,colours:{bg:'#
 function openReset(){document.getElementById('resetInput').value='';showScreen('resetScreen')}function confirmReset(){if(document.getElementById('resetInput').value.trim()!=='RESET DECK')return alert('Type RESET DECK exactly.');if(!confirm('Delete every edit and custom question on this device?'))return;let quotes=data.whoSaid||[];data=clone(DEFAULTS);data.whoSaid=quotes;save();localStorage.removeItem('chooseLoserQuestionHistory');showScreen('homeScreen')}
 window.addEventListener('load',()=>{applySettings();setChaos(chaos);document.getElementById('loadingAxo').innerHTML=axo();setTimeout(()=>showScreen('homeScreen'),700)})
 </script>
+<!-- pages republish trigger -->
 </body>
 </html>
