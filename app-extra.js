@@ -11,15 +11,5 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
 
-  let installPrompt=null;
-  function addInstallButton(){
-    if(document.getElementById('installAppBtn'))return;
-    const utility=document.querySelector('#homeScreen .utility');
-    if(!utility)return;
-    const btn=document.createElement('button');btn.id='installAppBtn';btn.className='ghost';btn.style.cssText='grid-column:1 / -1;width:100%';btn.textContent='⬇ Install app';
-    btn.onclick=async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;btn.remove();};
-    utility.appendChild(btn);
-  }
-  window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event;addInstallButton();});
-  window.addEventListener('appinstalled',()=>{document.getElementById('installAppBtn')?.remove();installPrompt=null;});
+  window.addEventListener('beforeinstallprompt',event=>event.preventDefault());
 });
