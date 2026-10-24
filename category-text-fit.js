@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   }
   function fit(){
     frame=0;
-    const maximum=matchMedia('(max-height:700px)').matches?12:13;
+    const maximum=matchMedia('(max-height:700px)').matches?11.5:12.5;
     const measurements=labels.map(label=>({
       width:label.clientWidth-3,
       style:getComputedStyle(label),

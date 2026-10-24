@@ -1,5 +1,5 @@
 (()=>{
-  const v='20261024-uniform-text';
+  const v='20261024-category-spacing';
   document.write(
     '<script src="category-text-fit.js?v='+v+'"><\/script>'+
     '<script src="app-dialogs.js?v='+v+'"><\/script>'+
