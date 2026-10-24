@@ -43,13 +43,13 @@ html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;
 
 #installAppBtn{display:none!important}
 #homeScreen{justify-content:flex-start}
-#homeScreen #homeAxo{margin-top:0;flex-shrink:0}
-#homeScreen .categoryArea{display:flex;flex-direction:column;gap:12px;flex:1 0 auto;min-height:270px;margin-top:14px}
-#homeScreen .categoryArea .modeButton{flex:1;margin:0;min-height:82px;padding:19px 20px;display:flex;flex-direction:column;justify-content:center}
+#homeScreen #homeAxo{margin-top:0;flex-shrink:0;width:min(62vw,240px);height:auto;aspect-ratio:185/140}
+#homeScreen .categoryArea{display:flex;flex-direction:column;gap:10px;flex:0 0 auto;min-height:0;margin-top:12px}
+#homeScreen .categoryArea .modeButton{flex:0 0 auto;margin:0;min-height:80px;padding:13px 20px;display:flex;flex-direction:column;justify-content:center;text-align:center}
 #homeScreen .categoryArea .bt{font-size:clamp(21px,5.8vw,26px)}
 #homeScreen .categoryArea .bs{font-size:13px;line-height:1.4;margin-top:7px}
-#homeScreen .utility{margin-top:12px;padding-top:0}
-@media(max-height:700px){#homeScreen .categoryArea{min-height:228px;gap:9px;margin-top:10px}#homeScreen .categoryArea .modeButton{min-height:70px;padding:13px 17px}#homeScreen .categoryArea .bt{font-size:21px}#homeScreen .categoryArea .bs{font-size:12px;margin-top:5px}}
+#homeScreen .utility{margin-top:auto;padding-top:16px}
+@media(max-height:700px){#homeScreen #homeAxo{width:min(56vw,190px)}#homeScreen .categoryArea{min-height:0;gap:8px;margin-top:8px}#homeScreen .categoryArea .modeButton{min-height:70px;padding:11px 17px}#homeScreen .categoryArea .bt{font-size:21px}#homeScreen .categoryArea .bs{font-size:12px;margin-top:5px}}
 
 #homeScreen .utility{width:min(calc(100% - 2px),365px);justify-content:space-between}
 #homeScreen .utility .ghost{background:rgba(0,0,0,.05);border:1px solid rgba(255,255,255,.09);padding:8px 14px}
@@ -84,6 +84,10 @@ html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;
 .modeButton .bt{font-weight:800;letter-spacing:.005em}
 #homeScreen .categoryArea .modeButton,.editList>.modeButton{background-image:linear-gradient(145deg,rgba(255,255,255,.035),transparent 65%)}
 .logo span{color:var(--axo-fin,#f06f7f)}
+
+#homeScreen .categoryArea .bt{position:relative;width:100%;justify-content:center;padding-inline:29px;text-align:center}
+#homeScreen .categoryArea .categoryIcon{position:absolute;left:0;top:50%;transform:translateY(-50%)}
+#homeScreen .categoryArea .bs{width:100%;text-align:center}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Dancing+Script:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Nunito+Sans:wght@400;600;700;800&family=Special+Elite&family=UnifrakturCook:wght@700&display=swap">
 </head>
