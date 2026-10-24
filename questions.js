@@ -1,6 +1,7 @@
 (()=>{
-  const v='20261024-neon-velvet';
+  const v='20261024-dialogs';
   document.write(
+    '<script src="app-dialogs.js?v='+v+'"><\/script>'+
     '<script src="questions-core.js?v='+v+'"><\/script>'+ 
     '<script src="enhancements.js?v='+v+'"><\/script>'+ 
     '<script src="trivia-extra.js?v='+v+'"><\/script>'+ 

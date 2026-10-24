@@ -70,10 +70,10 @@ window.addEventListener('DOMContentLoaded',()=>{
     const reset=document.createElement('button');
     reset.id='resetEditsBtn';
     reset.className='ghost';
-    reset.style.cssText='width:100%;margin-top:16px;border-color:rgba(255,140,170,.22);color:#ffb0c7';
+    reset.style.cssText='width:100%;margin-top:16px;border-color:rgba(255,140,170,.22);color:#fff';
     reset.textContent='↺ Reset colours & formatting';
-    reset.onclick=()=>{
-      if(!confirm('Reset timers, font, opacity, colours and axolotl colours to their defaults? Your questions will not be changed.'))return;
+    reset.onclick=async()=>{
+      if(!await appConfirm('Reset timers, font, opacity, colours and axolotl colours to their defaults? Your questions will not be changed.'))return;
 
       const fresh=defaultsSettings();
       settings.timer=fresh.timer;
@@ -107,7 +107,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       gills.value=axoColours.gills;
       outline.value=axoColours.outline;
       refreshVisibleAxos();
-      alert('Colours and formatting reset.');
+      await appNotice('Colours and formatting reset.');
     };
     settingsScroll.appendChild(reset);
   }
@@ -127,15 +127,15 @@ window.addEventListener('DOMContentLoaded',()=>{
       if(input){input.value='';input.placeholder='RESET QUESTIONS';}
       if(confirmBtn){
         confirmBtn.textContent='Reset questions';
-        confirmBtn.onclick=()=>{
-          if(input.value.trim()!=='RESET QUESTIONS')return alert('Type RESET QUESTIONS exactly.');
-          if(!confirm('Restore all question banks to their defaults?'))return;
+        confirmBtn.onclick=async()=>{
+          if(input.value.trim()!=='RESET QUESTIONS')return await appNotice('Type RESET QUESTIONS exactly.');
+          if(!await appConfirm('Restore all question banks to their defaults?'))return;
           data=clone(DEFAULTS);
           localStorage.setItem('chooseALoserGameData',JSON.stringify(data));
           localStorage.setItem('chooseALoserDataVersion',DATA_VERSION);
           localStorage.removeItem('chooseLoserQuestionHistory');
           renderEditor && currentMode && document.getElementById('editorScreen').classList.contains('active') && renderEditor();
-          alert('Questions reset to defaults.');
+          await appNotice('Questions reset to defaults.');
           showScreen('editHomeScreen');
         };
       }

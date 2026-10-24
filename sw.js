@@ -1,6 +1,6 @@
-const CACHE='choose-a-loser-public-v11';
+const CACHE='choose-a-loser-public-v12';
 const ASSETS=[
-  './','./index.html','./questions.js','./app-extra.js','./colour-picker.js','./questions-core.js','./enhancements.js','./trivia-extra.js','./question-bank-extra.js','./settings-extra.js','./palette-extra.js','./seaweed-extra.js','./axolotl-extra.js','./history-extra.js','./manifest.webmanifest','./app-icon.svg'
+  './','./index.html','./app-dialogs.js','./questions.js','./app-extra.js','./colour-picker.js','./questions-core.js','./enhancements.js','./trivia-extra.js','./question-bank-extra.js','./settings-extra.js','./palette-extra.js','./seaweed-extra.js','./axolotl-extra.js','./history-extra.js','./manifest.webmanifest','./app-icon.svg'
 ];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting()));

@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     quote:['#eb9f2e','#000082']
   };
 
-  window.defaultsSettings=function(){return{timer:15,debateTimer:15,font:'dm',opacity:.80,colours:{...PALETTE}}};
+  window.defaultsSettings=function(){return{timer:15,debateTimer:15,font:'dm',opacity:.95,colours:{...PALETTE}}};
 
   let changed=false;
   if(!settings.colours)settings.colours={};
@@ -29,9 +29,9 @@ window.addEventListener('DOMContentLoaded',()=>{
       settings.colours[k]=PALETTE[k];changed=true;
     }
   });
-  const oldDefaultOpacities=[.36,.65];
+  const oldDefaultOpacities=[.36,.65,.80];
   if(typeof settings.opacity!=='number' || oldDefaultOpacities.includes(settings.opacity)){
-    settings.opacity=.80;changed=true;
+    settings.opacity=.95;changed=true;
   }
   if(changed){localStorage.setItem('chooseLoserSettings',JSON.stringify(settings));applySettings();}
 
