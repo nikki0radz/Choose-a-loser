@@ -1,5 +1,5 @@
 (()=>{
-  const v='20261024-fin-accents';
+  const v='20261024-deep-punch';
   document.write(
     '<script src="app-dialogs.js?v='+v+'"><\/script>'+
     '<script src="questions-core.js?v='+v+'"><\/script>'+ 

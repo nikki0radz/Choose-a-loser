@@ -1,4 +1,4 @@
-const CACHE='choose-a-loser-public-v22';
+const CACHE='choose-a-loser-public-v23';
 const ASSETS=[
   './','./index.html','./app-dialogs.js','./questions.js','./app-extra.js','./colour-picker.js','./questions-core.js','./enhancements.js','./trivia-extra.js','./question-bank-extra.js','./settings-extra.js','./palette-extra.js','./seaweed-extra.js','./axolotl-extra.js','./history-extra.js','./manifest.webmanifest','./app-icon.svg'
 ];
