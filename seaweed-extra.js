@@ -22,8 +22,6 @@ window.addEventListener('DOMContentLoaded',()=>{
     <path class="kelp alt" fill="#071d3e" opacity=".74" d="M306 844 C297 819 311 796 305 773 C298 749 312 726 306 703 C300 681 311 659 306 637 C301 618 310 599 310 578 C321 596 319 616 315 634 C310 655 319 675 314 696 C309 717 318 738 313 759 C309 781 315 806 314 844 Z"/>
   </g>
 
-  <!-- Dark rocks stay across the seabed, but the centre water is clear of kelp. -->
-  <g fill="#040d26" opacity=".98"><ellipse cx="15" cy="838" rx="55" ry="34"/><ellipse cx="82" cy="846" rx="62" ry="40"/><ellipse cx="160" cy="841" rx="55" ry="32"/><ellipse cx="229" cy="849" rx="66" ry="43"/><ellipse cx="310" cy="842" rx="59" ry="35"/><ellipse cx="384" cy="848" rx="55" ry="39"/></g>
   <g fill="none" stroke="#0c294d" stroke-width="1.6" opacity=".30"><circle cx="194" cy="574" r="3.2"/><circle cx="198" cy="555" r="2.4"/><circle cx="195" cy="538" r="1.7"/></g></svg>`;
   const app=document.getElementById('app');if(app)app.prepend(scene);else document.body.prepend(scene);
 });
