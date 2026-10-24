@@ -1,6 +1,7 @@
 (()=>{
-  const v='20261024-default-font';
+  const v='20261024-fit-descriptions';
   document.write(
+    '<script src="category-text-fit.js?v='+v+'"><\/script>'+
     '<script src="app-dialogs.js?v='+v+'"><\/script>'+
     '<script src="questions-core.js?v='+v+'"><\/script>'+ 
     '<script src="enhancements.js?v='+v+'"><\/script>'+ 
