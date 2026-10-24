@@ -1,12 +1,12 @@
 window.addEventListener('DOMContentLoaded',()=>{
 const style=document.createElement('style');style.textContent=`
 #settingsScreen .colourControl{display:block;padding:0;border:0;background:none}
-.colourTile{--swatch:#f58eb8;width:100%;min-height:76px;display:flex;align-items:center;gap:13px;padding:12px 16px;border-radius:22px 13px 22px 13px;border:1px solid color-mix(in srgb,var(--swatch) 48%,rgba(255,255,255,.18));background:radial-gradient(ellipse at 100% 0,color-mix(in srgb,var(--swatch) 24%,transparent),transparent 70%),rgba(255,255,255,.04);color:white;text-align:left;box-shadow:inset 0 1px rgba(255,255,255,.06)}
+.colourTile{--swatch:var(--pink);width:100%;min-height:76px;display:flex;align-items:center;gap:13px;padding:12px 16px;border-radius:22px 13px 22px 13px;border:1px solid color-mix(in srgb,var(--swatch) 48%,rgba(255,255,255,.18));background:radial-gradient(ellipse at 100% 0,color-mix(in srgb,var(--swatch) 24%,transparent),transparent 70%),rgba(255,255,255,.04);color:white;text-align:left;box-shadow:inset 0 1px rgba(255,255,255,.06)}
 .colourTile .colourIcon{font:22px/1 system-ui;width:31px;text-align:center;color:var(--pink)}
 .colourTile .colourCopy{display:grid;gap:5px;flex:1}.colourTile .colourName{font-size:14px;font-weight:700}.colourTile .colourHex{font:10px/1.2 "DM Sans",sans-serif;letter-spacing:.1em;color:var(--soft);opacity:.65}
 .colourTile .colourBlob{width:43px;height:43px;border-radius:42% 58% 62% 38% / 45% 40% 60% 55%;background:var(--swatch);border:2px solid rgba(255,255,255,.45);box-shadow:0 0 16px color-mix(in srgb,var(--swatch) 30%,transparent);transform:rotate(-12deg);flex-shrink:0}
 .colourTile:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
-#colourWheelDialog{width:min(92vw,370px);max-height:90dvh;overflow:auto;padding:22px;border:1px solid rgba(245,142,184,.3);border-radius:27px;background:linear-gradient(145deg,#241838,#080e2a);color:#fff;box-shadow:0 25px 80px #0008}
+#colourWheelDialog{width:min(92vw,370px);max-height:90dvh;overflow:auto;padding:22px;border:1px solid color-mix(in srgb,var(--pink) 30%,transparent);border-radius:27px;background:linear-gradient(145deg,#241838,#080e2a);color:#fff;box-shadow:0 25px 80px #0008}
 #colourWheelDialog::backdrop{background:rgba(0,0,12,.7);backdrop-filter:blur(6px)}
 #colourWheelTitle{margin:0 0 15px;text-align:center;font:600 21px/1.3 "DM Sans",sans-serif}
 .hueDisc{position:relative;width:min(100%,250px);aspect-ratio:1;margin:0 auto 18px;border-radius:50%;background:radial-gradient(circle closest-side,white,rgba(255,255,255,0)),conic-gradient(from 90deg,red,#ff0,#0f0,#0ff,#00f,#f0f,red);touch-action:none;cursor:crosshair;box-shadow:0 0 0 5px rgba(255,255,255,.055),0 8px 30px #0004}

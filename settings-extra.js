@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     return svg;
   };
 
-  function syncLogoColour(){document.documentElement.style.setProperty('--axo-fin',axoColours.gills)}
+  function syncLogoColour(){document.documentElement.style.setProperty('--axo-fin',axoColours.gills);document.documentElement.style.setProperty('--pink',axoColours.gills)}
   syncLogoColour();
 
   function refreshVisibleAxos(){
@@ -74,7 +74,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     const reset=document.createElement('button');
     reset.id='resetEditsBtn';
     reset.className='ghost';
-    reset.style.cssText='width:100%;margin-top:16px;border-color:rgba(255,140,170,.22);color:#fff';
+    reset.style.cssText='width:100%;margin-top:16px;border-color:color-mix(in srgb,var(--pink) 22%,transparent);color:#fff';
     reset.textContent='↺ Reset colours & formatting';
     reset.onclick=async()=>{
       if(!await appConfirm('Reset timers, font, opacity, colours and axolotl colours to their defaults? Your questions will not be changed.'))return;
@@ -159,7 +159,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   savedStatus.id='settingsSavedStatus';
   savedStatus.setAttribute('role','status');
   savedStatus.setAttribute('aria-live','polite');
-  savedStatus.style.cssText='position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;padding:11px 22px;border-radius:999px;border:1px solid rgba(255,79,175,.4);background:#241735;color:#fff;box-shadow:0 8px 24px #0005;font:600 14px "DM Sans",sans-serif;pointer-events:none;opacity:0;transition:opacity .15s';
+  savedStatus.style.cssText='position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;padding:11px 22px;border-radius:999px;border:1px solid color-mix(in srgb,var(--pink) 40%,transparent);background:#241735;color:#fff;box-shadow:0 8px 24px #0005;font:600 14px "DM Sans",sans-serif;pointer-events:none;opacity:0;transition:opacity .15s';
   document.body.appendChild(savedStatus);
   let savedTimer;
   saveButton.onclick=async()=>{
