@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded',()=>{
     quote:['#eb9f2e','#000082']
   };
 
-  window.defaultsSettings=function(){return{timer:15,debateTimer:15,font:'dm',opacity:.85,colours:{...PALETTE}}};
+  window.defaultsSettings=function(){return{timer:15,debateTimer:15,font:'default',opacity:.85,colours:{...PALETTE}}};
 
   let changed=false;
   if(!settings.colours)settings.colours={};
