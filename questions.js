@@ -1,5 +1,5 @@
 (()=>{
-  const v='20261024-dialogs';
+  const v='20261024-vibrant';
   document.write(
     '<script src="app-dialogs.js?v='+v+'"><\/script>'+
     '<script src="questions-core.js?v='+v+'"><\/script>'+ 

@@ -3,16 +3,16 @@ window.addEventListener('DOMContentLoaded',()=>{
   const DEFAULT_BG='#0d0b25';
   const PALETTE={
     bg:DEFAULT_BG,
-    proof:'#582044',
-    debate:'#29265d',
-    knockout:'#173e70',
+    proof:'#ad287d',
+    debate:'#5935a5',
+    knockout:'#245ca8',
     quote:'#43298b'
   };
   const LEGACY_BACKGROUNDS=['#030059','#061437','#030b24','#010615','#05042a'];
   const LEGACY_CATEGORY_SETS={
-    proof:['#ff4497','#ff3d96','#b72f7b'],
-    debate:['#5b2d89','#fc68b6','#176979'],
-    knockout:['#1897a5','#fcb3e0','#80677d'],
+    proof:['#ff4497','#ff3d96','#b72f7b','#582044'],
+    debate:['#5b2d89','#fc68b6','#176979','#29265d'],
+    knockout:['#1897a5','#fcb3e0','#80677d','#173e70'],
     quote:['#eb9f2e','#000082']
   };
 
