@@ -50,7 +50,11 @@ window.addEventListener('DOMContentLoaded',()=>{
     return svg;
   };
 
+  function syncLogoColour(){document.documentElement.style.setProperty('--axo-fin',axoColours.gills)}
+  syncLogoColour();
+
   function refreshVisibleAxos(){
+    syncLogoColour();
     const map={homeAxo:chaos===3?'unhinged':'neutral',loadingAxo:chaos===3?'unhinged':'neutral',koSetupAxo:'auto',ideaAxo:'auto',insultAxo:'evil'};
     Object.entries(map).forEach(([id,ex])=>{const el=document.getElementById(id);if(el&&el.innerHTML.trim())el.innerHTML=axo(ex)});
   }
