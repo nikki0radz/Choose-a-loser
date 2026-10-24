@@ -1,19 +1,18 @@
 window.addEventListener('DOMContentLoaded',()=>{
-  // Category colours sampled from the reference screenshot.
-  // Background: hsl(242 83% 9%) ≈ #05042a.
-  const DEFAULT_BG='#05042a';
+  // Neon Velvet defaults; preserve custom colours.
+  const DEFAULT_BG='#0d0b25';
   const PALETTE={
     bg:DEFAULT_BG,
-    proof:'#b72f7b',
-    debate:'#176979',
-    knockout:'#80677d',
+    proof:'#582044',
+    debate:'#29265d',
+    knockout:'#173e70',
     quote:'#43298b'
   };
-  const LEGACY_BACKGROUNDS=['#030059','#061437','#030b24','#010615'];
+  const LEGACY_BACKGROUNDS=['#030059','#061437','#030b24','#010615','#05042a'];
   const LEGACY_CATEGORY_SETS={
-    proof:['#ff4497','#ff3d96'],
-    debate:['#5b2d89','#fc68b6'],
-    knockout:['#1897a5','#fcb3e0'],
+    proof:['#ff4497','#ff3d96','#b72f7b'],
+    debate:['#5b2d89','#fc68b6','#176979'],
+    knockout:['#1897a5','#fcb3e0','#80677d'],
     quote:['#eb9f2e','#000082']
   };
 
