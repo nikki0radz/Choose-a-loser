@@ -1,5 +1,5 @@
 (()=>{
-  const v='20261024-public-fonts';
+  const v='20261024-colour-wheel';
   document.write(
     '<script src="questions-core.js?v='+v+'"><\/script>'+ 
     '<script src="enhancements.js?v='+v+'"><\/script>'+ 
@@ -10,6 +10,7 @@
     '<script src="seaweed-extra.js?v='+v+'"><\/script>'+ 
     '<script src="axolotl-extra.js?v='+v+'"><\/script>'+ 
     '<script src="history-extra.js?v='+v+'"><\/script>'+ 
-    '<script src="app-extra.js?v='+v+'"><\/script>'
+    '<script src="app-extra.js?v='+v+'"><\/script>'+ 
+    '<script src="colour-picker.js?v='+v+'"><\/script>'
   );
 })();
