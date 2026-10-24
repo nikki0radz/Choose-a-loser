@@ -28,7 +28,30 @@ html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;
 #homeScreen .utility button{min-height:44px;padding:8px 10px;border:0;border-radius:12px;background:transparent;box-shadow:none;color:rgba(220,223,255,.65);font-size:12px;font-weight:500}
 #homeScreen .utility .settingsBtn{width:44px;padding:8px;font-size:17px}
 #homeScreen .utility button:hover,#homeScreen .utility button:focus-visible{background:rgba(255,255,255,.06);color:#fff}
+
+.fontPicker{width:100%}.fontPicker [hidden]{display:none!important}
+#fontPickerToggle{width:100%;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border:1px solid rgba(245,142,184,.35);border-radius:16px;color:#fff;background:linear-gradient(135deg,rgba(245,142,184,.12),rgba(255,255,255,.035));text-align:left}
+#fontPickerCurrent{font-size:22px;line-height:1.5}.fontPickerChevron{color:var(--pink);font:22px "DM Sans",sans-serif}
+#fontPickerToggle[aria-expanded="true"] .fontPickerChevron{transform:rotate(180deg)}
+#fontPickerList{margin-top:8px;padding:6px;border:1px solid rgba(245,142,184,.25);border-radius:18px;background:rgba(3,9,30,.55);display:grid;gap:4px}
+#fontPickerList button{position:relative;width:100%;min-height:70px;padding:10px 42px 10px 14px;display:grid;gap:5px;text-align:left;border:1px solid transparent;border-radius:12px;color:#fff;background:transparent}
+#fontPickerList button:hover,#fontPickerList button:focus-visible{background:rgba(255,255,255,.07)}
+#fontPickerList button[aria-selected="true"]{background:rgba(245,142,184,.12);border-color:rgba(245,142,184,.4)}
+.fontPreview{font-size:24px;line-height:1.5}#fontPickerList small{font:11px/1.3 "DM Sans",sans-serif;color:var(--soft);opacity:.75}
+.fontCheck{display:none;position:absolute;right:15px;top:25px;color:var(--pink)}[aria-selected="true"] .fontCheck{display:block}
+.title,.question,.bt{font-family:var(--font)}
+
+#installAppBtn{display:none!important}
+#homeScreen{justify-content:flex-start}
+#homeScreen #homeAxo{margin-top:0;flex-shrink:0}
+#homeScreen .categoryArea{display:flex;flex-direction:column;gap:12px;flex:1 0 auto;min-height:270px;margin-top:14px}
+#homeScreen .categoryArea .modeButton{flex:1;margin:0;min-height:82px;padding:19px 20px;display:flex;flex-direction:column;justify-content:center}
+#homeScreen .categoryArea .bt{font-size:clamp(21px,5.8vw,26px)}
+#homeScreen .categoryArea .bs{font-size:13px;line-height:1.4;margin-top:7px}
+#homeScreen .utility{margin-top:12px;padding-top:0}
+@media(max-height:700px){#homeScreen .categoryArea{min-height:228px;gap:9px;margin-top:10px}#homeScreen .categoryArea .modeButton{min-height:70px;padding:13px 17px}#homeScreen .categoryArea .bt{font-size:21px}#homeScreen .categoryArea .bs{font-size:12px;margin-top:5px}}
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Dancing+Script:wght@400;600;700&family=Libre+Baskerville:wght@400;700&family=Nunito+Sans:wght@400;600;700;800&family=Special+Elite&family=UnifrakturCook:wght@700&display=swap">
 </head>
 <body>
 <div id="app"><div class="weed w1"></div><div class="weed w2"></div>
@@ -45,11 +68,11 @@ html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;
 <section id="editorScreen" class="screen"><button class="back" onclick="openEditHome()">←</button><div class="scroll"><h2 id="editorTitle" class="title">Edit</h2><p class="sub">Edit wording or delete anything.</p><div id="editList" class="editList"></div><div class="formGrid" style="margin-top:14px"><textarea id="newQ" class="field" rows="3" placeholder="Add a new question..."></textarea><input id="newA" class="field" placeholder="Answer" style="display:none"><input id="newE" class="field" placeholder="Explanation" style="display:none"><input id="newWho" class="field" placeholder="Who said it?" style="display:none"><select id="newChaos" class="field"><option value="1">🌱 Family Friendly</option><option value="3">🎰 Question Roulette</option></select><button class="primary" onclick="requestAdd()">+ Add</button></div></div></section>
 <section id="ideaScreen" class="screen"><button class="back" onclick="openEditHome()">←</button><div class="scroll"><div class="axowrap" id="ideaAxo"></div><h2 class="title">Pitch a game</h2><p class="sub">Have an idea? Hand it over. I promise to judge it privately.</p><textarea id="ideaText" class="field" rows="7" placeholder="Describe your game idea..."></textarea><button class="primary" style="margin-top:10px" onclick="submitIdea()">Submit to developer</button><div id="ideaSuccess" class="notice ideaSuccess"></div></div></section>
 <section id="insultScreen" class="screen"><button class="back" onclick="openEditHome()">←</button><div class="scroll"><div class="axowrap" id="insultAxo"></div><h2 class="title">Add an insult</h2><p class="sub">Feed the axolotl something cruel. You will not get to browse the bank afterwards.</p><textarea id="insultText" class="field" rows="5" placeholder="Type your insult..."></textarea><button class="primary" style="margin-top:10px" onclick="submitInsult()">Add to insult bank</button><div id="insultSuccess" class="notice ideaSuccess"></div></div></section>
-<section id="settingsScreen" class="screen"><button class="back" onclick="showScreen('homeScreen')">←</button><div class="scroll"><h2 class="title">⚙️ Settings</h2><p class="sub">Fine. You may touch the controls.</p><div class="settingRow"><label>Knockout timer: <span id="timerSettingValue">15</span>s</label><input id="timerSetting" type="range" min="5" max="60" step="5" value="15" oninput="updateTimerSetting(this.value)"></div><div class="settingRow"><label>Category opacity: <span id="opacitySettingValue">36</span>%</label><input id="opacitySetting" type="range" min="10" max="90" step="5" value="36" oninput="updateOpacitySetting(this.value)"></div><div class="settingRow"><label>Font</label><select id="fontSetting" class="field" onchange="setFont(this.value)"><option value="dm">DM Sans</option><option value="fredoka">Fredoka</option><option value="mono">Space Mono</option></select></div><div class="settingRow"><label>Colours</label><div class="colourGrid"><div class="colourControl"><span>Background</span><input id="bgColour" type="color" oninput="setColour('bg',this.value)"></div><div class="colourControl"><span>Anything Goes</span><input id="proofColour" type="color" oninput="setColour('proof',this.value)"></div><div class="colourControl"><span>Debatable</span><input id="debateColour" type="color" oninput="setColour('debate',this.value)"></div><div class="colourControl"><span>Knockout</span><input id="knockoutColour" type="color" oninput="setColour('knockout',this.value)"></div></div></div></div></section>
+<section id="settingsScreen" class="screen"><button class="back" onclick="showScreen('homeScreen')">←</button><div class="scroll"><h2 class="title">⚙️ Settings</h2><p class="sub">Fine. You may touch the controls.</p><div class="settingRow"><label>Knockout timer: <span id="timerSettingValue">15</span>s</label><input id="timerSetting" type="range" min="5" max="60" step="5" value="15" oninput="updateTimerSetting(this.value)"></div><div class="settingRow"><label>Category opacity: <span id="opacitySettingValue">36</span>%</label><input id="opacitySetting" type="range" min="10" max="90" step="5" value="36" oninput="updateOpacitySetting(this.value)"></div><div class="settingRow"><label>Font</label><div class="fontPicker"><select id="fontSetting" hidden aria-hidden="true" tabindex="-1"><option value="classic">Classic serif</option><option value="elegant">Script handwriting</option><option value="clean">Clean</option><option value="typewriter">Typewriter</option><option value="storybook">Gothic</option><option value="handwritten">Handwritten</option></select><button type="button" id="fontPickerToggle" aria-haspopup="listbox" aria-expanded="false" aria-controls="fontPickerList"><span id="fontPickerCurrent"></span><span class="fontPickerChevron" aria-hidden="true">⌄</span></button><div id="fontPickerList" role="listbox" aria-label="Font" hidden><button type="button" role="option" data-font="classic" aria-selected="false"><span class="fontPreview" style="font-family:'Libre Baskerville', Georgia, serif">Choose a Loser</span><small>Classic serif</small><span class="fontCheck" aria-hidden="true">✓</span></button><button type="button" role="option" data-font="elegant" aria-selected="false"><span class="fontPreview" style="font-family:'Dancing Script', cursive">Choose a Loser</span><small>Script handwriting</small><span class="fontCheck" aria-hidden="true">✓</span></button><button type="button" role="option" data-font="clean" aria-selected="false"><span class="fontPreview" style="font-family:'Nunito Sans', Arial, sans-serif">Choose a Loser</span><small>Clean</small><span class="fontCheck" aria-hidden="true">✓</span></button><button type="button" role="option" data-font="typewriter" aria-selected="false"><span class="fontPreview" style="font-family:'Special Elite', 'Courier New', monospace">Choose a Loser</span><small>Typewriter</small><span class="fontCheck" aria-hidden="true">✓</span></button><button type="button" role="option" data-font="storybook" aria-selected="false"><span class="fontPreview" style="font-family:'UnifrakturCook', 'Old English Text MT', cursive">Choose a Loser</span><small>Gothic</small><span class="fontCheck" aria-hidden="true">✓</span></button><button type="button" role="option" data-font="handwritten" aria-selected="false"><span class="fontPreview" style="font-family:'Caveat', cursive">Choose a Loser</span><small>Handwritten</small><span class="fontCheck" aria-hidden="true">✓</span></button></div></div></div><div class="settingRow"><label>Colours</label><div class="colourGrid"><div class="colourControl"><span>Background</span><input id="bgColour" type="color" oninput="setColour('bg',this.value)"></div><div class="colourControl"><span>Anything Goes</span><input id="proofColour" type="color" oninput="setColour('proof',this.value)"></div><div class="colourControl"><span>Debatable</span><input id="debateColour" type="color" oninput="setColour('debate',this.value)"></div><div class="colourControl"><span>Knockout</span><input id="knockoutColour" type="color" oninput="setColour('knockout',this.value)"></div></div></div></div></section>
 <section id="triviaGateScreen" class="screen"><button class="back" onclick="cancelGate()">←</button><div class="axowrap" id="gateAxo"></div><h2 class="title">Earn the edit.</h2><p id="gateQ" class="sub" style="font-size:17px;max-width:360px"></p><div id="gateChoices" class="choiceGrid" style="width:min(100%,365px)"></div></section>
 <section id="resetScreen" class="screen"><button class="back" onclick="openEditHome()">←</button><div class="scroll"><h2 class="title">Reset everything?</h2><p class="sub">This deletes every edit and custom question on this device.</p><div class="notice">Type <strong>RESET DECK</strong> exactly.</div><input id="resetInput" class="field" style="margin-top:14px" placeholder="RESET DECK"><button class="primary" style="margin-top:10px;background:#d8577f;color:#fff" onclick="confirmReset()">Delete custom game data</button></div></section>
 </div>
-<script src="questions.js"></script>
+<script src="questions.js?v=20261024-public-fonts"></script>
 <script>
 const CONTENT=window.CHOOSE_A_LOSER_CONTENT;
 const DATA_VERSION=CONTENT.version,DEFAULTS=CONTENT.defaults,GATES=CONTENT.gates,SKIP_INSULTS=CONTENT.skipInsults,INSULTS=CONTENT.insults;
@@ -83,5 +106,26 @@ function openReset(){document.getElementById('resetInput').value='';showScreen('
 window.addEventListener('load',()=>{applySettings();setChaos(chaos);document.getElementById('loadingAxo').innerHTML=axo();setTimeout(()=>showScreen('homeScreen'),700)})
 </script>
 <!-- pages republish trigger -->
+<script>
+(()=>{
+const fonts=[["classic","Classic serif","'Libre Baskerville', Georgia, serif"],["elegant","Script handwriting","'Dancing Script', cursive"],["clean","Clean","'Nunito Sans', Arial, sans-serif"],["typewriter","Typewriter","'Special Elite', 'Courier New', monospace"],["storybook","Gothic","'UnifrakturCook', 'Old English Text MT', cursive"],["handwritten","Handwritten","'Caveat', cursive"]];
+const aliases={dm:'clean',fredoka:'clean',mono:'typewriter'};
+const toggle=document.getElementById('fontPickerToggle'),list=document.getElementById('fontPickerList'),select=document.getElementById('fontSetting'),current=document.getElementById('fontPickerCurrent');
+const options=[...list.querySelectorAll('[data-font]')];
+function selected(){return fonts.find(f=>f[0]===(aliases[settings.font]||settings.font))||fonts[2]}
+function sync(){const [key,label,family]=selected();select.value=key;current.textContent=label;current.style.fontFamily=family;document.documentElement.style.setProperty('--font',family);options.forEach(b=>b.setAttribute('aria-selected',String(b.dataset.font===key)))}
+function close(focus=false){list.hidden=true;toggle.setAttribute('aria-expanded','false');if(focus)toggle.focus()}
+function open(){list.hidden=false;toggle.setAttribute('aria-expanded','true');options.find(b=>b.dataset.font===selected()[0]).focus()}
+toggle.onclick=()=>list.hidden?open():close();
+options.forEach(button=>button.onclick=()=>{setFont(button.dataset.font);close(true)});
+toggle.addEventListener('keydown',event=>{if(event.key==='ArrowDown'||event.key==='ArrowUp'){event.preventDefault();open()}});
+list.addEventListener('keydown',event=>{const i=options.indexOf(document.activeElement);if(event.key==='Escape'){event.preventDefault();close(true)}else if(['ArrowDown','ArrowUp','Home','End'].includes(event.key)){event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?options.length-1:(i+(event.key==='ArrowDown'?1:-1)+options.length)%options.length;options[next].focus()}});
+document.addEventListener('click',event=>{if(!toggle.closest('.fontPicker').contains(event.target))close()});
+document.addEventListener('focusin',event=>{if(!toggle.closest('.fontPicker').contains(event.target))close()});
+const apply=window.applySettings;window.applySettings=function(){apply();sync()};
+const openSettingsOriginal=window.openSettings;window.openSettings=function(){openSettingsOriginal();sync();close()};
+sync();
+})();
+</script>
 </body>
 </html>

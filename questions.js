@@ -1,5 +1,5 @@
 (()=>{
-  const v='20260914-app1';
+  const v='20261024-public-fonts';
   document.write(
     '<script src="questions-core.js?v='+v+'"><\/script>'+ 
     '<script src="enhancements.js?v='+v+'"><\/script>'+ 

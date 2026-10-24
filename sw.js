@@ -1,6 +1,6 @@
-const CACHE='choose-a-loser-public-v3';
+const CACHE='choose-a-loser-public-v4';
 const ASSETS=[
-  './','./index.html','./questions.js','./questions-core.js','./enhancements.js','./trivia-extra.js','./question-bank-extra.js','./settings-extra.js','./palette-extra.js','./seaweed-extra.js','./axolotl-extra.js','./history-extra.js','./manifest.webmanifest','./app-icon.svg'
+  './','./index.html','./questions.js','./app-extra.js','./questions-core.js','./enhancements.js','./trivia-extra.js','./question-bank-extra.js','./settings-extra.js','./palette-extra.js','./seaweed-extra.js','./axolotl-extra.js','./history-extra.js','./manifest.webmanifest','./app-icon.svg'
 ];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting()));
@@ -10,7 +10,7 @@ self.addEventListener('activate',event=>{
 });
 self.addEventListener('fetch',event=>{
   if(event.request.method!=='GET')return;
-  event.respondWith(fetch(event.request).then(response=>{
+  event.respondWith(fetch(event.request,{cache:'no-cache'}).then(response=>{
     const copy=response.clone();
     caches.open(CACHE).then(cache=>cache.put(event.request,copy));
     return response;

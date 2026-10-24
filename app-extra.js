@@ -1,4 +1,5 @@
 window.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('installAppBtn')?.remove();
   if(!document.querySelector('link[rel="manifest"]')){
     const manifest=document.createElement('link');manifest.rel='manifest';manifest.href='manifest.webmanifest';document.head.appendChild(manifest);
   }
