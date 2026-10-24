@@ -147,6 +147,43 @@ window.addEventListener('DOMContentLoaded',()=>{
     };
   }
 
+  const saveButton=document.createElement('button');
+  saveButton.id='saveSettingsBtn';
+  saveButton.type='button';
+  saveButton.className='primary';
+  saveButton.textContent='Save settings';
+  saveButton.style.cssText='margin-top:14px;background:var(--pink);min-height:48px';
+  settingsScroll.appendChild(saveButton);
+
+  const savedStatus=document.createElement('div');
+  savedStatus.id='settingsSavedStatus';
+  savedStatus.setAttribute('role','status');
+  savedStatus.setAttribute('aria-live','polite');
+  savedStatus.style.cssText='position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;padding:11px 22px;border-radius:999px;border:1px solid rgba(255,79,175,.4);background:#241735;color:#fff;box-shadow:0 8px 24px #0005;font:600 14px "DM Sans",sans-serif;pointer-events:none;opacity:0;transition:opacity .15s';
+  document.body.appendChild(savedStatus);
+  let savedTimer;
+  saveButton.onclick=async()=>{
+    if(saveButton.disabled)return;
+    saveButton.disabled=true;
+    try{
+      saveSettings();
+      localStorage.setItem('chooseLoserAxoColours',JSON.stringify(axoColours));
+      applySettings();
+      refreshVisibleAxos();
+    }catch{
+      saveButton.disabled=false;
+      await appNotice('Your settings could not be saved on this device. Please try again.');
+      return;
+    }
+    saveButton.textContent='Saved';
+    showScreen('homeScreen');
+    clearTimeout(savedTimer);
+    savedStatus.textContent='✓ Saved';
+    savedStatus.style.opacity='1';
+    savedTimer=setTimeout(()=>{savedStatus.style.opacity='0';savedStatus.textContent=''},2400);
+    saveButton.disabled=false;
+  };
+
   const previousOpenSettings=window.openSettings;
-  window.openSettings=function(){previousOpenSettings();setTimeout(()=>{const screen=document.getElementById('settingsScreen');if(screen)screen.scrollTop=0},60);};
+  window.openSettings=function(){previousOpenSettings();saveButton.textContent='Save settings';clearTimeout(savedTimer);savedStatus.style.opacity='0';savedStatus.textContent='';setTimeout(()=>{const screen=document.getElementById('settingsScreen');if(screen)screen.scrollTop=0},60);};
 });
