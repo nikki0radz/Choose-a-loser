@@ -21,7 +21,8 @@ window.addEventListener('DOMContentLoaded',()=>{
         <div class="colourControl"><span>Outline</span><input id="axoOutlineColour" type="color"></div>
       </div>`;
     const coloursRow=[...settingsScroll.querySelectorAll('.settingRow')].find(r=>r.textContent.includes('Colours'));
-    if(coloursRow)coloursRow.after(wrap);else settingsScroll.appendChild(wrap);
+    const opacityRow=document.getElementById('opacitySetting')?.closest('.settingRow');
+    if(opacityRow)opacityRow.after(wrap);else if(coloursRow)coloursRow.after(wrap);else settingsScroll.appendChild(wrap);
   }
 
   const DEFAULT_AXO={body:'#f8bbc4',gills:'#f06f7f',outline:'#351921'};
