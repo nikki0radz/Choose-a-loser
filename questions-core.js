@@ -874,3 +874,127 @@ window.addEventListener('DOMContentLoaded',()=>{
   const previousOpenEditor=window.openEditor;
   window.openEditor=function(mode){previousOpenEditor(mode);if(mode==='proven')document.getElementById('editorTitle').textContent="Edit Pick 'n' Mix";};
 });
+// Approved additions are also used for a one-time, additive saved-bank update.
+window.CHOOSE_A_LOSER_CONTENT.provenAdditions = [
+  {
+    "text": "Who has the most bracelets on?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most necklaces on?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most earrings in?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most visible piercings?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most buttons on the front of their top?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most visible zips on their clothes?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the highest heels?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the tallest boots?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the longest sleeves?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the shortest sleeves?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the largest hoop earrings?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the biggest pendant on their necklace?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the longest beard?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most hair clips in?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most hair ties around their wrist?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most different nail-polish colours on?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the largest logo on their top?",
+    "chaos": 1
+  },
+  {
+    "text": "Whose first name comes first alphabetically?",
+    "chaos": 1
+  },
+  {
+    "text": "Whose first name comes last alphabetically?",
+    "chaos": 1
+  },
+  {
+    "text": "Whose surname comes first alphabetically?",
+    "chaos": 1
+  },
+  {
+    "text": "Whose surname comes last alphabetically?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the shortest surname?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the longest surname?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most middle names?",
+    "chaos": 1
+  },
+  {
+    "text": "Whose birthday falls latest in the calendar year?",
+    "chaos": 1
+  },
+  {
+    "text": "Who was born on the lowest day number of the month?",
+    "chaos": 1
+  },
+  {
+    "text": "Who was born on the highest day number of the month?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most children?",
+    "chaos": 1
+  },
+  {
+    "text": "Who is closest to the door?",
+    "chaos": 1
+  },
+  {
+    "text": "Who is closest to a window?",
+    "chaos": 1
+  }
+];
+window.CHOOSE_A_LOSER_CONTENT.defaults.proven.push(...window.CHOOSE_A_LOSER_CONTENT.provenAdditions.map(q=>({...q})));
