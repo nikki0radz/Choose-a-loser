@@ -139,6 +139,11 @@ window.addEventListener('DOMContentLoaded',()=>{
         localStorage.removeItem('chooseLoserQuestionHistory');summary.textContent=q.text;status.textContent='✓ Saved';
         details.hidden=true;edit.setAttribute('aria-expanded','false');row.append(status);edit.focus({preventScroll:true});
       };
+      if(fields.chaos){
+        const modeControl=document.createElement('div');modeControl.className='questionModeControl';
+        const label=details.querySelector('label[for="'+fields.chaos.id+'"]');
+        modeControl.append(label,fields.chaos);footer.append(modeControl);
+      }
       footer.append(status,saveButton);details.append(footer);
       edit.onclick=()=>{details.hidden=!details.hidden;edit.setAttribute('aria-expanded',String(!details.hidden));if(!details.hidden){status.textContent='';footer.prepend(status);text.focus({preventScroll:true})}};
       del.onclick=async()=>{

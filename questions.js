@@ -1,5 +1,5 @@
 (()=>{
-  const v='20261025-add-dialog';
+  const v='20261025-editor-row';
   document.write(
     '<script src="category-text-fit.js?v='+v+'"><\/script>'+
     '<script src="app-dialogs.js?v='+v+'"><\/script>'+
