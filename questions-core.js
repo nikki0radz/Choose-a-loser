@@ -2,110 +2,529 @@ window.CHOOSE_A_LOSER_CONTENT = {
   version: '8',
   defaults: {
     proven: [
-      {text:"Who is the tallest?",chaos:1},
-      {text:"Who is the shortest?",chaos:1},
-      {text:"If height were a podium, who gets silver?",chaos:1},
-      {text:"Who has the longest hair?",chaos:1},
-      {text:"Who has the shortest hair?",chaos:1},
-      {text:"Who is wearing the most black?",chaos:1},
-      {text:"Who is wearing the brightest colour?",chaos:1},
-      {text:"Who is wearing the most different colours?",chaos:1},
-      {text:"Who is wearing the most layers?",chaos:1},
-      {text:"Who has the most visible pockets?",chaos:1},
-      {text:"Who has the most jewellery on right now?",chaos:1},
-      {text:"Who has the most visible tattoos?",chaos:1},
-      {text:"Who has the biggest shoe size?",chaos:1},
-      {text:"Who has the smallest shoe size?",chaos:1},
-      {text:"Who has the biggest hands?",chaos:1},
-      {text:"Who has the longest first name?",chaos:1},
-      {text:"Who has the shortest first name?",chaos:1},
-      {text:"Who has the most letters in their full name?",chaos:1},
-      {text:"Who has the fewest letters in their full name?",chaos:1},
-      {text:"Whose birthday comes next?",chaos:1},
-      {text:"Whose birthday was most recent?",chaos:1},
-      {text:"Who is the oldest?",chaos:1},
-      {text:"Who is the youngest?",chaos:1},
-      {text:"If age were race time, who takes the silver medal?",chaos:1},
-      {text:"Who woke up earliest today?",chaos:1},
-      {text:"Who woke up latest today?",chaos:1},
-      {text:"Who had the least sleep last night?",chaos:1},
-      {text:"Who had the most sleep last night?",chaos:1},
-      {text:"Who has the lowest phone battery right now?",chaos:1},
-      {text:"Who has the highest phone battery right now?",chaos:1},
-      {text:"Whose phone battery is second from death?",chaos:1},
-      {text:"Who has the most unread notifications right now?",chaos:1},
-      {text:"Who has the most browser tabs open on their phone?",chaos:1},
-      {text:"Who has the most photos on their phone?",chaos:1},
-      {text:"Who has the highest screen time today?",chaos:1},
-      {text:"Who has the lowest screen time today?",chaos:1},
-      {text:"Who has the earliest alarm set for tomorrow?",chaos:1},
-      {text:"Who has the latest alarm set for tomorrow?",chaos:1},
-      {text:"Who got here first?",chaos:1},
-      {text:"Who got here last?",chaos:1},
-      {text:"Who travelled the furthest to be here?",chaos:1},
-      {text:"Who lives closest to here?",chaos:1},
-      {text:"Who has known the host the longest?",chaos:1},
-      {text:"Who has known the host for the shortest time?",chaos:1},
-      {text:"Who has lived at their current address the longest?",chaos:1},
-      {text:"Who has lived at their current address the shortest time?",chaos:1},
-      {text:"Who has been in their current job the longest?",chaos:1},
-      {text:"Who started their current job most recently?",chaos:1},
-      {text:"Who has the biggest family?",chaos:1},
-      {text:"Who has the most siblings?",chaos:1},
-      {text:"Who has the fewest siblings?",chaos:1},
-      {text:"Who has the most pets?",chaos:1},
-      {text:"Who got the highest grades at school?",chaos:1},
-      {text:"Who left school most recently?",chaos:1},
-      {text:"Who has been in a relationship for the longest?",chaos:1},
-      {text:"Who has been single for the longest?",chaos:1},
-      {text:"Who has been abroad to the most countries?",chaos:1},
-      {text:"Who has travelled abroad most recently?",chaos:1},
-      {text:"Who has the most keys on their keyring?",chaos:1},
-      {text:"Who has the most things in their pockets right now?",chaos:1},
-      {text:"Who has the most coins on them right now?",chaos:1},
-      {text:"Who has the newest phone?",chaos:1},
-      {text:"Who has had their current phone the longest?",chaos:1},
-      {text:"Who ate most recently?",chaos:1},
-      {text:"Who has had the most caffeine today?",chaos:1},
-      {text:"Who has had the least caffeine today?",chaos:1},
-      {text:"Who has the least money in their bank account right now?",chaos:3,insult:"Poor you. Picked on by an axolotl."},
-      {text:"Who has the most money in their bank account right now?",chaos:3},
-      {text:"Who has the largest credit-card balance?",chaos:3},
-      {text:"Who has the highest monthly rent or mortgage?",chaos:3},
-      {text:"Who earns the most?",chaos:3},
-      {text:"Who earns the least?",chaos:3},
-      {text:"Who has had the most sex this month?",chaos:3},
-      {text:"Who has had the least sex this month?",chaos:3},
-      {text:"Who has gone the longest without having sex?",chaos:3},
-      {text:"Who has had the most serious relationships?",chaos:3},
-      {text:"Who has had the longest relationship?",chaos:3},
-      {text:"Who has been dumped the most times?",chaos:3},
-      {text:"Who has dumped the most people?",chaos:3},
-      {text:"Who has the highest body count?",chaos:3},
-      {text:"Who has the most dating apps installed right now?",chaos:3},
-      {text:"Who has the most unread messages from someone they're avoiding?",chaos:3},
-      {text:"Who has blocked the most people?",chaos:3},
-      {text:"Who has the most embarrassing recent search history?",chaos:3},
-      {text:"Who spent the most money last weekend?",chaos:3},
-      {text:"Who has spent the most on a single night out?",chaos:3},
-      {text:"Who has the most subscriptions they forgot they pay for?",chaos:3},
-      {text:"Who has the biggest overdraft limit?",chaos:3},
-      {text:"Who has the lowest credit score?",chaos:3},
-      {text:"Who owes the most money to another person?",chaos:3},
-      {text:"Who is owed the most money by another person?",chaos:3},
-      {text:"Who has had the most jobs?",chaos:3},
-      {text:"Who has been fired the most times?",chaos:3},
-      {text:"Who has called in sick the most this year?",chaos:3},
-      {text:"Who has the most unused annual leave left?",chaos:3},
-      {text:"Who has the most screenshots in their camera roll?",chaos:3},
-      {text:"Who has the most unread emails?",chaos:3},
-      {text:"Who has the oldest unread message?",chaos:3},
-      {text:"Who has the most alarms set on their phone?",chaos:3},
-      {text:"Who has spent the most time on their phone today?",chaos:3},
-      {text:"Who has the least storage left on their phone?",chaos:3},
-      {text:"Who has the most saved passwords?",chaos:3},
-      {text:"Who has the most people in their blocked contacts?",chaos:3}
-    ],
+  {
+    "text": "Who is the tallest?",
+    "chaos": 1,
+    "insult": "Enjoy the view. You're still the loser."
+  },
+  {
+    "text": "Who is the shortest?",
+    "chaos": 1,
+    "insult": "Compact. Efficient. Unfortunately selected."
+  },
+  {
+    "text": "If height were a podium, who gets silver?",
+    "chaos": 1,
+    "insult": "Second place in height. First place in consequences."
+  },
+  {
+    "text": "Who has the longest hair?",
+    "chaos": 1,
+    "insult": "Rapunzel couldn't escape this result either."
+  },
+  {
+    "text": "Who has the shortest hair?",
+    "chaos": 1,
+    "insult": "Less hair, same liability."
+  },
+  {
+    "text": "Who is wearing the most black?",
+    "chaos": 1,
+    "insult": "Dressed for the funeral of your winning streak."
+  },
+  {
+    "text": "Who is wearing the brightest colour?",
+    "chaos": 1,
+    "insult": "Easy to identify. Convenient."
+  },
+  {
+    "text": "Who is wearing the most different colours?",
+    "chaos": 1,
+    "insult": "A visual warning label."
+  },
+  {
+    "text": "Who is wearing the most layers?",
+    "chaos": 1,
+    "insult": "Peel responsibly."
+  },
+  {
+    "text": "Who has the most visible pockets?",
+    "chaos": 1,
+    "insult": "Excellent. Plenty of places to hide your disappointment."
+  },
+  {
+    "text": "Who has the most jewellery on right now?",
+    "chaos": 1,
+    "insult": "All that sparkle couldn't distract us from the loser."
+  },
+  {
+    "text": "Who has the most visible tattoos?",
+    "chaos": 1,
+    "insult": "Permanent decisions. One more questionable outcome."
+  },
+  {
+    "text": "Who has the biggest shoe size?",
+    "chaos": 1,
+    "insult": "Big footprint. Bigger disappointment."
+  },
+  {
+    "text": "Who has the smallest shoe size?",
+    "chaos": 1,
+    "insult": "Tiny shoes, adult-sized consequences."
+  },
+  {
+    "text": "Who has the biggest hands?",
+    "chaos": 1,
+    "insult": "Perfect for holding this loss."
+  },
+  {
+    "text": "Who has the longest first name?",
+    "chaos": 1,
+    "insult": "More letters, more liability."
+  },
+  {
+    "text": "Who has the shortest first name?",
+    "chaos": 1,
+    "insult": "Efficient name. Inefficient luck."
+  },
+  {
+    "text": "Who has the most letters in their full name?",
+    "chaos": 1,
+    "insult": "Your name needs pagination."
+  },
+  {
+    "text": "Who has the fewest letters in their full name?",
+    "chaos": 1,
+    "insult": "Minimalist branding. Maximum exposure."
+  },
+  {
+    "text": "Whose birthday comes next?",
+    "chaos": 1,
+    "insult": "Early birthday present: an unwanted turn."
+  },
+  {
+    "text": "Whose birthday was most recent?",
+    "chaos": 1,
+    "insult": "The birthday luck has officially expired."
+  },
+  {
+    "text": "Who is the oldest?",
+    "chaos": 1,
+    "insult": "Wisdom allegedly comes with age. Use some."
+  },
+  {
+    "text": "Who is the youngest?",
+    "chaos": 1,
+    "insult": "Youth has consequences."
+  },
+  {
+    "text": "If age were race time, who takes the silver medal?",
+    "chaos": 1,
+    "insult": "Silver medal. Gold-standard bad luck."
+  },
+  {
+    "text": "Who woke up earliest today?",
+    "chaos": 1,
+    "insult": "All that extra day, and it led here."
+  },
+  {
+    "text": "Who woke up latest today?",
+    "chaos": 1,
+    "insult": "Good morning. Bad luck."
+  },
+  {
+    "text": "Who had the least sleep last night?",
+    "chaos": 1,
+    "insult": "Sleep-deprived and still picked on."
+  },
+  {
+    "text": "Who had the most sleep last night?",
+    "chaos": 1,
+    "insult": "Well-rested enough to process this loss."
+  },
+  {
+    "text": "Who has the lowest phone battery right now?",
+    "chaos": 1,
+    "insult": "Your phone is nearly out. Your luck got there first."
+  },
+  {
+    "text": "Who has the highest phone battery right now?",
+    "chaos": 1,
+    "insult": "Full battery. Absolutely no luck."
+  },
+  {
+    "text": "Who has the most unread notifications right now?",
+    "chaos": 1,
+    "insult": "Even your phone is trying to tell you something."
+  },
+  {
+    "text": "Who has the most browser tabs open on their phone?",
+    "chaos": 1,
+    "insult": "All those tabs and not one escape route."
+  },
+  {
+    "text": "Who has the highest screen time today?",
+    "chaos": 1,
+    "insult": "Your screen knows you better than we do."
+  },
+  {
+    "text": "Who has the lowest screen time today?",
+    "chaos": 1,
+    "insult": "Touching grass didn't save you."
+  },
+  {
+    "text": "Who has the earliest alarm set for tomorrow?",
+    "chaos": 1,
+    "insult": "An early start tomorrow. An unfortunate turn today."
+  },
+  {
+    "text": "Who has the latest alarm set for tomorrow?",
+    "chaos": 1,
+    "insult": "Sleep in. You've earned absolutely nothing."
+  },
+  {
+    "text": "Who got here first?",
+    "chaos": 1,
+    "insult": "First here, first punished."
+  },
+  {
+    "text": "Who got here last?",
+    "chaos": 1,
+    "insult": "Late and still somehow selected."
+  },
+  {
+    "text": "Who travelled the furthest to be here?",
+    "chaos": 1,
+    "insult": "You came all this way for this."
+  },
+  {
+    "text": "Who lives closest to here?",
+    "chaos": 1,
+    "insult": "At least the walk of shame is short."
+  },
+  {
+    "text": "Who has lived at their current address the longest?",
+    "chaos": 1,
+    "insult": "Stable housing, unstable outcome."
+  },
+  {
+    "text": "Who has lived at their current address the shortest time?",
+    "chaos": 1,
+    "insult": "New home, old problem."
+  },
+  {
+    "text": "Who has been in their current job the longest?",
+    "chaos": 1,
+    "insult": "Seniority has benefits. This is not one."
+  },
+  {
+    "text": "Who started their current job most recently?",
+    "chaos": 1,
+    "insult": "New starter. Immediate loser."
+  },
+  {
+    "text": "Who has the biggest family?",
+    "chaos": 1,
+    "insult": "A big family and not one substitute."
+  },
+  {
+    "text": "Who has the most siblings?",
+    "chaos": 1,
+    "insult": "All those siblings and we still picked you."
+  },
+  {
+    "text": "Who has the fewest siblings?",
+    "chaos": 1,
+    "insult": "No backup sibling. You're taking this one yourself."
+  },
+  {
+    "text": "Who has the most pets?",
+    "chaos": 1,
+    "insult": "Even the pets are pretending not to know you."
+  },
+  {
+    "text": "Who got the highest grades at school?",
+    "chaos": 1,
+    "insult": "All that academic promise, and here we are."
+  },
+  {
+    "text": "Who left school most recently?",
+    "chaos": 1,
+    "insult": "School's out. Bad luck isn't."
+  },
+  {
+    "text": "Who has been in a relationship for the longest?",
+    "chaos": 1,
+    "insult": "Commitment champion. Commit to this loss."
+  },
+  {
+    "text": "Who has been single for the longest?",
+    "chaos": 1,
+    "insult": "Single and ready to be singled out."
+  },
+  {
+    "text": "Who has been abroad to the most countries?",
+    "chaos": 1,
+    "insult": "Well-travelled, poorly protected."
+  },
+  {
+    "text": "Who has travelled abroad most recently?",
+    "chaos": 1,
+    "insult": "Holiday glow, domestic consequences."
+  },
+  {
+    "text": "Who has the most keys on their keyring?",
+    "chaos": 1,
+    "insult": "All those keys. Not one escape route."
+  },
+  {
+    "text": "Who has the most things in their pockets right now?",
+    "chaos": 1,
+    "insult": "Full pockets. Fresh disappointment."
+  },
+  {
+    "text": "Who has the most coins on them right now?",
+    "chaos": 1,
+    "insult": "All those coins and not a lucky one among them."
+  },
+  {
+    "text": "Who has the newest phone?",
+    "chaos": 1,
+    "insult": "Shiny phone, dirty outcome."
+  },
+  {
+    "text": "Who has had their current phone the longest?",
+    "chaos": 1,
+    "insult": "Loyal to a handset. Betrayed by an axolotl."
+  },
+  {
+    "text": "Who ate most recently?",
+    "chaos": 1,
+    "insult": "Good. You won't be losing on an empty stomach."
+  },
+  {
+    "text": "Who has had the most caffeine today?",
+    "chaos": 1,
+    "insult": "All that caffeine and you still couldn't dodge this."
+  },
+  {
+    "text": "Who has had the least caffeine today?",
+    "chaos": 1,
+    "insult": "Sober nervous system. Same bad luck."
+  },
+  {
+    "text": "Who has the least money in their bank account right now?",
+    "chaos": 3,
+    "insult": "Poor you. Picked on by an axolotl."
+  },
+  {
+    "text": "Who has the most money in their bank account right now?",
+    "chaos": 3,
+    "insult": "Top of one list. Bottom of this one."
+  },
+  {
+    "text": "Who has the largest credit-card balance?",
+    "chaos": 3,
+    "insult": "An impressive record. An unfortunate result."
+  },
+  {
+    "text": "Who has the highest monthly rent or mortgage?",
+    "chaos": 3,
+    "insult": "You were hoping for someone else. So was everyone else."
+  },
+  {
+    "text": "Who earns the most?",
+    "chaos": 3,
+    "insult": "Excellent. We've found our unlucky volunteer."
+  },
+  {
+    "text": "Who earns the least?",
+    "chaos": 3,
+    "insult": "The odds have made a very personal decision."
+  },
+  {
+    "text": "Who has had the most sex this month?",
+    "chaos": 3,
+    "insult": "Congratulations. Hydrate."
+  },
+  {
+    "text": "Who has had the least sex this month?",
+    "chaos": 3,
+    "insult": "A moment of silence for your calendar."
+  },
+  {
+    "text": "Who has gone the longest without having sex?",
+    "chaos": 3,
+    "insult": "At this point it's basically a sabbatical."
+  },
+  {
+    "text": "Who has had the most serious relationships?",
+    "chaos": 3,
+    "insult": "Experienced applicant. References available."
+  },
+  {
+    "text": "Who has had the longest relationship?",
+    "chaos": 3,
+    "insult": "Commitment detected. We can exploit that."
+  },
+  {
+    "text": "Who has been dumped the most times?",
+    "chaos": 3,
+    "insult": "Statistically, the market has spoken."
+  },
+  {
+    "text": "Who has dumped the most people?",
+    "chaos": 3,
+    "insult": "HR would like a word."
+  },
+  {
+    "text": "Who has the highest body count?",
+    "chaos": 3,
+    "insult": "Your LinkedIn says 'extensive experience'."
+  },
+  {
+    "text": "Who has the most dating apps installed right now?",
+    "chaos": 3,
+    "insult": "A diversified portfolio."
+  },
+  {
+    "text": "Who has blocked the most people?",
+    "chaos": 3,
+    "insult": "Your boundary list has a guest list."
+  },
+  {
+    "text": "Who has the biggest overdraft limit?",
+    "chaos": 3,
+    "insult": "Look at all that potential. None of it helped."
+  },
+  {
+    "text": "Who has the lowest credit score?",
+    "chaos": 3,
+    "insult": "The algorithm has concerns."
+  },
+  {
+    "text": "Who owes the most money to another person?",
+    "chaos": 3,
+    "insult": "Everyone suddenly agrees with the result."
+  },
+  {
+    "text": "Who is owed the most money by another person?",
+    "chaos": 3,
+    "insult": "Consider this your turn. Nobody said it would be a good one."
+  },
+  {
+    "text": "Who has had the most jobs?",
+    "chaos": 3,
+    "insult": "Your CV has seasons."
+  },
+  {
+    "text": "Who has been fired the most times?",
+    "chaos": 3,
+    "insult": "A rich and varied exit-interview history."
+  },
+  {
+    "text": "Who has called in sick the most this year?",
+    "chaos": 3,
+    "insult": "Attendance: conceptual."
+  },
+  {
+    "text": "Who has the most unused annual leave left?",
+    "chaos": 3,
+    "insult": "Your employer thanks you for the donation."
+  },
+  {
+    "text": "Who has the most alarms set on their phone?",
+    "chaos": 3,
+    "insult": "Trust issues, but with mornings."
+  },
+  {
+    "text": "Who has spent the most time on their phone today?",
+    "chaos": 3,
+    "insult": "Your phone would like to list you as a dependent."
+  },
+  {
+    "text": "Who has the least storage left on their phone?",
+    "chaos": 3,
+    "insult": "Delete 14,000 screenshots or accept your fate."
+  },
+  {
+    "text": "Who has the most people in their blocked contacts?",
+    "chaos": 3,
+    "insult": "A small private prison, apparently."
+  },
+  {
+    "text": "Who has the brightest phone case?",
+    "chaos": 1
+  },
+  {
+    "text": "Who is wearing the most rings?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most items in their bag right now?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the longest nails right now?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most apps open right now?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most contacts saved in their phone?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most steps today?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the earliest birthday in the calendar year?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has lived in the most different homes?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has visited the most continents?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most letters in their middle name?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most cash on them right now?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most unread WhatsApp chats?",
+    "chaos": 1
+  },
+  {
+    "text": "Who spent the most money today?",
+    "chaos": 3
+  },
+  {
+    "text": "Who has the most expensive thing on them right now?",
+    "chaos": 3
+  },
+  {
+    "text": "Who has ordered takeaway most recently?",
+    "chaos": 3
+  },
+  {
+    "text": "Who has the longest daily screen-time average this week?",
+    "chaos": 3
+  },
+  {
+    "text": "Who has the most unread DMs?",
+    "chaos": 3
+  }
+],
     debate: [
       {text:"Who is the most stubborn?",chaos:1},
       {text:"Who complains the most?",chaos:1},

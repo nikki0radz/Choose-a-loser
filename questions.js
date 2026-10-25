@@ -1,5 +1,5 @@
 (()=>{
-  const v='20261025-copy-bank';
+  const v='20261025-curated-108';
   document.write(
     '<script src="category-text-fit.js?v='+v+'"><\/script>'+
     '<script src="app-dialogs.js?v='+v+'"><\/script>'+
