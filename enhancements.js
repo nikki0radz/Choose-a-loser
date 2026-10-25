@@ -84,10 +84,19 @@ window.addEventListener('DOMContentLoaded',()=>{
   window.visualViewport?.addEventListener('resize',scheduleEditorScroll);
   window.visualViewport?.addEventListener('scroll',scheduleEditorScroll);
   window.addEventListener('resize',scheduleEditorScroll);
-  const addDetails=document.getElementById('newQuestionDetails');
+  const addDialog=document.getElementById('newQuestionDialog');
   const addToggle=document.getElementById('newQuestionToggle');
-  function closeAdd(){addDetails.hidden=true;addToggle.setAttribute('aria-expanded','false')}
-  addToggle.onclick=()=>{addDetails.hidden=!addDetails.hidden;addToggle.setAttribute('aria-expanded',String(!addDetails.hidden));if(!addDetails.hidden)document.getElementById('newQ').focus({preventScroll:true})};
+  function closeAdd(){if(addDialog.open)addDialog.close()}
+  addToggle.onclick=()=>{addDialog.showModal();document.getElementById('newQ').focus()};
+  document.getElementById('closeNewQuestion').onclick=closeAdd;
+  addDialog.addEventListener('close',()=>addToggle.focus({preventScroll:true}));
+  function fitAddDialog(){
+    addDialog.style.setProperty('--editor-visible-top',((window.visualViewport?.offsetTop||0)+16)+'px');
+    addDialog.style.setProperty('--editor-visible-height',(window.visualViewport?.height||window.innerHeight)+'px');
+    if(addDialog.open&&addDialog.contains(document.activeElement))document.activeElement.scrollIntoView({block:'nearest'});
+  }
+  window.visualViewport?.addEventListener('resize',fitAddDialog);
+  addDialog.addEventListener('focusin',()=>requestAnimationFrame(fitAddDialog));
   const originalOpenEditor=window.openEditor;
   window.openEditor=function(mode){
     ['newQ','newA','newE','newWho'].forEach(id=>document.getElementById(id).value='');
