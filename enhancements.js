@@ -155,4 +155,30 @@ window.addEventListener('DOMContentLoaded',()=>{
       top.append(summary,edit,del);row.append(top,details);list.append(row);
     });
   };
+  const copyBank=document.getElementById('copyQuestionBank');
+  copyBank.onclick=async()=>{
+    const names={proven:"Pick 'n' Mix",debate:'Debatable',knockout:'Knockout'};
+    const sections=Object.entries(names).map(([key,name])=>{
+      const questions=data[key]||[];
+      return name+' ('+questions.length+' questions)\n'+questions.map(q=>JSON.stringify(q)).join('\n');
+    });
+    const text='CHOOSE A LOSER — EDITED QUESTION BANK\nThis is my complete saved bank. Omitted questions were removed.\nchaos: 1 = Family Friendly, 3 = Question Roulette.\n\n'+sections.join('\n\n');
+    const status=document.getElementById('copyQuestionBankStatus');
+    try{
+      await navigator.clipboard.writeText(text);
+      status.textContent='✓ Copied — paste it into this chat.';
+    }catch(error){
+      const dialog=document.createElement('dialog');dialog.className='appDialog';
+      dialog.setAttribute('aria-label','Copy question bank');
+      const heading=document.createElement('h2');heading.textContent='Copy question bank';
+      const note=document.createElement('p');note.textContent='Automatic copying is unavailable. Hold the selected text, choose Copy, then paste it into this chat.';
+      const field=document.createElement('textarea');field.className='field';field.readOnly=true;field.rows=8;field.value=text;field.setAttribute('aria-label','Saved question bank');
+      const close=document.createElement('button');close.type='button';close.className='primary questionSave';close.textContent='Close';close.style.marginTop='12px';close.onclick=()=>dialog.close();
+      dialog.append(heading,note,field,close);document.body.append(dialog);
+      dialog.addEventListener('close',()=>{dialog.remove();copyBank.focus()},{once:true});
+      dialog.showModal();field.focus();field.select();field.setSelectionRange(0,text.length);
+      status.textContent='Use the text in the pop-up to copy your bank.';
+    }
+  };
+
 });
