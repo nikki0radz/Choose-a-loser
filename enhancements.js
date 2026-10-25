@@ -61,6 +61,29 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   const app=document.getElementById('app');if(app)app.prepend(scene);else document.body.prepend(scene);
 
+  // Match the editor to the visible area when a mobile keyboard opens.
+  const editorScreen=document.getElementById('editorScreen');
+  function keepEditorFieldVisible(){
+    const field=document.activeElement;
+    const editing=editorScreen.classList.contains('active')&&editorScreen.contains(field)&&field.matches('textarea,input,select');
+    if(!editing){editorScreen.style.removeProperty('height');editorScreen.style.removeProperty('min-height');editorScreen.style.removeProperty('top');return}
+    const viewport=window.visualViewport;
+    if(viewport){
+      editorScreen.style.height=viewport.height+'px';
+      editorScreen.style.minHeight='0';
+      editorScreen.style.top=viewport.offsetTop+'px';
+    }
+    const bounds=editorScreen.getBoundingClientRect(),rect=field.getBoundingClientRect();
+    const top=bounds.top+16,bottom=bounds.bottom-20;
+    if(rect.bottom>bottom)editorScreen.scrollTop+=rect.bottom-bottom;
+    if(rect.top<top||rect.height>bottom-top)editorScreen.scrollTop+=field.getBoundingClientRect().top-top;
+  }
+  function scheduleEditorScroll(){requestAnimationFrame(keepEditorFieldVisible)}
+  editorScreen.addEventListener('focusin',()=>{scheduleEditorScroll();setTimeout(scheduleEditorScroll,300)});
+  editorScreen.addEventListener('focusout',()=>setTimeout(scheduleEditorScroll,0));
+  window.visualViewport?.addEventListener('resize',scheduleEditorScroll);
+  window.visualViewport?.addEventListener('scroll',scheduleEditorScroll);
+  window.addEventListener('resize',scheduleEditorScroll);
   const addDetails=document.getElementById('newQuestionDetails');
   const addToggle=document.getElementById('newQuestionToggle');
   function closeAdd(){addDetails.hidden=true;addToggle.setAttribute('aria-expanded','false')}
@@ -105,9 +128,10 @@ window.addEventListener('DOMContentLoaded',()=>{
         Object.entries(fields).forEach(([key,input])=>q[key]=key==='chaos'?+input.value:input.value.trim());
         try{save()}catch(error){Object.assign(q,before);appNotice('Could not save your changes. Please try again.');return}
         localStorage.removeItem('chooseLoserQuestionHistory');summary.textContent=q.text;status.textContent='✓ Saved';
+        details.hidden=true;edit.setAttribute('aria-expanded','false');row.append(status);edit.focus({preventScroll:true});
       };
       footer.append(status,saveButton);details.append(footer);
-      edit.onclick=()=>{details.hidden=!details.hidden;edit.setAttribute('aria-expanded',String(!details.hidden));if(!details.hidden)text.focus({preventScroll:true})};
+      edit.onclick=()=>{details.hidden=!details.hidden;edit.setAttribute('aria-expanded',String(!details.hidden));if(!details.hidden){status.textContent='';footer.prepend(status);text.focus({preventScroll:true})}};
       del.onclick=async()=>{
         if(!await appConfirm('Delete this question? This cannot be undone.\n\n'+q.text,{title:'Delete question?',confirmLabel:'Delete'}))return;
         const index=data[mode].indexOf(q);if(index<0)return;

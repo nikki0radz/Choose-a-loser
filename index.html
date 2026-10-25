@@ -167,7 +167,7 @@ html,body{margin:0;width:100%;min-height:100%;background:var(--navy);color:#fff;
 <section id="triviaGateScreen" class="screen"><button class="back" onclick="cancelGate()" aria-label="Back"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button><div class="axowrap" id="gateAxo"></div><h2 class="title">Earn the edit.</h2><p id="gateQ" class="sub" style="font-size:17px;max-width:360px"></p><div id="gateChoices" class="choiceGrid" style="width:min(100%,365px)"></div></section>
 <section id="resetScreen" class="screen"><button class="back" onclick="openEditHome()" aria-label="Back"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button><div class="scroll"><h2 class="title">Reset everything?</h2><p class="sub">This deletes every edit and custom question on this device.</p><div class="notice">Type <strong>RESET DECK</strong> exactly.</div><input id="resetInput" class="field" style="margin-top:14px" placeholder="RESET DECK"><button class="primary" style="margin-top:10px;background:#d8577f;color:#fff" onclick="confirmReset()">Delete custom game data</button></div></section>
 </div>
-<script src="questions.js?v=20261025-question-save"></script>
+<script src="questions.js?v=20261025-keyboard-save"></script>
 <script>
 const CONTENT=window.CHOOSE_A_LOSER_CONTENT;
 const DATA_VERSION=CONTENT.version,DEFAULTS=CONTENT.defaults,GATES=CONTENT.gates,SKIP_INSULTS=CONTENT.skipInsults,INSULTS=CONTENT.insults;
