@@ -61,31 +61,60 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   const app=document.getElementById('app');if(app)app.prepend(scene);else document.body.prepend(scene);
 
+  const addDetails=document.getElementById('newQuestionDetails');
+  const addToggle=document.getElementById('newQuestionToggle');
+  function closeAdd(){addDetails.hidden=true;addToggle.setAttribute('aria-expanded','false')}
+  addToggle.onclick=()=>{addDetails.hidden=!addDetails.hidden;addToggle.setAttribute('aria-expanded',String(!addDetails.hidden));if(!addDetails.hidden)document.getElementById('newQ').focus({preventScroll:true})};
   const originalOpenEditor=window.openEditor;
-  window.openEditor=function(mode){originalOpenEditor(mode);const chaos=document.getElementById('newChaos');if(chaos&&mode!=='whoSaid'){chaos.style.display='block';chaos.innerHTML='<option value="1">🌱 Family Friendly</option><option value="3">🎰 Question Roulette</option>';}let quip=document.getElementById('newInsult');if(!quip&&mode==='proven'){quip=document.createElement('textarea');quip.id='newInsult';quip.className='field';quip.rows=2;quip.placeholder='Sarcastic comment (optional)';document.getElementById('newChaos').before(quip)}if(quip)quip.style.display=mode==='proven'?'block':'none';};
-
-  window.renderEditor=function(){let list=document.getElementById('editList');list.innerHTML='';const mode=currentMode;data[mode].forEach((q,i)=>{const row=document.createElement('div'),top=document.createElement('div'),summary=document.createElement('p'),edit=document.createElement('button'),del=document.createElement('button'),details=document.createElement('div'),text=document.createElement('textarea');
-    row.className='editRow';top.className='questionSummary';summary.className='questionSummaryText';summary.textContent=q.text;
-    details.className='questionDetails';details.id='question-details-'+mode+'-'+i;details.hidden=true;
-    edit.type=del.type='button';edit.className=del.className='questionAction';del.classList.add('danger');
-    edit.setAttribute('aria-label','Edit question');edit.setAttribute('aria-expanded','false');edit.setAttribute('aria-controls',details.id);
-    edit.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 3 5 5-12 12-6 1 1-6Z M14 5l5 5"/></svg>';
-    del.setAttribute('aria-label','Delete question');del.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12 M18 6 6 18"/></svg>';
-    text.className='field';text.rows=2;text.value=q.text;text.setAttribute('aria-label','Question');
-    text.onchange=()=>{q.text=text.value.trim()||q.text;text.value=q.text;summary.textContent=q.text;save();localStorage.removeItem('chooseLoserQuestionHistory')};
-    edit.onclick=()=>{details.hidden=!details.hidden;edit.setAttribute('aria-expanded',String(!details.hidden));if(!details.hidden)text.focus({preventScroll:true})};
-    del.onclick=async()=>{
-      if(!await appConfirm('Delete this question? This cannot be undone.\n\n'+q.text,{title:'Delete question?',confirmLabel:'Delete'}))return;
-      const index=data[mode].indexOf(q);if(index<0)return;
-      data[mode].splice(index,1);save();localStorage.removeItem('chooseLoserQuestionHistory');
-      if(currentMode===mode){row.remove();const buttons=list.querySelectorAll('.questionAction');const next=buttons[Math.min(i*2,buttons.length-1)];if(next)next.focus({preventScroll:true})}
-    };
-    top.append(summary,edit,del);details.append(text);row.append(top,details);
-    if(currentMode!=='whoSaid'){let label=document.createElement('div');label.className='editLabel';label.textContent='QUESTION MODE';details.append(label);let sel=document.createElement('select');sel.className='field';sel.innerHTML='<option value="1">🌱 Family Friendly</option><option value="3">🎰 Question Roulette</option>';sel.value=String(q.chaos||1);sel.onchange=()=>{q.chaos=+sel.value;save();localStorage.removeItem('chooseLoserQuestionHistory')};details.append(sel)}
-    if(currentMode==='proven'){let label=document.createElement('div');label.className='editLabel';label.textContent='SARCASTIC COMMENT';details.append(label);let x=document.createElement('textarea');x.className='field';x.rows=2;x.value=q.insult||'';x.placeholder='Sarcastic comment';x.onchange=()=>{q.insult=x.value.trim();save()};details.append(x)}
-    if(currentMode==='knockout'){[['answer','Answer'],['explain','Explanation']].forEach(([k,p])=>{let label=document.createElement('div');label.className='editLabel';label.textContent=p.toUpperCase();details.append(label);let x=document.createElement('input');x.className='field';x.value=q[k]||'';x.placeholder=p;x.onchange=()=>{q[k]=x.value;save()};details.append(x)})}
-    if(currentMode==='whoSaid'){let label=document.createElement('div');label.className='editLabel';label.textContent='WHO SAID IT?';details.append(label);let x=document.createElement('input');x.className='field';x.value=q.who||'';x.placeholder='Who said it?';x.onchange=()=>{q.who=x.value;save()};details.append(x)}list.append(row)})};
-
-  const originalRequestAdd=window.requestAdd;
-  window.requestAdd=function(){if(currentMode!=='proven')return originalRequestAdd();let text=document.getElementById('newQ').value.trim();if(!text)return;let payload={text,chaos:+document.getElementById('newChaos').value,insult:(document.getElementById('newInsult')?.value||'').trim()};gateAction=()=>{data[currentMode].push(payload);save();localStorage.removeItem('chooseLoserQuestionHistory');document.getElementById('newQ').value='';if(document.getElementById('newInsult'))document.getElementById('newInsult').value='';renderEditor();showScreen('editorScreen')};openGate()};
+  window.openEditor=function(mode){
+    ['newQ','newA','newE','newWho'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('newChaos').value='1';closeAdd();originalOpenEditor(mode);
+  };
+  window.renderEditor=function(){
+    const list=document.getElementById('editList');list.innerHTML='';const mode=currentMode;
+    if(!document.getElementById('newQ').value)closeAdd();
+    data[mode].forEach((q,i)=>{
+      const row=document.createElement('div'),top=document.createElement('div'),summary=document.createElement('p'),edit=document.createElement('button'),del=document.createElement('button'),details=document.createElement('div');
+      row.className='editRow';top.className='questionSummary';summary.className='questionSummaryText';summary.textContent=q.text;
+      details.className='questionDetails';details.id='question-details-'+mode+'-'+i;details.hidden=true;
+      edit.type=del.type='button';edit.className=del.className='questionAction';del.classList.add('danger');
+      edit.setAttribute('aria-label','Edit question');edit.setAttribute('aria-expanded','false');edit.setAttribute('aria-controls',details.id);
+      edit.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 3 5 5-12 12-6 1 1-6Z M14 5l5 5"/></svg>';
+      del.setAttribute('aria-label','Delete question');del.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12 M18 6 6 18"/></svg>';
+      const fields={};
+      function field(key,label,kind='input'){
+        const caption=document.createElement('label'),input=document.createElement(kind);
+        caption.className='editLabel';caption.textContent=label;input.id=details.id+'-'+key;caption.htmlFor=input.id;
+        input.className='field';input.value=q[key]||'';if(kind==='textarea')input.rows=2;
+        fields[key]=input;details.append(caption,input);return input;
+      }
+      const text=field('text','Question','textarea');
+      if(mode!=='whoSaid'){
+        const select=field('chaos','Question mode','select');
+        select.innerHTML='<option value="1">🌱 Family Friendly</option><option value="3">🎰 Question Roulette</option>';select.value=String(q.chaos===3?3:1);
+      }
+      if(mode==='knockout'){field('answer','Answer');field('explain','Explanation')}
+      if(mode==='whoSaid')field('who','Who said it?');
+      const footer=document.createElement('div'),status=document.createElement('span'),saveButton=document.createElement('button');
+      footer.className='questionSaveRow';status.setAttribute('role','status');saveButton.type='button';saveButton.className='primary questionSave';saveButton.textContent='Save';
+      details.addEventListener('input',()=>{status.textContent='';text.setCustomValidity('')});
+      details.addEventListener('change',()=>status.textContent='');
+      saveButton.onclick=()=>{
+        if(!text.value.trim()){text.setCustomValidity('Please enter a question.');text.reportValidity();return}
+        const before={...q};
+        Object.entries(fields).forEach(([key,input])=>q[key]=key==='chaos'?+input.value:input.value.trim());
+        try{save()}catch(error){Object.assign(q,before);appNotice('Could not save your changes. Please try again.');return}
+        localStorage.removeItem('chooseLoserQuestionHistory');summary.textContent=q.text;status.textContent='✓ Saved';
+      };
+      footer.append(status,saveButton);details.append(footer);
+      edit.onclick=()=>{details.hidden=!details.hidden;edit.setAttribute('aria-expanded',String(!details.hidden));if(!details.hidden)text.focus({preventScroll:true})};
+      del.onclick=async()=>{
+        if(!await appConfirm('Delete this question? This cannot be undone.\n\n'+q.text,{title:'Delete question?',confirmLabel:'Delete'}))return;
+        const index=data[mode].indexOf(q);if(index<0)return;
+        data[mode].splice(index,1);save();localStorage.removeItem('chooseLoserQuestionHistory');
+        if(currentMode===mode){row.remove();const next=list.querySelector('.questionAction')||addToggle;next.focus({preventScroll:true})}
+      };
+      top.append(summary,edit,del);row.append(top,details);list.append(row);
+    });
+  };
 });
