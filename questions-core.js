@@ -998,3 +998,72 @@ window.CHOOSE_A_LOSER_CONTENT.provenAdditions = [
   }
 ];
 window.CHOOSE_A_LOSER_CONTENT.defaults.proven.push(...window.CHOOSE_A_LOSER_CONTENT.provenAdditions.map(q=>({...q})));
+
+// User-approved additions from the 26 October question bank.
+window.CHOOSE_A_LOSER_CONTENT.provenOctober26 = [
+  {
+    "text": "Whose parents have the highest combined age?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the highest Uber rating?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the lowest Uber rating?",
+    "chaos": 1
+  },
+  {
+    "text": "Who last slept in a bed that wasn't theirs?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has the most vowels in their full name?",
+    "chaos": 1
+  },
+  {
+    "text": "Who has washed their hands the least today?",
+    "chaos": 1
+  },
+  {
+    "text": "Who washed their hands most recently?",
+    "chaos": 1
+  },
+  {
+    "text": "Who washed their hair most recently?",
+    "chaos": 1
+  },
+  {
+    "text": "Who got drunk most recently?",
+    "chaos": 3
+  },
+  {
+    "text": "Who has made or received the most calls today?",
+    "chaos": 3
+  },
+  {
+    "text": "Who has the most grey hairs?",
+    "chaos": 3
+  },
+  {
+    "text": "Who has gone through a breakup most recently?",
+    "chaos": 3
+  },
+  {
+    "text": "Who has the most allergies?",
+    "chaos": 3
+  },
+  {
+    "text": "Who was born furthest from here?",
+    "chaos": 3
+  },
+  {
+    "text": "Who donated blood most recently?",
+    "chaos": 3
+  },
+  {
+    "text": "Who has most recently been in a swimming pool?",
+    "chaos": 3
+  }
+];
+window.CHOOSE_A_LOSER_CONTENT.defaults.proven.push(...window.CHOOSE_A_LOSER_CONTENT.provenOctober26.map(q=>({...q})));
